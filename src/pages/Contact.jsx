@@ -31,6 +31,7 @@ const contactInfo = [
 const socials = [
   { icon: '🐙', label: 'GitHub', url: 'https://github.com/AryanSingh2k4' },
   { icon: '💼', label: 'LinkedIn', url: 'https://linkedin.com/in/aryansingh2k4' },
+  { icon: '💬', label: 'Discord (carnage__2k4)', url: 'https://discordapp.com/users/carnage__2k4' },
 ]
 
 export default function Contact() {

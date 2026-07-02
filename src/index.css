@@ -115,9 +115,15 @@ img {
   left: -50%;
   width: 200%;
   height: 200%;
-  background: radial-gradient(circle at center, rgba(46, 11, 84, 0.15) 0%, transparent 60%);
+  background: radial-gradient(circle at center, rgba(46, 11, 84, 0.25) 0%, rgba(0, 244, 254, 0.05) 30%, transparent 70%);
   z-index: 0;
   pointer-events: none;
+  animation: pulseGlow 10s ease-in-out infinite alternate;
+}
+
+@keyframes pulseGlow {
+  0% { transform: scale(1); opacity: 0.8; }
+  100% { transform: scale(1.1); opacity: 1; }
 }
 
 /* Custom Cursor */
@@ -449,10 +455,18 @@ select.input-field {
 
 /* Gradient Text */
 .gradient-text {
-  background: linear-gradient(135deg, var(--color-cyan), var(--color-primary), var(--color-violet));
+  background: linear-gradient(135deg, var(--color-cyan), var(--color-primary), var(--color-violet), var(--color-cyan));
+  background-size: 300% 300%;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
+  animation: gradientShift 8s ease infinite;
+}
+
+@keyframes gradientShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
 }
 
 /* Selection */

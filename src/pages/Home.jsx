@@ -5,9 +5,9 @@ import { useScrollReveal, useParticles } from '../hooks/useAnimations'
 import './Home.css'
 
 const projects = [
-  { title: 'Careflow', desc: 'AI-Based Receptionist System with sub-second latency.', tech: ['Next.js', 'React', 'Groq API'], icon: 'smart_toy' },
-  { title: 'Codebot', desc: 'Open-Source ChatGPT Alternative with real-time streaming.', tech: ['React', 'TypeScript', 'Vite'], icon: 'chat' },
-  { title: 'NFTicketing', desc: 'Decentralized Event Ticketing Platform using ERC721 smart contracts.', tech: ['Solidity', 'Ethers.js'], icon: 'confirmation_number' },
+  { title: 'CareFlow', desc: 'AI-powered receptionist platform featuring appointment scheduling and intelligent customer interactions.', tech: ['Next.js', 'React', 'Groq API'], icon: 'smart_toy', link: 'https://med-careflow.vercel.app/' },
+  { title: 'CodeBot', desc: 'Open-source ChatGPT alternative with real-time streaming and chat persistence.', tech: ['React', 'TypeScript', 'Vite'], icon: 'chat', link: 'https://the-code-bot.vercel.app/' },
+  { title: 'NFTicketing', desc: 'Decentralized NFT event ticketing platform using ERC721 smart contracts.', tech: ['Solidity', 'Ethers.js'], icon: 'confirmation_number', link: 'https://nftticketing.vercel.app/' },
 ]
 
 const skills = ['React', 'Next.js', 'TypeScript', 'Tailwind CSS', 'Solidity', 'Supabase', 'SQL', 'Node.js']
@@ -30,22 +30,46 @@ export default function Home() {
 
   // Terminal typing animation
   useEffect(() => {
-    const fullText = 'Aryan — Full Stack Developer & UI Architect'
+    const texts = [
+      'Full Stack Developer...',
+      'Building AI Powered Applications...',
+      'React | Next.js | TypeScript...',
+      'Exploring AI and Emerging Technologies...'
+    ]
+    let currentTextIndex = 0
     let i = 0
-    const timer = setTimeout(() => {
-      const interval = setInterval(() => {
-        if (i <= fullText.length) {
-          setTypedText(fullText.slice(0, i))
-          i++
-        } else {
-          clearInterval(interval)
-          setTimeout(() => setTerminalStep(1), 400)
-          setTimeout(() => setTerminalStep(2), 900)
-          setTimeout(() => setTerminalStep(3), 1400)
+    let isDeleting = false
+
+    const type = () => {
+      const currentText = texts[currentTextIndex]
+      
+      if (!isDeleting) {
+        setTypedText(currentText.slice(0, i + 1))
+        i++
+        if (i === currentText.length) {
+          isDeleting = true
+          setTimeout(type, 1500) // Pause at end of sentence
+          return
         }
-      }, 35)
-      return () => clearInterval(interval)
+      } else {
+        setTypedText(currentText.slice(0, i - 1))
+        i--
+        if (i === 0) {
+          isDeleting = false
+          currentTextIndex = (currentTextIndex + 1) % texts.length
+        }
+      }
+
+      setTimeout(type, isDeleting ? 30 : 60)
+    }
+
+    const timer = setTimeout(() => {
+      type()
+      setTimeout(() => setTerminalStep(1), 1000)
+      setTimeout(() => setTerminalStep(2), 2000)
+      setTimeout(() => setTerminalStep(3), 3000)
     }, 800)
+    
     return () => clearTimeout(timer)
   }, [])
 
@@ -60,8 +84,8 @@ export default function Home() {
               Architect of the <span className="gradient-text">Future</span>
             </h1>
             <p className="hero__subtitle text-body-lg text-muted scroll-reveal">
-              Crafting high-end, performant digital experiences. Blending deep technical
-              expertise with visionary design to build the next generation of web applications.
+              Computer Science Engineering student specializing in IoT, Cyber Security, and Blockchain Technology. 
+              Building practical solutions that combine clean user experiences with solid engineering, focusing on AI, scalable platforms, and Web3.
             </p>
             <div className="hero__actions scroll-reveal">
               <Link to="/projects" className="btn-primary hover-target">

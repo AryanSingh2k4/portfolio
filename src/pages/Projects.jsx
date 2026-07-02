@@ -6,9 +6,9 @@ import './Projects.css'
 const filters = ['All', 'Web Apps', 'Web3 & AI']
 
 const allProjects = [
-  { title: 'Careflow', desc: 'AI-Based Receptionist System with sub-second latency.', tech: ['Next.js', 'React', 'Groq API', 'Supabase', 'Tailwind CSS'], icon: 'smart_toy', category: 'Web3 & AI', link: '#', source: '#' },
-  { title: 'Codebot', desc: 'Open-Source ChatGPT Alternative with real-time streaming.', tech: ['React', 'TypeScript', 'Groq API', 'Vite', 'Tailwind CSS'], icon: 'chat', category: 'Web3 & AI', link: '#', source: '#' },
-  { title: 'NFTicketing', desc: 'Decentralized Event Ticketing Platform using ERC721 smart contracts.', tech: ['Solidity', 'React', 'Ethers.js', 'Sepolia'], icon: 'confirmation_number', category: 'Web3 & AI', link: '#', source: '#' },
+  { title: 'CareFlow', desc: 'AI-powered receptionist platform featuring appointment scheduling, authentication, and intelligent customer interactions.', tech: ['Next.js', 'React', 'Groq API', 'Supabase'], icon: 'smart_toy', category: 'Web3 & AI', link: 'https://med-careflow.vercel.app/', source: 'https://github.com/AryanSingh2k4' },
+  { title: 'CodeBot', desc: 'Open-source ChatGPT alternative with real-time streaming responses, chat persistence, and Markdown support.', tech: ['React', 'TypeScript', 'Vite', 'Groq API'], icon: 'chat', category: 'Web3 & AI', link: 'https://the-code-bot.vercel.app/', source: 'https://github.com/AryanSingh2k4' },
+  { title: 'NFTicketing', desc: 'A decentralized NFT event ticketing platform using ERC721 smart contracts and Ethereum (Sepolia).', tech: ['Solidity', 'React', 'Ethers.js', 'MetaMask'], icon: 'confirmation_number', category: 'Web3 & AI', link: 'https://nftticketing.vercel.app/', source: 'https://github.com/AryanSingh2k4' },
 ]
 
 export default function Projects() {

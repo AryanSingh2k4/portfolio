@@ -58,9 +58,9 @@ const stats = [
 ]
 
 const learning = [
-  { title: 'Rust & WASM', desc: 'Building high-performance web modules' },
-  { title: 'AI/ML Integration', desc: 'Embedding intelligence into web apps' },
-  { title: 'Web3 & Blockchain', desc: 'Decentralized application architecture' },
+  { title: 'AI-Powered Applications', desc: 'Building intelligent applications with LLMs and prompt engineering.' },
+  { title: 'Full-Stack Ecosystems', desc: 'Deep diving into React, Next.js, and scalable system design.' },
+  { title: 'Cyber Security & Blockchain', desc: 'Exploring secure software architecture and Web3 technologies.' },
 ]
 
 function AnimatedNumber({ value, suffix }) {

@@ -40,15 +40,16 @@ export default function About() {
                 Full Stack Developer & UI Architect
               </p>
               <p className="text-body-lg text-muted" style={{ marginBottom: '16px' }}>
-                I'm a developer obsessed with the intersection of design and engineering.
-                For the past several years, I've been building high-performance web applications
-                that push the boundaries of what's possible in the browser.
+                I am a Computer Science Engineering student specializing in IoT, Cyber Security, and Blockchain Technology. 
+                I enjoy building practical solutions that combine clean user experiences with solid engineering.
               </p>
-              <p className="text-body-md text-muted">
-                My approach combines deep technical expertise with a keen eye for visual detail.
-                I believe the best digital products are those where every pixel, every animation,
-                and every interaction is crafted with intention.
+              <p className="text-body-md text-muted" style={{ marginBottom: '16px' }}>
+                My recent work includes AI-powered applications, full-stack web platforms, and blockchain-based projects. 
+                I am particularly interested in AI, modern web technologies, scalable applications, and building products that solve real-world problems.
               </p>
+              <blockquote style={{ borderLeft: '3px solid var(--color-cyan)', paddingLeft: '16px', fontStyle: 'italic', color: 'var(--color-outline)' }}>
+                "The best way to learn is to build."
+              </blockquote>
             </div>
           </div>
         </section>
