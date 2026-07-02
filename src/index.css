@@ -241,22 +241,28 @@ img {
   align-items: center;
   justify-content: center;
   gap: 8px;
-  background: var(--color-secondary-container);
-  color: var(--color-on-secondary);
+  background: rgba(0, 244, 254, 0.15);
+  color: var(--color-cyan);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
   padding: 12px 32px;
   border-radius: 4px;
   font-family: var(--font-headline);
   font-size: 15px;
   font-weight: 600;
   letter-spacing: 0.05em;
-  border: none;
-  box-shadow: 0 0 15px rgba(0, 244, 254, 0.3);
+  border: 1px solid rgba(0, 244, 254, 0.4);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3), 0 0 15px rgba(0, 244, 254, 0.1);
   transition: var(--transition-default);
   text-transform: uppercase;
 }
 
 .btn-primary:hover {
-  box-shadow: 0 0 30px rgba(0, 244, 254, 0.5);
+  background: rgba(0, 244, 254, 0.25);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-color: rgba(0, 244, 254, 0.8);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5), 0 0 25px rgba(0, 244, 254, 0.3);
   transform: translateY(-2px);
 }
 
@@ -265,22 +271,28 @@ img {
   align-items: center;
   justify-content: center;
   gap: 8px;
-  background: transparent;
-  color: var(--color-on-surface);
+  background: rgba(188, 19, 254, 0.1);
+  color: var(--color-violet-dim);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
   padding: 12px 32px;
   border-radius: 4px;
   font-family: var(--font-headline);
   font-size: 15px;
   font-weight: 600;
   letter-spacing: 0.05em;
-  border: 1px solid var(--color-violet);
+  border: 1px solid rgba(188, 19, 254, 0.4);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3), 0 0 15px rgba(188, 19, 254, 0.1);
   transition: var(--transition-default);
   text-transform: uppercase;
 }
 
 .btn-secondary:hover {
-  background: rgba(188, 19, 254, 0.1);
-  box-shadow: 0 0 20px rgba(188, 19, 254, 0.2);
+  background: rgba(188, 19, 254, 0.2);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-color: rgba(188, 19, 254, 0.8);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5), 0 0 25px rgba(188, 19, 254, 0.3);
   transform: translateY(-2px);
 }
 

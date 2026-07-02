@@ -176,12 +176,12 @@ export default function Home() {
 
         {/* CTA Section */}
         <section className="section container scroll-reveal" style={{ textAlign: 'center', paddingBottom: '80px' }}>
-          <h2 className="text-headline-lg text-cyan" style={{ marginBottom: '16px' }}>Initiate Sequence</h2>
+          <h2 className="text-headline-lg text-cyan" style={{ marginBottom: '16px' }}>Let's Work Together</h2>
           <p className="text-body-lg text-muted" style={{ marginBottom: '32px', maxWidth: '600px', margin: '0 auto 32px' }}>
             Ready to build something extraordinary? Let's connect and create the future together.
           </p>
           <Link to="/contact" className="btn-primary hover-target" style={{ padding: '16px 48px', fontSize: '16px' }}>
-            Send Transmission
+            Get In Touch
           </Link>
         </section>
       </div>

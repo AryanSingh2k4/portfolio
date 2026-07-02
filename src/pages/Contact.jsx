@@ -164,7 +164,7 @@ export default function Contact() {
             {/* Right Side - Form */}
             <div className="contact-form-wrapper glass-panel scroll-reveal">
               <h3 className="text-headline-md" style={{ fontSize: '20px', marginBottom: '24px' }}>
-                <span className="text-cyan">{'>'}</span> Send Transmission
+                <span className="text-cyan">{'>'}</span> Send a Message
               </h3>
               <form onSubmit={handleSubmit} className="contact-form">
                 <div className="form-group">
@@ -239,7 +239,7 @@ export default function Contact() {
                   />
                 </div>
                 <button type="submit" className="btn-primary hover-target" style={{ width: '100%', padding: '14px', fontSize: '15px' }}>
-                  {submitted ? '✓ Transmission Sent!' : 'Send Transmission'}
+                  {submitted ? '✓ Message Sent!' : 'Get In Touch'}
                 </button>
               </form>
             </div>
