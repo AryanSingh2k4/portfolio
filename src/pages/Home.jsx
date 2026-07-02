@@ -1,13 +1,14 @@
 import { useRef, useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import PageTransition from '../components/PageTransition'
+import TiltCard from '../components/TiltCard'
 import { useScrollReveal, useParticles } from '../hooks/useAnimations'
 import './Home.css'
 
 const projects = [
-  { title: 'CareFlow', desc: 'AI-powered receptionist platform featuring appointment scheduling and intelligent customer interactions.', tech: ['Next.js', 'React', 'Groq API'], icon: 'smart_toy', link: 'https://med-careflow.vercel.app/' },
-  { title: 'CodeBot', desc: 'Open-source ChatGPT alternative with real-time streaming and chat persistence.', tech: ['React', 'TypeScript', 'Vite'], icon: 'chat', link: 'https://the-code-bot.vercel.app/' },
-  { title: 'NFTicketing', desc: 'Decentralized NFT event ticketing platform using ERC721 smart contracts.', tech: ['Solidity', 'Ethers.js'], icon: 'confirmation_number', link: 'https://nftticketing.vercel.app/' },
+  { title: 'CareFlow', desc: 'AI-powered receptionist platform featuring appointment scheduling and intelligent customer interactions.', tech: ['Next.js', 'React', 'Groq API'], icon: 'smart_toy', link: 'https://med-careflow.vercel.app/', source: 'https://github.com/AryanSingh2k4' },
+  { title: 'CodeBot', desc: 'Open-source ChatGPT alternative with real-time streaming and chat persistence.', tech: ['React', 'TypeScript', 'Vite'], icon: 'chat', link: 'https://the-code-bot.vercel.app/', source: 'https://github.com/AryanSingh2k4' },
+  { title: 'NFTicketing', desc: 'Decentralized NFT event ticketing platform using ERC721 smart contracts.', tech: ['Solidity', 'Ethers.js'], icon: 'confirmation_number', link: 'https://nftticketing.vercel.app/', source: 'https://github.com/AryanSingh2k4' },
 ]
 
 const skills = ['React', 'Next.js', 'TypeScript', 'Tailwind CSS', 'Solidity', 'Supabase', 'SQL', 'Node.js']
@@ -148,7 +149,7 @@ export default function Home() {
           </h2>
           <div className="projects-grid">
             {projects.map((p, i) => (
-              <div
+              <TiltCard
                 key={p.title}
                 className={`glass-panel project-card hover-target scroll-reveal`}
                 style={{ transitionDelay: `${i * 100}ms` }}
@@ -167,12 +168,20 @@ export default function Home() {
                 </div>
                 <h3 className="text-headline-md" style={{ marginBottom: '8px', fontSize: '24px' }}>{p.title}</h3>
                 <p className="text-body-md text-muted" style={{ marginBottom: '16px', flex: 1 }}>{p.desc}</p>
-                <div className="project-card__tech">
+                <div className="project-card__tech" style={{ marginBottom: '16px' }}>
                   {p.tech.map(t => (
                     <span key={t} className="chip" style={{ fontSize: '12px', padding: '2px 8px' }}>{t}</span>
                   ))}
                 </div>
-              </div>
+                <div style={{ display: 'flex', gap: '12px', marginTop: 'auto' }}>
+                  <a href={p.link} className="btn-primary hover-target" style={{ padding: '8px 20px', fontSize: '12px' }}>
+                    View Project
+                  </a>
+                  <a href={p.source} className="btn-secondary hover-target" style={{ padding: '8px 20px', fontSize: '12px' }}>
+                    Source Code
+                  </a>
+                </div>
+              </TiltCard>
             ))}
           </div>
           <div style={{ textAlign: 'center', marginTop: '48px' }} className="scroll-reveal">
