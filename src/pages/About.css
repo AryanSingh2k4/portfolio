@@ -1,0 +1,117 @@
+.about-hero {
+  display: grid;
+  grid-template-columns: 300px 1fr;
+  gap: 48px;
+  align-items: start;
+}
+
+.about-hero__avatar-frame {
+  width: 280px;
+  height: 280px;
+  border-radius: 12px;
+  padding: 4px;
+  border: 2px solid rgba(0, 244, 254, 0.3);
+  box-shadow: 0 0 30px rgba(0, 244, 254, 0.1);
+}
+
+.about-hero__avatar-inner {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, var(--color-primary-container), var(--color-surface-container));
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Timeline */
+.timeline {
+  max-width: 700px;
+  margin: 0 auto;
+  position: relative;
+}
+
+.timeline::before {
+  content: '';
+  position: absolute;
+  left: 20px;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: linear-gradient(180deg, var(--color-cyan), var(--color-violet), transparent);
+  box-shadow: 0 0 8px rgba(0, 244, 254, 0.2);
+}
+
+.timeline__item {
+  display: flex;
+  gap: 24px;
+  margin-bottom: 32px;
+  position: relative;
+}
+
+.timeline__line {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 40px;
+}
+
+.timeline__dot {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: var(--color-cyan);
+  box-shadow: 0 0 12px var(--color-cyan);
+  position: relative;
+  z-index: 2;
+  flex-shrink: 0;
+  margin-top: 24px;
+  animation: pulse-dot 3s ease-in-out infinite;
+}
+
+@keyframes pulse-dot {
+  0%, 100% { box-shadow: 0 0 12px var(--color-cyan); }
+  50% { box-shadow: 0 0 24px var(--color-cyan), 0 0 40px rgba(0, 244, 254, 0.2); }
+}
+
+.timeline__content {
+  padding: 24px;
+  border-radius: 8px;
+  flex: 1;
+}
+
+/* Philosophy */
+.philosophy-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-gutter);
+}
+
+.philosophy-card {
+  padding: 32px;
+  border-radius: 8px;
+  text-align: center;
+}
+
+.philosophy-card__icon {
+  font-size: 40px;
+  color: var(--color-cyan);
+}
+
+@media (max-width: 1024px) {
+  .about-hero {
+    grid-template-columns: 1fr;
+    justify-items: center;
+    text-align: center;
+  }
+  .philosophy-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .about-hero__avatar-frame {
+    width: 200px;
+    height: 200px;
+  }
+}

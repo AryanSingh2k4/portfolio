@@ -1,0 +1,107 @@
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--space-gutter);
+}
+
+.stat-card {
+  padding: 32px 24px;
+  border-radius: 8px;
+  text-align: center;
+}
+
+.stat-card__value {
+  font-size: clamp(32px, 4vw, 56px);
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.stat-card__label {
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.skills-categories-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-gutter);
+}
+
+.skills-category {
+  padding: 28px;
+  border-radius: 8px;
+}
+
+.skills-category__header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 24px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--color-outline-variant);
+}
+
+.skills-category__bars {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.skill-bar__header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 6px;
+}
+
+.skill-bar__track {
+  height: 6px;
+  background: rgba(74, 69, 79, 0.5);
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.skill-bar__fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--color-cyan), var(--color-primary));
+  box-shadow: 0 0 12px rgba(0, 244, 254, 0.3);
+  border-radius: 3px;
+  transition: width 1.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.learning-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-gutter);
+}
+
+.learning-card {
+  padding: 24px;
+  border-radius: 8px;
+  background: transparent;
+  border: 1px solid transparent;
+  border-image: linear-gradient(135deg, var(--color-cyan), var(--color-violet)) 1;
+  transition: var(--transition-default);
+}
+
+.learning-card:hover {
+  background: rgba(46, 11, 84, 0.3);
+  box-shadow: 0 0 20px rgba(0, 244, 254, 0.1);
+}
+
+@media (max-width: 1024px) {
+  .stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .skills-categories-grid {
+    grid-template-columns: 1fr;
+  }
+  .learning-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}

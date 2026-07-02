@@ -1,0 +1,136 @@
+.contact-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 48px;
+  align-items: start;
+}
+
+.contact-cards {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 32px;
+}
+
+.contact-card {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 16px 20px;
+  border-radius: 8px;
+  transition: var(--transition-default);
+}
+
+.contact-card[onclick]:hover {
+  cursor: none;
+}
+
+.status-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #27c93f;
+  box-shadow: 0 0 8px #27c93f;
+  display: inline-block;
+  animation: pulse-green 2s ease-in-out infinite;
+}
+
+@keyframes pulse-green {
+  0%, 100% { box-shadow: 0 0 8px #27c93f; }
+  50% { box-shadow: 0 0 16px #27c93f, 0 0 24px rgba(39, 201, 63, 0.3); }
+}
+
+.social-links {
+  display: flex;
+  gap: 12px;
+}
+
+.social-link {
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  transition: var(--transition-default);
+}
+
+.social-link:hover {
+  box-shadow: 0 0 20px rgba(0, 244, 254, 0.2);
+  border-color: rgba(0, 244, 254, 0.5);
+}
+
+/* Form */
+.contact-form-wrapper {
+  padding: 32px;
+  border-radius: 12px;
+  border: 1px solid rgba(0, 244, 254, 0.2);
+  box-shadow: 0 0 30px rgba(0, 244, 254, 0.05);
+}
+
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.form-group label {
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+/* FAQ */
+.faq-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.faq-item {
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.faq-item__header {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 24px;
+  background: none;
+  border: none;
+  color: var(--color-on-surface);
+  text-align: left;
+  gap: 16px;
+}
+
+.faq-item__chevron {
+  color: var(--color-cyan);
+  transition: transform 0.3s var(--ease-smooth);
+  flex-shrink: 0;
+}
+
+.faq-item__body {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s var(--ease-smooth), padding 0.3s var(--ease-smooth);
+  padding: 0 24px;
+}
+
+.faq-item__body.open {
+  max-height: 300px;
+  padding: 0 24px 20px;
+}
+
+@media (max-width: 1024px) {
+  .contact-grid {
+    grid-template-columns: 1fr;
+  }
+}
