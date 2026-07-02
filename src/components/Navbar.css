@@ -21,8 +21,8 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding-top: 28px;
-  padding-bottom: 28px;
+  padding-top: 36px;
+  padding-bottom: 36px;
 }
 
 .navbar__logo {
@@ -78,8 +78,8 @@
 }
 
 .navbar__cta.btn-primary {
-  padding: 10px 24px;
-  font-size: 14px;
+  padding: 12px 32px;
+  font-size: 15px;
 }
 
 .navbar__mobile-toggle {
