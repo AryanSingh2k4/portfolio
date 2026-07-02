@@ -120,7 +120,7 @@
 
   .navbar__links,
   .navbar__cta {
-    display: none;
+    display: none !important;
   }
 
   .navbar__mobile-toggle {
