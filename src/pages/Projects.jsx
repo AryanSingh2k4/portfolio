@@ -1,4 +1,5 @@
-import { useState } from 'react'
+import { useState, useRef } from 'react'
+import { motion, AnimatePresence, useScroll } from 'framer-motion'
 import PageTransition from '../components/PageTransition'
 import TiltCard from '../components/TiltCard'
 import { useScrollReveal } from '../hooks/useAnimations'
@@ -13,13 +14,47 @@ const allProjects = [
 ]
 
 const timeline = [
-  { year: 'Dec. 2025 — Present', role: 'Freelance Full-Stack Developer', company: 'Independent Client', desc: 'Contributed to a custom responsive e-commerce platform and built dynamic frontend components.' },
-  { year: 'May 2026 — June 2026', role: 'Technical Operations Management Intern', company: 'Eynexa Pharma', desc: 'Engineered corporate website, spearheaded brand identity, and managed technical setup.' },
+  { 
+    year: 'Dec. 2025 — Present', 
+    role: 'Freelance Full-Stack Developer', 
+    company: 'Independent Client', 
+    desc: 'Contributed to a custom responsive e-commerce platform and built dynamic frontend components.',
+    details: [
+      'Engineered highly responsive modular components using React and Tailwind CSS.',
+      'Optimized page loads by 40% using code splitting and modern asset compression.',
+      'Collaborated closely with clients to translate business goals into clean interactive UI.'
+    ],
+    tech: ['React', 'Tailwind CSS', 'Vite', 'Git']
+  },
+  { 
+    year: 'May 2026 — June 2026', 
+    role: 'Technical Operations Management Intern', 
+    company: 'Eynexa Pharma', 
+    desc: 'Engineered corporate website, spearheaded brand identity, and managed technical setup.',
+    details: [
+      'Designed and deployed the corporate website improving client conversion rates.',
+      'Led the creation of brand guidelines and modern identity design.',
+      'Established streamlined deployment workflows for company websites.'
+    ],
+    tech: ['HTML5', 'Vanilla CSS', 'SEO', 'Brand Design']
+  },
 ]
 
 export default function Projects() {
   const [activeFilter, setActiveFilter] = useState('All')
+  const [expandedIndex, setExpandedIndex] = useState(null)
+  const [activeNodes, setActiveNodes] = useState({})
   const sectionRef = useScrollReveal()
+  const timelineRef = useRef(null)
+
+  const { scrollYProgress } = useScroll({
+    target: timelineRef,
+    offset: ["start end", "end end"]
+  })
+
+  const toggleExpand = (index) => {
+    setExpandedIndex(expandedIndex === index ? null : index)
+  }
 
   const filtered = activeFilter === 'All'
     ? allProjects
@@ -92,21 +127,79 @@ export default function Projects() {
         </section>
 
         {/* Experience Timeline */}
-        <section className="section container">
+        <section className="section container" ref={timelineRef}>
           <h2 className="text-headline-lg text-cyan scroll-reveal" style={{ textAlign: 'center', marginBottom: '48px' }}>
             Professional Experience
           </h2>
           <div className="timeline">
+            {/* Scroll progress laser line */}
+            <div className="timeline__line-container">
+              <div className="timeline__line-base" />
+              <motion.div 
+                className="timeline__line-progress" 
+                style={{ scaleY: scrollYProgress, transformOrigin: 'top' }}
+              />
+            </div>
+
             {timeline.map((item, i) => (
-              <div key={i} className="timeline__item scroll-reveal" style={{ transitionDelay: `${i * 100}ms` }}>
-                <div className="timeline__line">
+              <div 
+                key={i} 
+                className={`timeline__item scroll-reveal ${i % 2 === 0 ? 'timeline__item--left' : 'timeline__item--right'}`}
+                style={{ transitionDelay: `${i * 100}ms` }}
+              >
+                {/* Viewport Node Dot */}
+                <motion.div 
+                  className={`timeline__node ${activeNodes[i] ? 'timeline__node--active' : ''}`}
+                  onViewportEnter={() => setActiveNodes(prev => ({ ...prev, [i]: true }))}
+                  onViewportLeave={() => setActiveNodes(prev => ({ ...prev, [i]: false }))}
+                  viewport={{ amount: 0.8 }}
+                >
                   <div className="timeline__dot" />
-                </div>
-                <div className="timeline__content glass-panel hover-target">
-                  <span className="text-label-code text-cyan">{item.year}</span>
-                  <h3 className="text-headline-md" style={{ fontSize: '20px', margin: '8px 0 4px' }}>{item.role}</h3>
-                  <p className="text-label-code text-violet" style={{ marginBottom: '12px' }}>{item.company}</p>
-                  <p className="text-body-md text-muted">{item.desc}</p>
+                </motion.div>
+
+                {/* Card Wrapper */}
+                <div className="timeline__content-wrapper">
+                  <div 
+                    className="timeline__content glass-panel hover-target"
+                    onClick={() => toggleExpand(i)}
+                    style={{ cursor: 'pointer' }}
+                  >
+                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', flexWrap: 'wrap', gap: '8px' }}>
+                      <span className="text-label-code text-cyan">{item.year}</span>
+                      <span className="text-label-code text-violet" style={{ fontSize: '12px' }}>{item.company}</span>
+                    </div>
+                    <h3 className="text-headline-md" style={{ fontSize: '20px', margin: '8px 0 4px' }}>{item.role}</h3>
+                    <p className="text-body-md text-muted" style={{ margin: 0 }}>{item.desc}</p>
+                    
+                    <AnimatePresence>
+                      {expandedIndex === i && (
+                        <motion.div
+                          initial={{ height: 0, opacity: 0 }}
+                          animate={{ height: 'auto', opacity: 1 }}
+                          exit={{ height: 0, opacity: 0 }}
+                          transition={{ duration: 0.3 }}
+                          style={{ overflow: 'hidden' }}
+                        >
+                          <div style={{ marginTop: '16px', borderTop: '1px solid rgba(150, 142, 154, 0.15)', paddingTop: '16px' }}>
+                            <ul style={{ paddingLeft: '16px', color: 'var(--color-on-surface-variant)', fontSize: '14px', marginBottom: '16px', lineHeight: '1.6' }}>
+                              {item.details.map((detail, idx) => (
+                                <li key={idx} style={{ marginBottom: '8px' }}>{detail}</li>
+                              ))}
+                            </ul>
+                            <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap' }}>
+                              {item.tech.map(t => (
+                                <span key={t} className="chip" style={{ fontSize: '11px', padding: '2px 8px' }}>{t}</span>
+                              ))}
+                            </div>
+                          </div>
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
+
+                    <div style={{ textAlign: 'center', marginTop: '16px', fontSize: '11px', color: 'var(--color-cyan)', opacity: 0.8, letterSpacing: '0.05em', textTransform: 'uppercase' }}>
+                      {expandedIndex === i ? 'Click to collapse ▲' : 'Click to expand details ▼'}
+                    </div>
+                  </div>
                 </div>
               </div>
             ))}

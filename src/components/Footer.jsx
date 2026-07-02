@@ -17,7 +17,7 @@ export default function Footer() {
         </Link>
 
         <p className="footer__copyright text-label-code">
-          © {year} ARYAN.DEV — Architect of the Future
+          © {year} ARYAN.DEV — Full Stack & Web3 Engineer
         </p>
 
         <div className="footer__socials">

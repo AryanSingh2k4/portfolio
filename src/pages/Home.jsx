@@ -131,7 +131,7 @@ export default function Home() {
           <canvas ref={canvasRef} className="hero-canvas" />
           <div className="hero__content container">
             <h1 className="text-display-xl scroll-reveal">
-              Architect of the <span className="gradient-text">Future</span>
+              Full Stack & <span className="gradient-text">Web3 Engineer</span>
             </h1>
             <p className="hero__subtitle text-body-lg text-muted scroll-reveal">
               Computer Science Engineering student specializing in IoT, Cyber Security, and Blockchain Technology. 

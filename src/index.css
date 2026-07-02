@@ -167,7 +167,7 @@ img {
 
 .text-display-xl {
   font-family: var(--font-headline);
-  font-size: clamp(42px, 6vw, 80px);
+  font-size: clamp(36px, 5vw, 68px);
   font-weight: 700;
   line-height: 1.1;
   letter-spacing: -0.04em;
