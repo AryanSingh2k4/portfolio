@@ -1,11 +1,12 @@
 import { Link } from 'react-router-dom'
+import { GithubIcon, LinkedInIcon } from './Icons'
 import './Footer.css'
 
 export default function Footer() {
   const year = new Date().getFullYear()
   const socials = [
-    { label: 'GitHub', url: 'https://github.com/AryanSingh2k4' },
-    { label: 'LinkedIn', url: 'https://linkedin.com/in/aryansingh2k4' },
+    { label: 'GitHub', url: 'https://github.com/AryanSingh2k4', icon: <GithubIcon /> },
+    { label: 'LinkedIn', url: 'https://linkedin.com/in/aryansingh2k4', icon: <LinkedInIcon /> },
   ]
 
   return (
@@ -27,8 +28,9 @@ export default function Footer() {
               target="_blank"
               rel="noopener noreferrer"
               className="footer__social-link hover-target text-label-code"
+              aria-label={s.label}
             >
-              {s.label}
+              {s.icon}
             </a>
           ))}
         </div>

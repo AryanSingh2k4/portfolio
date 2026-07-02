@@ -134,3 +134,25 @@
     grid-template-columns: 1fr;
   }
 }
+
+/* Custom Select Dropdown */
+.custom-select-dropdown {
+  position: absolute;
+  top: calc(100% + 4px);
+  left: 0;
+  width: 100%;
+  z-index: 100;
+  border-radius: 8px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.custom-select-option {
+  padding: 12px 16px;
+  transition: background-color 0.2s;
+}
+
+.custom-select-option:hover {
+  background: rgba(0, 244, 254, 0.15);
+}

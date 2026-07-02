@@ -1,6 +1,8 @@
 import { useState } from 'react'
+import { motion, AnimatePresence } from 'framer-motion'
 import PageTransition from '../components/PageTransition'
 import { useScrollReveal } from '../hooks/useAnimations'
+import { GithubIcon, LinkedInIcon, DiscordIcon } from '../components/Icons'
 import './Contact.css'
 
 const faqs = [
@@ -29,10 +31,58 @@ const contactInfo = [
 ]
 
 const socials = [
-  { icon: '🐙', label: 'GitHub', url: 'https://github.com/AryanSingh2k4' },
-  { icon: '💼', label: 'LinkedIn', url: 'https://linkedin.com/in/aryansingh2k4' },
-  { icon: '💬', label: 'Discord (carnage__2k4)', url: 'https://discordapp.com/users/carnage__2k4' },
+  { icon: <GithubIcon />, label: 'GitHub', url: 'https://github.com/AryanSingh2k4' },
+  { icon: <LinkedInIcon />, label: 'LinkedIn', url: 'https://linkedin.com/in/aryansingh2k4' },
+  { icon: <DiscordIcon />, label: 'Discord (carnage__2k4)', url: 'https://discordapp.com/users/carnage__2k4' },
 ]
+
+const CustomSelect = ({ id, name, value, onChange, options, placeholder }) => {
+  const [isOpen, setIsOpen] = useState(false)
+
+  const handleSelect = (optionValue) => {
+    onChange({ target: { name, value: optionValue } })
+    setIsOpen(false)
+  }
+
+  return (
+    <div className="custom-select-wrapper" style={{ position: 'relative' }}>
+      <div 
+        className="input-field hover-target" 
+        style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}
+        onClick={() => setIsOpen(!isOpen)}
+      >
+        <span style={{ color: value ? 'var(--color-on-surface)' : 'var(--color-outline)' }}>
+          {options.find(o => o.value === value)?.label || placeholder}
+        </span>
+        <span className="material-symbols-outlined" style={{ transform: isOpen ? 'rotate(180deg)' : 'none', transition: 'transform 0.3s', fontSize: '18px', color: 'var(--color-cyan)' }}>
+          expand_more
+        </span>
+      </div>
+      
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div 
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -10 }}
+            transition={{ duration: 0.2 }}
+            className="custom-select-dropdown glass-panel"
+          >
+            {options.map(opt => (
+              <div 
+                key={opt.value} 
+                className="custom-select-option hover-target"
+                onClick={() => handleSelect(opt.value)}
+              >
+                {opt.label}
+              </div>
+            ))}
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </div>
+  )
+}
 
 export default function Contact() {
   const sectionRef = useScrollReveal()
@@ -104,8 +154,8 @@ export default function Contact() {
               <div className="social-links">
                 {socials.map(s => (
                   <a key={s.label} href={s.url} target="_blank" rel="noopener noreferrer"
-                     className="social-link glass-panel hover-target" title={s.label}>
-                    <span style={{ fontSize: '20px' }}>{s.icon}</span>
+                     className="social-link glass-panel hover-target" title={s.label} aria-label={s.label}>
+                    {s.icon}
                   </a>
                 ))}
               </div>
@@ -145,36 +195,35 @@ export default function Contact() {
                 </div>
                 <div className="form-group">
                   <label className="text-label-code text-muted" htmlFor="contact-subject">Subject</label>
-                  <select
+                  <CustomSelect
                     id="contact-subject"
                     name="subject"
-                    className="input-field"
                     value={formData.subject}
                     onChange={handleChange}
-                    required
-                  >
-                    <option value="">Select a topic</option>
-                    <option value="project">New Project</option>
-                    <option value="freelance">Freelance Inquiry</option>
-                    <option value="collaboration">Collaboration</option>
-                    <option value="other">Other</option>
-                  </select>
+                    placeholder="Select a topic"
+                    options={[
+                      { value: 'project', label: 'New Project' },
+                      { value: 'freelance', label: 'Freelance Inquiry' },
+                      { value: 'collaboration', label: 'Collaboration' },
+                      { value: 'other', label: 'Other' },
+                    ]}
+                  />
                 </div>
                 <div className="form-group">
                   <label className="text-label-code text-muted" htmlFor="contact-budget">Budget Range</label>
-                  <select
+                  <CustomSelect
                     id="contact-budget"
                     name="budget"
-                    className="input-field"
                     value={formData.budget}
                     onChange={handleChange}
-                  >
-                    <option value="">Select budget</option>
-                    <option value="<5k">Under $5,000</option>
-                    <option value="5-10k">$5,000 — $10,000</option>
-                    <option value="10-25k">$10,000 — $25,000</option>
-                    <option value="25k+">$25,000+</option>
-                  </select>
+                    placeholder="Select budget"
+                    options={[
+                      { value: '<5k', label: 'Under $5,000' },
+                      { value: '5-10k', label: '$5,000 — $10,000' },
+                      { value: '10-25k', label: '$10,000 — $25,000' },
+                      { value: '25k+', label: '$25,000+' },
+                    ]}
+                  />
                 </div>
                 <div className="form-group">
                   <label className="text-label-code text-muted" htmlFor="contact-message">Message</label>

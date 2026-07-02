@@ -27,7 +27,7 @@ export default function Navbar() {
   }, [location.pathname])
 
   return (
-    <nav className={`navbar ${scrolled ? 'navbar--scrolled' : ''}`}>
+    <nav className={`navbar navbar--scrolled`}>
       <div className="navbar__inner container">
         <Link to="/" className="navbar__logo hover-target">
           ARYAN<span className="navbar__logo-dot">.DEV</span>
