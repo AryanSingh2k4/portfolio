@@ -415,7 +415,7 @@ select.input-field {
 
 /* Scrollbar */
 ::-webkit-scrollbar {
-  width: 6px;
+  width: 10px;
 }
 
 ::-webkit-scrollbar-track {
@@ -423,12 +423,13 @@ select.input-field {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: rgba(0, 244, 254, 0.25);
-  border-radius: 3px;
+  background: rgba(188, 19, 254, 0.3);
+  border-radius: 5px;
+  border: 2px solid var(--color-base);
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(0, 244, 254, 0.5);
+  background: rgba(188, 19, 254, 0.6);
 }
 
 /* Accessibility */

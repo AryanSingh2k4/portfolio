@@ -15,9 +15,17 @@ export default function Navbar() {
   const location = useLocation()
   const [scrolled, setScrolled] = useState(false)
   const [mobileOpen, setMobileOpen] = useState(false)
+  const [scrollProgress, setScrollProgress] = useState(0)
 
   useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 30)
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 30)
+      const totalHeight = document.documentElement.scrollHeight - window.innerHeight
+      if (totalHeight > 0) {
+        const progress = (window.scrollY / totalHeight) * 100
+        setScrollProgress(progress)
+      }
+    }
     window.addEventListener('scroll', handleScroll, { passive: true })
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
@@ -87,6 +95,7 @@ export default function Navbar() {
           </motion.div>
         )}
       </AnimatePresence>
+      <div className="navbar__progress-bar" style={{ width: `${scrollProgress}%` }} />
     </nav>
   )
 }

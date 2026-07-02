@@ -1,5 +1,5 @@
 import { useRef, useEffect, useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import PageTransition from '../components/PageTransition'
 import TiltCard from '../components/TiltCard'
 import { useScrollReveal, useParticles } from '../hooks/useAnimations'
@@ -14,11 +14,22 @@ const projects = [
 const skills = ['React', 'Next.js', 'TypeScript', 'Tailwind CSS', 'Solidity', 'Supabase', 'SQL', 'Node.js']
 
 export default function Home() {
+  const navigate = useNavigate()
   const sectionRef = useScrollReveal()
   const canvasRef = useRef(null)
   const mouseRef = useRef({ x: -1000, y: -1000 })
   const [terminalStep, setTerminalStep] = useState(0)
   const [typedText, setTypedText] = useState('')
+  const [isInteractive, setIsInteractive] = useState(false)
+  const [history, setHistory] = useState([
+    { type: 'input', text: 'whoami' },
+    { type: 'output', text: 'aryan - full stack developer & Web3 builder' },
+    { type: 'input', text: 'cat status.log' },
+    { type: 'output', text: 'Building the future of the web...' },
+    { type: 'output', text: "Type '/help' to see what else I can do.", color: '#27c93f' }
+  ])
+  const [inputVal, setInputVal] = useState('')
+  const inputRef = useRef(null)
 
   useParticles(canvasRef, mouseRef)
 
@@ -74,6 +85,44 @@ export default function Home() {
     return () => clearTimeout(timer)
   }, [])
 
+  const handleTerminalClick = () => {
+    setIsInteractive(true)
+    setTimeout(() => {
+      if (inputRef.current) inputRef.current.focus()
+    }, 50)
+  }
+
+  const handleKeyDown = (e) => {
+    if (e.key === 'Enter') {
+      const cmd = inputVal.trim().toLowerCase()
+      const newHistory = [...history, { type: 'input', text: inputVal }]
+      
+      if (cmd === '/help') {
+        newHistory.push({ type: 'output', text: 'Available commands: /projects, /skills, /about, /contact, /clear, /help' })
+      } else if (cmd === '/projects') {
+        newHistory.push({ type: 'output', text: 'Redirecting to Projects page...' })
+        setTimeout(() => navigate('/projects'), 800)
+      } else if (cmd === '/skills') {
+        newHistory.push({ type: 'output', text: 'Redirecting to Skills page...' })
+        setTimeout(() => navigate('/skills'), 800)
+      } else if (cmd === '/about') {
+        newHistory.push({ type: 'output', text: 'Computer Science Engineering student specializing in IoT, Cyber Security, and Blockchain.' })
+      } else if (cmd === '/contact') {
+        newHistory.push({ type: 'output', text: 'Redirecting to Contact page...' })
+        setTimeout(() => navigate('/contact'), 800)
+      } else if (cmd === '/clear') {
+        setHistory([])
+        setInputVal('')
+        return
+      } else if (cmd) {
+        newHistory.push({ type: 'output', text: `Command not found: ${cmd}. Type /help for options.` })
+      }
+      
+      setHistory(newHistory)
+      setInputVal('')
+    }
+  }
+
   return (
     <PageTransition>
       <div ref={sectionRef}>
@@ -127,16 +176,59 @@ export default function Home() {
                   aryan@dev:~
                 </span>
               </div>
-              <div className="terminal-body text-label-code">
-                <p className="text-cyan">$ whoami</p>
-                <p className="text-muted terminal-typed">{typedText}<span className="terminal-cursor">|</span></p>
-                <p className={`text-cyan terminal-fade ${terminalStep >= 1 ? 'show' : ''}`}>$ cat status.log</p>
-                <p className={`terminal-fade ${terminalStep >= 2 ? 'show' : ''}`} style={{ color: '#27c93f' }}>
-                  &gt; Building the future of the web...
-                </p>
-                <p className={`text-cyan terminal-fade ${terminalStep >= 3 ? 'show' : ''}`}>
-                  $ <span className="terminal-blink">█</span>
-                </p>
+              <div 
+                className="terminal-body text-label-code" 
+                onClick={handleTerminalClick}
+                style={{ cursor: 'text', minHeight: '180px', maxHeight: '240px', overflowY: 'auto' }}
+              >
+                {!isInteractive ? (
+                  <>
+                    <p className="text-cyan">$ whoami</p>
+                    <p className="text-muted terminal-typed">{typedText}<span className="terminal-cursor">|</span></p>
+                    <p className={`text-cyan terminal-fade ${terminalStep >= 1 ? 'show' : ''}`}>$ cat status.log</p>
+                    <p className={`terminal-fade ${terminalStep >= 2 ? 'show' : ''}`} style={{ color: '#27c93f' }}>
+                      &gt; Building the future of the web...
+                    </p>
+                    <p className={`text-cyan terminal-fade ${terminalStep >= 3 ? 'show' : ''}`} style={{ marginTop: '8px', color: '#ffb86c' }}>
+                      [Click here to type commands]
+                    </p>
+                  </>
+                ) : (
+                  <>
+                    {history.map((line, index) => (
+                      <div key={index} style={{ marginBottom: '6px', lineHeight: '1.4' }}>
+                        {line.type === 'input' ? (
+                          <span className="text-cyan">$ {line.text}</span>
+                        ) : (
+                          <span style={{ color: line.color || 'var(--color-on-surface-variant)' }}>{line.text}</span>
+                        )}
+                      </div>
+                    ))}
+                    
+                    <div style={{ display: 'flex', alignItems: 'center', marginTop: '6px' }}>
+                      <span className="text-cyan" style={{ marginRight: '8px' }}>$</span>
+                      <input
+                        ref={inputRef}
+                        type="text"
+                        value={inputVal}
+                        onChange={(e) => setInputVal(e.target.value)}
+                        onKeyDown={handleKeyDown}
+                        style={{
+                          background: 'transparent',
+                          border: 'none',
+                          outline: 'none',
+                          color: 'var(--color-on-surface)',
+                          fontFamily: 'var(--font-code)',
+                          fontSize: 'inherit',
+                          flex: 1,
+                          padding: 0,
+                        }}
+                        placeholder="type /help..."
+                        autoFocus
+                      />
+                    </div>
+                  </>
+                )}
               </div>
             </div>
           </div>

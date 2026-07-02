@@ -1,0 +1,71 @@
+.custom-context-menu {
+  position: fixed;
+  z-index: 10000;
+  width: 200px;
+  padding: 6px;
+  border-radius: 8px;
+  background: rgba(10, 3, 18, 0.85);
+  -webkit-backdrop-filter: blur(16px);
+  backdrop-filter: blur(16px);
+  border: 1px solid rgba(188, 19, 254, 0.25);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6), 0 0 20px rgba(188, 19, 254, 0.1);
+  animation: contextMenuFadeIn 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform, opacity;
+}
+
+@keyframes contextMenuFadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.menu-group {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.menu-item {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  padding: 8px 12px;
+  background: transparent;
+  border: none;
+  outline: none;
+  color: var(--color-on-surface-variant);
+  font-family: var(--font-body);
+  font-size: 14px;
+  font-weight: 500;
+  text-align: left;
+  border-radius: 4px;
+  transition: all 0.2s var(--ease-smooth);
+}
+
+.menu-item:hover {
+  background: rgba(188, 19, 254, 0.15);
+  color: var(--color-cyan);
+  text-shadow: 0 0 8px rgba(0, 244, 254, 0.3);
+}
+
+.menu-icon {
+  font-size: 18px !important;
+  margin-right: 12px;
+  color: var(--color-outline);
+  transition: color 0.2s;
+}
+
+.menu-item:hover .menu-icon {
+  color: var(--color-cyan);
+}
+
+.menu-divider {
+  height: 1px;
+  background: rgba(150, 142, 154, 0.15);
+  margin: 4px 6px;
+}

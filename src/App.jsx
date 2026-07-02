@@ -5,6 +5,7 @@ import Navbar from './components/Navbar'
 import Footer from './components/Footer'
 import CustomCursor from './components/CustomCursor'
 import BackgroundEffects from './components/BackgroundEffects'
+import CustomContextMenu from './components/CustomContextMenu'
 import Home from './pages/Home'
 import Projects from './pages/Projects'
 import Skills from './pages/Skills'
@@ -28,6 +29,7 @@ function App() {
       <ScrollToTop />
       <BackgroundEffects />
       <CustomCursor />
+      <CustomContextMenu />
       <Navbar />
       <AnimatePresence mode="wait">
         <Routes location={location} key={location.pathname}>

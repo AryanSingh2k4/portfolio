@@ -17,6 +17,17 @@
   border-bottom-color: rgba(0, 244, 254, 0.15);
 }
 
+.navbar__progress-bar {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--color-cyan), var(--color-violet));
+  box-shadow: 0 0 8px rgba(0, 244, 254, 0.5);
+  z-index: 10;
+  transition: width 0.1s ease-out;
+}
+
 .navbar__inner {
   display: flex;
   align-items: center;
