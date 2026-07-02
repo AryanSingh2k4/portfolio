@@ -25,7 +25,7 @@ const faqs = [
 ]
 
 const contactInfo = [
-  { icon: 'mail', label: 'Email', value: 'aryanvsingh641@gmail.com', copyable: true },
+  { icon: 'mail', label: 'Email', value: 'aryanvsingh641@gmail.com', copyable: false },
   { icon: 'location_on', label: 'Location', value: 'Remote / India', copyable: false },
   { icon: 'circle', label: 'Availability', value: 'Open to freelance', status: true },
 ]
@@ -139,11 +139,13 @@ export default function Contact() {
                       <p className="text-label-code text-muted" style={{ fontSize: '12px' }}>{info.label}</p>
                       <p className="text-body-md" style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
                         {info.status && <span className="status-dot" />}
-                        {info.value}
-                        {info.copyable && (
-                          <span className="material-symbols-outlined" style={{ fontSize: '16px', color: 'var(--color-outline)', cursor: 'none' }}>
-                            {copied ? 'check' : 'content_copy'}
-                          </span>
+                        {info.label === 'Email' ? (
+                          <a href={`mailto:${info.value}`} className="hover-target" style={{ color: 'inherit', display: 'flex', alignItems: 'center', gap: '6px' }}>
+                            {info.value}
+                            <span className="material-symbols-outlined" style={{ fontSize: '14px', color: 'var(--color-cyan)' }}>open_in_new</span>
+                          </a>
+                        ) : (
+                          info.value
                         )}
                       </p>
                     </div>
