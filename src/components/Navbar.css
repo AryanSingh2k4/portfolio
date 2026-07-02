@@ -21,13 +21,12 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding-top: 36px;
-  padding-bottom: 36px;
+  height: 52px;
 }
 
 .navbar__logo {
   font-family: var(--font-headline);
-  font-size: 24px;
+  font-size: 26px;
   font-weight: 800;
   letter-spacing: 0.1em;
   color: var(--color-on-surface);
@@ -52,7 +51,7 @@
 .navbar__link {
   position: relative;
   font-family: var(--font-code);
-  font-size: 14px;
+  font-size: 16px;
   font-weight: 500;
   color: var(--color-on-surface-variant);
   transition: color 0.3s var(--ease-smooth);
@@ -78,8 +77,8 @@
 }
 
 .navbar__cta.btn-primary {
-  padding: 12px 32px;
-  font-size: 15px;
+  padding: 8px 20px;
+  font-size: 13px;
 }
 
 .navbar__mobile-toggle {
@@ -118,10 +117,12 @@
 }
 
 @media (max-width: 768px) {
+
   .navbar__links,
   .navbar__cta {
     display: none;
   }
+
   .navbar__mobile-toggle {
     display: block;
   }
