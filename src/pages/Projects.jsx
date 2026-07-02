@@ -59,9 +59,17 @@ export default function Projects() {
               >
                 <div className="project-page-card__image">
                   <div className="project-page-card__overlay" />
-                  <span className="material-symbols-outlined" style={{ fontSize: '56px', color: 'var(--color-outline)', zIndex: 1 }}>
-                    {p.icon}
-                  </span>
+                  {p.link ? (
+                    <img 
+                      src={`https://api.microlink.io/?url=${encodeURIComponent(p.link)}&screenshot=true&meta=false&embed=screenshot.url`} 
+                      alt={p.title} 
+                      style={{ width: '100%', height: '100%', objectFit: 'cover' }} 
+                    />
+                  ) : (
+                    <span className="material-symbols-outlined" style={{ fontSize: '56px', color: 'var(--color-outline)', zIndex: 1 }}>
+                      {p.icon}
+                    </span>
+                  )}
                 </div>
                 <div className="project-page-card__body">
                   <h3 className="text-headline-md" style={{ fontSize: '22px', marginBottom: '8px' }}>{p.title}</h3>

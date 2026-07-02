@@ -155,7 +155,15 @@ export default function Home() {
               >
                 <div className="project-card__image">
                   <div className="project-card__overlay" />
-                  <span className="material-symbols-outlined project-card__icon">{p.icon}</span>
+                  {p.link ? (
+                    <img 
+                      src={`https://api.microlink.io/?url=${encodeURIComponent(p.link)}&screenshot=true&meta=false&embed=screenshot.url`} 
+                      alt={p.title} 
+                      style={{ width: '100%', height: '100%', objectFit: 'cover' }} 
+                    />
+                  ) : (
+                    <span className="material-symbols-outlined project-card__icon">{p.icon}</span>
+                  )}
                 </div>
                 <h3 className="text-headline-md" style={{ marginBottom: '8px', fontSize: '24px' }}>{p.title}</h3>
                 <p className="text-body-md text-muted" style={{ marginBottom: '16px', flex: 1 }}>{p.desc}</p>

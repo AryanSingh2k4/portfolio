@@ -409,7 +409,8 @@ select.input-field {
 
 /* Section spacing */
 .section {
-  padding: var(--space-stack-lg) 0;
+  padding-top: var(--space-stack-lg);
+  padding-bottom: var(--space-stack-lg);
 }
 
 /* Scrollbar */
