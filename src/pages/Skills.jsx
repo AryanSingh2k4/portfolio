@@ -51,10 +51,10 @@ const categories = [
 ]
 
 const stats = [
-  { value: 50, suffix: '+', label: 'Projects' },
-  { value: 3, suffix: '+', label: 'Years' },
-  { value: 15, suffix: '+', label: 'Technologies' },
-  { value: 10, suffix: 'K+', label: 'Lines of Code' },
+  { value: 12, suffix: '+', label: 'Projects' },
+  { value: 2, suffix: '+', label: 'Years' },
+  { value: categories.reduce((acc, cat) => acc + cat.skills.length, 0), suffix: '+', label: 'Technologies' },
+  { value: 15, suffix: 'K+', label: 'Lines of Code' },
 ]
 
 const learning = [

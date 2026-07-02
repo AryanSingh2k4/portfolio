@@ -8,13 +8,13 @@
 
 .projects-page-grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   gap: var(--space-gutter);
 }
 
 .project-page-card {
+  padding: 24px;
   border-radius: 8px;
-  overflow: hidden;
   display: flex;
   flex-direction: column;
   transition: transform 0.4s var(--ease-smooth), box-shadow 0.4s var(--ease-smooth), border-color 0.4s var(--ease-smooth);
@@ -29,6 +29,8 @@
 
 .project-page-card__image {
   height: 200px;
+  border-radius: 6px;
+  margin-bottom: 20px;
   background: var(--color-surface-container-high);
   position: relative;
   display: flex;
@@ -57,13 +59,6 @@
 
 .project-page-card:hover .project-page-card__overlay {
   opacity: 0;
-}
-
-.project-page-card__body {
-  padding: 24px;
-  display: flex;
-  flex-direction: column;
-  flex: 1;
 }
 
 .project-page-card__tech {

@@ -7,15 +7,14 @@ import './Projects.css'
 const filters = ['All', 'Web Apps', 'AI & Web3']
 
 const allProjects = [
-  { title: 'CareFlow', desc: 'AI-powered receptionist platform featuring appointment scheduling, authentication, and intelligent customer interactions.', tech: ['Next.js', 'React', 'Groq API', 'Supabase'], icon: 'smart_toy', category: 'Web Apps', link: 'https://med-careflow.vercel.app/', source: 'https://github.com/AryanSingh2k4' },
-  { title: 'CodeBot', desc: 'Open-source ChatGPT alternative with real-time streaming responses, chat persistence, and Markdown support.', tech: ['React', 'TypeScript', 'Vite', 'Groq API'], icon: 'chat', category: 'AI & Web3', link: 'https://the-code-bot.vercel.app/', source: 'https://github.com/AryanSingh2k4' },
-  { title: 'NFTicketing', desc: 'A decentralized NFT event ticketing platform using ERC721 smart contracts and Ethereum (Sepolia).', tech: ['Solidity', 'React', 'Ethers.js', 'MetaMask'], icon: 'confirmation_number', category: 'AI & Web3', link: 'https://nftticketing.vercel.app/', source: 'https://github.com/AryanSingh2k4' },
+  { title: 'CareFlow', desc: 'AI-powered receptionist platform featuring appointment scheduling, authentication, and intelligent customer interactions.', tech: ['Next.js', 'React', 'Groq API', 'Supabase'], icon: 'smart_toy', category: 'Web Apps', link: 'https://med-careflow.vercel.app/', source: 'https://github.com/aryansingh81167/careflow' },
+  { title: 'CodeBot', desc: 'Open-source ChatGPT alternative with real-time streaming responses, chat persistence, and Markdown support.', tech: ['React', 'TypeScript', 'Vite', 'Groq API'], icon: 'chat', category: 'AI & Web3', link: 'https://the-code-bot.vercel.app/', source: 'https://github.com/AryanSingh2k4/CodeBot' },
+  { title: 'NFTicketing', desc: 'A decentralized NFT event ticketing platform using ERC721 smart contracts and Ethereum (Sepolia).', tech: ['Solidity', 'React', 'Ethers.js', 'MetaMask'], icon: 'confirmation_number', category: 'AI & Web3', link: 'https://nftticketing.vercel.app/', source: 'https://github.com/AryanSingh2k4/NFTicketing' },
 ]
 
 const timeline = [
   { year: 'Dec. 2025 — Present', role: 'Freelance Full-Stack Developer', company: 'Independent Client', desc: 'Contributed to a custom responsive e-commerce platform and built dynamic frontend components.' },
   { year: 'May 2026 — June 2026', role: 'Technical Operations Management Intern', company: 'Eynexa Pharma', desc: 'Engineered corporate website, spearheaded brand identity, and managed technical setup.' },
-  { year: 'Dec. 2024 — Apr. 2025', role: 'Administrative Assistant', company: 'Excellent Tutorials', desc: 'Managed daily operations and coordinated examination logistics.' },
 ]
 
 export default function Projects() {
@@ -72,22 +71,20 @@ export default function Projects() {
                     </span>
                   )}
                 </div>
-                <div className="project-page-card__body">
-                  <h3 className="text-headline-md" style={{ fontSize: '22px', marginBottom: '8px' }}>{p.title}</h3>
-                  <p className="text-body-md text-muted" style={{ marginBottom: '16px', flex: 1 }}>{p.desc}</p>
-                  <div className="project-page-card__tech">
-                    {p.tech.map(t => (
-                      <span key={t} className="chip" style={{ fontSize: '11px', padding: '2px 8px' }}>{t}</span>
-                    ))}
-                  </div>
-                  <div className="project-page-card__actions">
-                    <a href={p.link} className="btn-primary hover-target" style={{ padding: '8px 20px', fontSize: '12px' }}>
-                      View Project
-                    </a>
-                    <a href={p.source} className="btn-secondary hover-target" style={{ padding: '8px 20px', fontSize: '12px' }}>
-                      Source Code
-                    </a>
-                  </div>
+                <h3 className="text-headline-md" style={{ fontSize: '22px', marginBottom: '8px' }}>{p.title}</h3>
+                <p className="text-body-md text-muted" style={{ marginBottom: '16px', flex: 1 }}>{p.desc}</p>
+                <div className="project-page-card__tech">
+                  {p.tech.map(t => (
+                    <span key={t} className="chip" style={{ fontSize: '11px', padding: '2px 8px' }}>{t}</span>
+                  ))}
+                </div>
+                <div className="project-page-card__actions">
+                  <a href={p.link} className="btn-primary hover-target" style={{ padding: '8px 20px', fontSize: '12px' }}>
+                    View Project
+                  </a>
+                  <a href={p.source} className="btn-secondary hover-target" style={{ padding: '8px 20px', fontSize: '12px' }}>
+                    Source Code
+                  </a>
                 </div>
               </TiltCard>
             ))}
@@ -95,7 +92,7 @@ export default function Projects() {
         </section>
 
         {/* Experience Timeline */}
-        <section className="section container" style={{ paddingTop: 0 }}>
+        <section className="section container">
           <h2 className="text-headline-lg text-cyan scroll-reveal" style={{ textAlign: 'center', marginBottom: '48px' }}>
             Professional Experience
           </h2>
