@@ -6,6 +6,7 @@ import Footer from './components/Footer'
 import CustomCursor from './components/CustomCursor'
 import BackgroundEffects from './components/BackgroundEffects'
 import CustomContextMenu from './components/CustomContextMenu'
+import ThemeWidgets from './components/ThemeWidgets'
 import Home from './pages/Home'
 import Projects from './pages/Projects'
 import Skills from './pages/Skills'
@@ -41,6 +42,7 @@ function App() {
           <Route path="*" element={<NotFound />} />
         </Routes>
       </AnimatePresence>
+      <ThemeWidgets />
       <Footer />
     </>
   )

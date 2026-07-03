@@ -44,7 +44,29 @@ export function useParticles(canvasRef, mouseRef) {
 
     const ctx = canvas.getContext('2d')
     let particles = []
-    const colors = ['#00dce5', '#d9b9ff', '#00f4fe', '#bc13fe']
+    
+    const style = getComputedStyle(document.documentElement)
+    const colors = [
+      style.getPropertyValue('--color-cyan').trim() || '#00f4fe',
+      style.getPropertyValue('--color-violet').trim() || '#bc13fe',
+      style.getPropertyValue('--color-primary').trim() || '#d9b9ff',
+      style.getPropertyValue('--color-cyan-dim').trim() || '#00dce5'
+    ]
+
+    const observer = new MutationObserver(() => {
+      const activeStyle = getComputedStyle(document.documentElement)
+      colors[0] = activeStyle.getPropertyValue('--color-cyan').trim() || '#00f4fe'
+      colors[1] = activeStyle.getPropertyValue('--color-violet').trim() || '#bc13fe'
+      colors[2] = activeStyle.getPropertyValue('--color-primary').trim() || '#d9b9ff'
+      colors[3] = activeStyle.getPropertyValue('--color-cyan-dim').trim() || '#00dce5'
+      
+      // Instantly swap current particle colors to match new theme
+      particles.forEach(p => {
+        p.color = colors[Math.floor(Math.random() * colors.length)]
+      })
+    })
+    observer.observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] })
+
     let animationId
 
     function resize() {
@@ -136,13 +158,12 @@ export function useParticles(canvasRef, mouseRef) {
     init()
     animate()
 
-    window.addEventListener('resize', () => {
-      resize()
-      particles.forEach(p => p.reset())
-    })
+    window.addEventListener('resize', resize)
 
     return () => {
+      window.removeEventListener('resize', resize)
       cancelAnimationFrame(animationId)
+      observer.disconnect()
     }
   }, [canvasRef, mouseRef])
 }

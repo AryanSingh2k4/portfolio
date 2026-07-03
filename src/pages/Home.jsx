@@ -99,6 +99,12 @@ export default function Home() {
       
       if (cmd === '/help') {
         newHistory.push({ type: 'output', text: 'Available commands: /projects, /skills, /about, /contact, /clear, /help' })
+      } else if (cmd === '/unlock-themes') {
+        localStorage.setItem('themes-unlocked', 'true')
+        newHistory.push({ type: 'output', text: 'Theme selector system unlocked! Right-click anywhere to select themes.' })
+      } else if (cmd === '/lock-themes') {
+        localStorage.setItem('themes-unlocked', 'false')
+        newHistory.push({ type: 'output', text: 'Theme selector system locked.' })
       } else if (cmd === '/projects') {
         newHistory.push({ type: 'output', text: 'Redirecting to Projects page...' })
         setTimeout(() => navigate('/projects'), 800)

@@ -53,6 +53,11 @@
   text-shadow: 0 0 8px rgba(0, 244, 254, 0.3);
 }
 
+.menu-item--active {
+  color: var(--color-cyan) !important;
+  background: rgba(0, 244, 254, 0.08) !important;
+}
+
 .menu-icon {
   font-size: 18px !important;
   margin-right: 12px;
