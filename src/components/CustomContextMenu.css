@@ -74,3 +74,14 @@
   background: rgba(150, 142, 154, 0.15);
   margin: 4px 6px;
 }
+
+.custom-context-submenu {
+  background: rgba(10, 3, 18, 0.85) !important;
+  -webkit-backdrop-filter: blur(16px) !important;
+  backdrop-filter: blur(16px) !important;
+  border: 1px solid rgba(188, 19, 254, 0.25) !important;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6), 0 0 20px rgba(188, 19, 254, 0.1) !important;
+  /* Bypass Framer Motion transformed container backdrop-filter rendering bug */
+  transform-style: preserve-3d;
+  backface-visibility: hidden;
+}
