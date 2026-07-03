@@ -5,6 +5,7 @@ import './CustomContextMenu.css'
 export default function CustomContextMenu() {
   const [visible, setVisible] = useState(false)
   const [position, setPosition] = useState({ x: 0, y: 0 })
+  const [selectedText, setSelectedText] = useState('')
   const menuRef = useRef(null)
   const navigate = useNavigate()
 
@@ -15,9 +16,13 @@ export default function CustomContextMenu() {
       let posX = e.clientX
       let posY = e.clientY
 
+      // Check if user has selected text
+      const selection = window.getSelection().toString()
+      setSelectedText(selection)
+
       // Boundary check to prevent menu from going off-screen
       const menuWidth = 200
-      const menuHeight = 280
+      const menuHeight = selection.trim() ? 320 : 280
 
       if (posX + menuWidth > window.innerWidth) {
         posX = window.innerWidth - menuWidth - 10
@@ -62,6 +67,22 @@ export default function CustomContextMenu() {
       className="custom-context-menu glass-panel"
       style={{ top: `${position.y}px`, left: `${position.x}px` }}
     >
+      {selectedText.trim() && (
+        <>
+          <div className="menu-group">
+            <button 
+              className="menu-item hover-target" 
+              onClick={() => handleAction(() => {
+                navigator.clipboard.writeText(selectedText)
+              })}
+            >
+              <span className="material-symbols-outlined menu-icon">content_copy</span>
+              <span>Copy Selection</span>
+            </button>
+          </div>
+          <div className="menu-divider" />
+        </>
+      )}
       <div className="menu-group">
         <button className="menu-item hover-target" onClick={() => handleAction(() => window.history.back())}>
           <span className="material-symbols-outlined menu-icon">arrow_back</span>
