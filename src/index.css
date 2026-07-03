@@ -707,7 +707,8 @@
 }
 
 /* Y2K Button gloss */
-[data-theme="y2k-aero"] .btn,
+[data-theme="y2k-aero"] .btn-primary,
+[data-theme="y2k-aero"] .btn-secondary,
 [data-theme="y2k-aero"] button {
   background: linear-gradient(180deg, rgba(255, 255, 255, 0.75) 0%, rgba(255, 255, 255, 0.25) 100%) !important;
   color: #0369a1 !important;
@@ -717,7 +718,8 @@
 }
 
 /* Classic Mac Button bevels */
-[data-theme="classic-mac"] .btn,
+[data-theme="classic-mac"] .btn-primary,
+[data-theme="classic-mac"] .btn-secondary,
 [data-theme="classic-mac"] button {
   border-top: 2px solid #ffffff !important;
   border-left: 2px solid #ffffff !important;
@@ -729,7 +731,8 @@
   border-radius: 0px !important;
 }
 
-[data-theme="classic-mac"] .btn:active,
+[data-theme="classic-mac"] .btn-primary:active,
+[data-theme="classic-mac"] .btn-secondary:active,
 [data-theme="classic-mac"] button:active {
   border-top: 2px solid #808080 !important;
   border-left: 2px solid #808080 !important;
