@@ -1186,10 +1186,10 @@ img {
 
 /* Glassmorphism */
 .glass-panel {
-  background: color-mix(in srgb, var(--color-surface-container) 70%, transparent);
+  background: rgba(46, 11, 84, 0.35);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
-  border: 1px solid color-mix(in srgb, var(--color-cyan) 10%, transparent);
+  border: 1px solid rgba(0, 244, 254, 0.1);
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
   transition: var(--transition-default);
 }
@@ -1197,8 +1197,8 @@ img {
 .glass-panel:hover {
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
-  border-color: color-mix(in srgb, var(--color-cyan) 40%, transparent);
-  box-shadow: 0 0 25px color-mix(in srgb, var(--color-cyan) 12%, transparent);
+  border-color: rgba(0, 244, 254, 0.4);
+  box-shadow: 0 0 25px rgba(0, 244, 254, 0.12);
 }
 
 /* Buttons */
@@ -1207,7 +1207,7 @@ img {
   align-items: center;
   justify-content: center;
   gap: 8px;
-  background: color-mix(in srgb, var(--color-cyan) 15%, transparent);
+  background: rgba(0, 244, 254, 0.15);
   color: var(--color-cyan);
   -webkit-backdrop-filter: blur(12px);
   backdrop-filter: blur(12px);
@@ -1217,18 +1217,18 @@ img {
   font-size: 15px;
   font-weight: 600;
   letter-spacing: 0.05em;
-  border: 1px solid color-mix(in srgb, var(--color-cyan) 40%, transparent);
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3), 0 0 15px color-mix(in srgb, var(--color-cyan) 10%, transparent);
+  border: 1px solid rgba(0, 244, 254, 0.4);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3), 0 0 15px rgba(0, 244, 254, 0.1);
   transition: var(--transition-default);
   text-transform: uppercase;
 }
 
 .btn-primary:hover {
-  background: color-mix(in srgb, var(--color-cyan) 25%, transparent);
+  background: rgba(0, 244, 254, 0.25);
   -webkit-backdrop-filter: blur(20px);
   backdrop-filter: blur(20px);
-  border-color: var(--color-cyan);
-  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5), 0 0 25px color-mix(in srgb, var(--color-cyan) 30%, transparent);
+  border-color: rgba(0, 244, 254, 0.8);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5), 0 0 25px rgba(0, 244, 254, 0.3);
   transform: translateY(-2px);
 }
 
@@ -1237,7 +1237,7 @@ img {
   align-items: center;
   justify-content: center;
   gap: 8px;
-  background: color-mix(in srgb, var(--color-violet) 10%, transparent);
+  background: rgba(188, 19, 254, 0.1);
   color: var(--color-violet-dim);
   -webkit-backdrop-filter: blur(12px);
   backdrop-filter: blur(12px);
@@ -1247,18 +1247,18 @@ img {
   font-size: 15px;
   font-weight: 600;
   letter-spacing: 0.05em;
-  border: 1px solid color-mix(in srgb, var(--color-violet) 40%, transparent);
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3), 0 0 15px color-mix(in srgb, var(--color-violet) 10%, transparent);
+  border: 1px solid rgba(188, 19, 254, 0.4);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3), 0 0 15px rgba(188, 19, 254, 0.1);
   transition: var(--transition-default);
   text-transform: uppercase;
 }
 
 .btn-secondary:hover {
-  background: color-mix(in srgb, var(--color-violet) 20%, transparent);
+  background: rgba(188, 19, 254, 0.2);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
-  border-color: var(--color-violet);
-  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5), 0 0 25px color-mix(in srgb, var(--color-violet) 30%, transparent);
+  border-color: rgba(188, 19, 254, 0.8);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5), 0 0 25px rgba(188, 19, 254, 0.3);
   transform: translateY(-2px);
 }
 
@@ -1267,14 +1267,46 @@ img {
   display: inline-flex;
   align-items: center;
   padding: 4px 12px;
-  background: color-mix(in srgb, var(--color-cyan) 8%, transparent);
+  background: rgba(0, 244, 254, 0.08);
   color: var(--color-cyan);
-  border: 1px solid color-mix(in srgb, var(--color-cyan) 15%, transparent);
+  border: 1px solid rgba(0, 244, 254, 0.15);
   border-radius: 2px;
   font-family: var(--font-code);
   font-size: 13px;
   font-weight: 500;
   transition: var(--transition-default);
+}
+
+/* Custom Theme Color Inheritances (overwrites glass/button backgrounds for all themes except default) */
+[data-theme]:not([data-theme="default"]):not([data-theme="cyberpunk"]):not([data-theme="aurora"]):not([data-theme="crimson"]):not([data-theme="synthwave"]) .glass-panel {
+  background: color-mix(in srgb, var(--color-surface-container) 70%, transparent);
+  border-color: color-mix(in srgb, var(--color-cyan) 10%, transparent);
+}
+[data-theme]:not([data-theme="default"]):not([data-theme="cyberpunk"]):not([data-theme="aurora"]):not([data-theme="crimson"]):not([data-theme="synthwave"]) .glass-panel:hover {
+  border-color: color-mix(in srgb, var(--color-cyan) 40%, transparent);
+  box-shadow: 0 0 25px color-mix(in srgb, var(--color-cyan) 12%, transparent);
+}
+[data-theme]:not([data-theme="default"]):not([data-theme="cyberpunk"]):not([data-theme="aurora"]):not([data-theme="crimson"]):not([data-theme="synthwave"]) .btn-primary {
+  background: color-mix(in srgb, var(--color-cyan) 15%, transparent);
+  border-color: color-mix(in srgb, var(--color-cyan) 40%, transparent);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3), 0 0 15px color-mix(in srgb, var(--color-cyan) 10%, transparent);
+}
+[data-theme]:not([data-theme="default"]):not([data-theme="cyberpunk"]):not([data-theme="aurora"]):not([data-theme="crimson"]):not([data-theme="synthwave"]) .btn-primary:hover {
+  background: color-mix(in srgb, var(--color-cyan) 25%, transparent);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5), 0 0 25px color-mix(in srgb, var(--color-cyan) 30%, transparent);
+}
+[data-theme]:not([data-theme="default"]):not([data-theme="cyberpunk"]):not([data-theme="aurora"]):not([data-theme="crimson"]):not([data-theme="synthwave"]) .btn-secondary {
+  background: color-mix(in srgb, var(--color-violet) 10%, transparent);
+  border-color: color-mix(in srgb, var(--color-violet) 40%, transparent);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3), 0 0 15px color-mix(in srgb, var(--color-violet) 10%, transparent);
+}
+[data-theme]:not([data-theme="default"]):not([data-theme="cyberpunk"]):not([data-theme="aurora"]):not([data-theme="crimson"]):not([data-theme="synthwave"]) .btn-secondary:hover {
+  background: color-mix(in srgb, var(--color-violet) 20%, transparent);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5), 0 0 25px color-mix(in srgb, var(--color-violet) 30%, transparent);
+}
+[data-theme]:not([data-theme="default"]):not([data-theme="cyberpunk"]):not([data-theme="aurora"]):not([data-theme="crimson"]):not([data-theme="synthwave"]) .chip {
+  background: color-mix(in srgb, var(--color-cyan) 8%, transparent);
+  border-color: color-mix(in srgb, var(--color-cyan) 15%, transparent);
 }
 
 .chip:hover {
