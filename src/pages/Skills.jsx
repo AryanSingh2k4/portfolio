@@ -35,7 +35,7 @@ const categories = [
       { name: 'Git & GitHub', level: 90 },
       { name: 'Vite', level: 85 },
       { name: 'Groq API', level: 85 },
-      { name: 'Canva', level: 80 },
+      { name: 'SEO', level: 80 },
     ]
   },
   {
@@ -44,7 +44,7 @@ const categories = [
     skills: [
       { name: 'Visual Design', level: 80 },
       { name: 'Brand Identity', level: 75 },
-      { name: 'SEO', level: 80 },
+      { name: 'Canva', level: 80 },
       { name: 'Workflow Optimization', level: 85 },
     ]
   },

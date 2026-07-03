@@ -2,12 +2,32 @@ import { useState, useEffect, useRef } from 'react'
 import { useNavigate } from 'react-router-dom'
 import './CustomContextMenu.css'
 
+const themes = [
+  { id: 'default', label: 'Midnight Neon' },
+  { id: 'cyberpunk', label: 'Cyberpunk Amber' },
+  { id: 'aurora', label: 'Nordic Aurora' },
+  { id: 'crimson', label: 'Crimson Eclipse' },
+  { id: 'synthwave', label: 'Solarized Synth' },
+]
+
 export default function CustomContextMenu() {
   const [visible, setVisible] = useState(false)
   const [position, setPosition] = useState({ x: 0, y: 0 })
   const [selectedText, setSelectedText] = useState('')
+  const [theme, setTheme] = useState(localStorage.getItem('portfolio-theme') || 'default')
   const menuRef = useRef(null)
   const navigate = useNavigate()
+
+  useEffect(() => {
+    document.documentElement.setAttribute('data-theme', theme)
+    localStorage.setItem('portfolio-theme', theme)
+  }, [theme])
+
+  const cycleTheme = () => {
+    const currentIndex = themes.findIndex(t => t.id === theme)
+    const nextIndex = (currentIndex + 1) % themes.length
+    setTheme(themes[nextIndex].id)
+  }
 
   useEffect(() => {
     const handleContextMenu = (e) => {
@@ -22,7 +42,7 @@ export default function CustomContextMenu() {
 
       // Boundary check to prevent menu from going off-screen
       const menuWidth = 200
-      const menuHeight = selection.trim() ? 320 : 280
+      const menuHeight = selection.trim() ? 410 : 365
 
       if (posX + menuWidth > window.innerWidth) {
         posX = window.innerWidth - menuWidth - 10
@@ -116,6 +136,18 @@ export default function CustomContextMenu() {
         <button className="menu-item hover-target" onClick={() => handleAction(() => navigate('/contact'))}>
           <span className="material-symbols-outlined menu-icon">mail</span>
           <span>Contact</span>
+        </button>
+      </div>
+
+      <div className="menu-divider" />
+
+      <div className="menu-group">
+        <button 
+          className="menu-item hover-target" 
+          onClick={cycleTheme}
+        >
+          <span className="material-symbols-outlined menu-icon">palette</span>
+          <span>Theme: {themes.find(t => t.id === theme)?.label}</span>
         </button>
       </div>
 
