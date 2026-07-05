@@ -143,10 +143,14 @@ export default function Home() {
               Computer Science Engineering student specializing in IoT, Cyber Security, and Blockchain Technology. 
               Building practical solutions that combine clean user experiences with solid engineering, focusing on AI, scalable platforms, and Web3.
             </p>
-            <div className="hero__actions scroll-reveal">
+            <div className="hero__actions scroll-reveal" style={{ display: 'flex', gap: '16px', flexWrap: 'wrap' }}>
               <Link to="/projects" className="btn-primary hover-target">
                 View Projects
               </Link>
+              <a href="/resume.pdf" target="_blank" rel="noopener noreferrer" className="btn-secondary hover-target" style={{ display: 'inline-flex', alignItems: 'center', gap: '8px' }}>
+                <span className="material-symbols-outlined" style={{ fontSize: '20px' }}>description</span>
+                Resume
+              </a>
               <Link to="/contact" className="btn-secondary hover-target">
                 Get in Touch
               </Link>

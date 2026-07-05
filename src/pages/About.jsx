@@ -76,9 +76,15 @@ export default function About() {
           <p className="text-body-lg text-muted" style={{ marginBottom: '32px', maxWidth: '500px', margin: '0 auto 32px' }}>
             I'm always open to new opportunities and exciting projects.
           </p>
-          <Link to="/contact" className="btn-primary hover-target" style={{ padding: '16px 48px', fontSize: '16px' }}>
-            Get in Touch
-          </Link>
+          <div style={{ display: 'flex', gap: '16px', justifyContent: 'center', flexWrap: 'wrap' }}>
+            <Link to="/contact" className="btn-primary hover-target" style={{ padding: '16px 48px', fontSize: '16px' }}>
+              Get in Touch
+            </Link>
+            <a href="/resume.pdf" target="_blank" rel="noopener noreferrer" className="btn-secondary hover-target" style={{ padding: '16px 48px', fontSize: '16px', display: 'inline-flex', alignItems: 'center', gap: '8px' }}>
+              <span className="material-symbols-outlined" style={{ fontSize: '20px' }}>description</span>
+              Resume
+            </a>
+          </div>
         </section>
       </div>
     </PageTransition>
