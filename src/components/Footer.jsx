@@ -73,7 +73,7 @@ export default function Footer() {
             © {year} ARYAN.DEV — Full Stack & Web3 Engineer
           </p>
           <p className="footer__stamp text-label-code text-muted" style={{ fontSize: '11px' }}>
-            Built with <span className="text-cyan">React</span> & <span className="text-violet">Vite</span>
+            Designed & Crafted by Aryan Singh
           </p>
         </div>
       </div>

@@ -4,7 +4,7 @@ const CLIPPY_QUOTES = [
   "It looks like you want to hire Aryan. Would you like me to open the Contact page?",
   "Did you know? Aryan has written over 22,000 lines of code for this project!",
   "I'm Clippy! I recommend trying out the 'Y2K / Frutiger Aero' theme next.",
-  "Beep boop! This entire portfolio is built using React, Vite, and custom CSS.",
+  "Beep boop! Try right-clicking the screen to discover hidden visual themes.",
   "Looking for the projects? Just click the 'Projects' link in the menu, or ask me!",
   "Aryan is currently based in India, building high-performance web applications."
 ]
