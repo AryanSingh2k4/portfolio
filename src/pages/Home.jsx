@@ -7,8 +7,8 @@ import './Home.css'
 
 const projects = [
   { title: 'Sentinel AI', desc: 'Autonomous threat hunting scanner mapping attack surfaces and triaging findings via agent state machines.', tech: ['Next.js', 'BullMQ', 'Redis'], icon: 'security', link: 'https://sentinel-pentesting.vercel.app/' },
+  { title: 'Eynexa Corporate Website', desc: 'Corporate digital platform designed to improve pharmaceutical client conversion rates, establish professional brand guidelines, and optimize search discoverability.', tech: ['Web Development', 'SEO', 'Brand Design'], icon: 'medical_services', link: 'https://eynexapharma.vercel.app/' },
   { title: 'CareFlow', desc: 'AI-powered receptionist platform featuring appointment scheduling and intelligent customer interactions.', tech: ['Next.js', 'React', 'Groq API'], icon: 'smart_toy', link: 'https://med-careflow.vercel.app/' },
-  { title: 'CodeBot', desc: 'Open-source ChatGPT alternative with real-time streaming and chat persistence.', tech: ['React', 'TypeScript', 'Vite'], icon: 'chat', link: 'https://the-code-bot.vercel.app/' },
 ]
 
 const skills = ['React', 'Next.js', 'TypeScript', 'Tailwind CSS', 'Solidity', 'Supabase', 'SQL', 'Node.js']
