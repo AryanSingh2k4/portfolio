@@ -8,7 +8,7 @@ import './Contact.css'
 const faqs = [
   {
     q: 'What is your typical project timeline?',
-    a: 'Most projects take 4-8 weeks from kickoff to delivery, depending on scope. I provide detailed timelines during the initial consultation and keep you updated with weekly progress reports.'
+    a: 'Most projects take 2-4 weeks from kickoff to delivery, depending on scope. I provide detailed timelines during the initial consultation and keep you updated with weekly progress reports.'
   },
   {
     q: 'What technologies do you specialize in?',
@@ -213,18 +213,14 @@ export default function Contact() {
                 </div>
                 <div className="form-group">
                   <label className="text-label-code text-muted" htmlFor="contact-budget">Budget Range</label>
-                  <CustomSelect
+                  <input
                     id="contact-budget"
                     name="budget"
+                    type="text"
+                    className="input-field"
+                    placeholder="e.g., $5,000 - $10,000"
                     value={formData.budget}
                     onChange={handleChange}
-                    placeholder="Select budget"
-                    options={[
-                      { value: '<5k', label: 'Under $5,000' },
-                      { value: '5-10k', label: '$5,000 — $10,000' },
-                      { value: '10-25k', label: '$10,000 — $25,000' },
-                      { value: '25k+', label: '$25,000+' },
-                    ]}
                   />
                 </div>
                 <div className="form-group">
