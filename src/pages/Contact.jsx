@@ -218,7 +218,7 @@ export default function Contact() {
                     name="budget"
                     type="text"
                     className="input-field"
-                    placeholder="e.g., $5,000 - $10,000"
+                    placeholder="e.g., ₹10,000 - ₹15,000"
                     value={formData.budget}
                     onChange={handleChange}
                   />
