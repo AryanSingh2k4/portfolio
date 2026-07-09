@@ -19,8 +19,8 @@ const themes = [
 ]
 
 const colorAccents = [
-  { id: 'cyberpunk', label: 'Cyberpunk Amber' },
-  { id: 'default', label: 'Classic Violet' },
+  { id: 'default', label: 'Cyberpunk Amber' },
+  { id: 'classic-violet', label: 'Classic Violet' },
   { id: 'aurora', label: 'Nordic Aurora' },
   { id: 'crimson', label: 'Crimson Eclipse' },
   { id: 'synthwave', label: 'Solarized Synth' },
@@ -30,7 +30,7 @@ export default function CustomContextMenu() {
   const [visible, setVisible] = useState(false)
   const [position, setPosition] = useState({ x: 0, y: 0 })
   const [selectedText, setSelectedText] = useState('')
-  const [theme, setTheme] = useState(localStorage.getItem('portfolio-theme') || 'cyberpunk')
+  const [theme, setTheme] = useState(localStorage.getItem('portfolio-theme') || 'default')
   const [submenuOpen, setSubmenuOpen] = useState(false)
   const [accentMenuOpen, setAccentMenuOpen] = useState(false)
   const menuRef = useRef(null)

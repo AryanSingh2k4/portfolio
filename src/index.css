@@ -32,7 +32,7 @@
 }
 
 /* Midnight Neon (Classic Violet) base alternate */
-[data-theme="default"] {
+[data-theme="classic-violet"] {
   --color-base: #0a0312;
   --color-surface: #190f21;
   --color-surface-container: #261b2e;
@@ -1319,33 +1319,33 @@ img {
 }
 
 /* Custom Theme Color Inheritances (overwrites glass/button backgrounds for all themes except default) */
-[data-theme]:not([data-theme="default"]):not([data-theme="cyberpunk"]):not([data-theme="aurora"]):not([data-theme="crimson"]):not([data-theme="synthwave"]) .glass-panel {
+[data-theme]:not([data-theme="default"]):not([data-theme="cyberpunk"]):not([data-theme="classic-violet"]):not([data-theme="aurora"]):not([data-theme="crimson"]):not([data-theme="synthwave"]) .glass-panel {
   background: color-mix(in srgb, var(--color-surface-container) 70%, transparent);
   border-color: color-mix(in srgb, var(--color-cyan) 10%, transparent);
 }
-[data-theme]:not([data-theme="default"]):not([data-theme="cyberpunk"]):not([data-theme="aurora"]):not([data-theme="crimson"]):not([data-theme="synthwave"]) .glass-panel:hover {
+[data-theme]:not([data-theme="default"]):not([data-theme="cyberpunk"]):not([data-theme="classic-violet"]):not([data-theme="aurora"]):not([data-theme="crimson"]):not([data-theme="synthwave"]) .glass-panel:hover {
   border-color: color-mix(in srgb, var(--color-cyan) 40%, transparent);
   box-shadow: 0 0 25px color-mix(in srgb, var(--color-cyan) 12%, transparent);
 }
-[data-theme]:not([data-theme="default"]):not([data-theme="cyberpunk"]):not([data-theme="aurora"]):not([data-theme="crimson"]):not([data-theme="synthwave"]) .btn-primary {
+[data-theme]:not([data-theme="default"]):not([data-theme="cyberpunk"]):not([data-theme="classic-violet"]):not([data-theme="aurora"]):not([data-theme="crimson"]):not([data-theme="synthwave"]) .btn-primary {
   background: color-mix(in srgb, var(--color-cyan) 15%, transparent);
   border-color: color-mix(in srgb, var(--color-cyan) 40%, transparent);
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3), 0 0 15px color-mix(in srgb, var(--color-cyan) 10%, transparent);
 }
-[data-theme]:not([data-theme="default"]):not([data-theme="cyberpunk"]):not([data-theme="aurora"]):not([data-theme="crimson"]):not([data-theme="synthwave"]) .btn-primary:hover {
+[data-theme]:not([data-theme="default"]):not([data-theme="cyberpunk"]):not([data-theme="classic-violet"]):not([data-theme="aurora"]):not([data-theme="crimson"]):not([data-theme="synthwave"]) .btn-primary:hover {
   background: color-mix(in srgb, var(--color-cyan) 25%, transparent);
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5), 0 0 25px color-mix(in srgb, var(--color-cyan) 30%, transparent);
 }
-[data-theme]:not([data-theme="default"]):not([data-theme="cyberpunk"]):not([data-theme="aurora"]):not([data-theme="crimson"]):not([data-theme="synthwave"]) .btn-secondary {
+[data-theme]:not([data-theme="default"]):not([data-theme="cyberpunk"]):not([data-theme="classic-violet"]):not([data-theme="aurora"]):not([data-theme="crimson"]):not([data-theme="synthwave"]) .btn-secondary {
   background: color-mix(in srgb, var(--color-violet) 10%, transparent);
   border-color: color-mix(in srgb, var(--color-violet) 40%, transparent);
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3), 0 0 15px color-mix(in srgb, var(--color-violet) 10%, transparent);
 }
-[data-theme]:not([data-theme="default"]):not([data-theme="cyberpunk"]):not([data-theme="aurora"]):not([data-theme="crimson"]):not([data-theme="synthwave"]) .btn-secondary:hover {
+[data-theme]:not([data-theme="default"]):not([data-theme="cyberpunk"]):not([data-theme="classic-violet"]):not([data-theme="aurora"]):not([data-theme="crimson"]):not([data-theme="synthwave"]) .btn-secondary:hover {
   background: color-mix(in srgb, var(--color-violet) 20%, transparent);
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5), 0 0 25px color-mix(in srgb, var(--color-violet) 30%, transparent);
 }
-[data-theme]:not([data-theme="default"]):not([data-theme="cyberpunk"]):not([data-theme="aurora"]):not([data-theme="crimson"]):not([data-theme="synthwave"]) .chip {
+[data-theme]:not([data-theme="default"]):not([data-theme="cyberpunk"]):not([data-theme="classic-violet"]):not([data-theme="aurora"]):not([data-theme="crimson"]):not([data-theme="synthwave"]) .chip {
   background: color-mix(in srgb, var(--color-cyan) 8%, transparent);
   border-color: color-mix(in srgb, var(--color-cyan) 15%, transparent);
 }
