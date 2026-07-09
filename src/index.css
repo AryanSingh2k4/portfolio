@@ -5,7 +5,34 @@
 
 /* CSS Custom Properties */
 :root {
-  /* Core Colors */
+  /* Core Colors (Cyberpunk Amber) */
+  --color-base: #080705;
+  --color-surface: #171510;
+  --color-surface-container: #242017;
+  --color-surface-container-high: #2d281e;
+  --color-surface-container-highest: #383226;
+  --color-surface-container-low: #1d1b14;
+  --color-surface-container-lowest: #12100b;
+  --color-primary: #ffe49e;
+  --color-primary-container: #543f0b;
+  --color-on-surface: #f9f2e3;
+  --color-on-surface-variant: #e6dbcc;
+  --color-outline: #a19685;
+  --color-outline-variant: #4f4a3e;
+  --color-cyan: #ff9f00;
+  --color-cyan-dim: #e68f00;
+  --color-violet: #0084ff;
+  --color-violet-dim: #b3d7ff;
+  --color-secondary: #fff5e6;
+  --color-secondary-container: #ff9f00;
+  --color-on-secondary: #392200;
+  --color-tertiary: #b3d7ff;
+  --color-tertiary-container: #002d5c;
+  --color-error: #ffb4ab;
+}
+
+/* Midnight Neon (Classic Violet) base alternate */
+[data-theme="default"] {
   --color-base: #0a0312;
   --color-surface: #190f21;
   --color-surface-container: #261b2e;
@@ -28,7 +55,6 @@
   --color-on-secondary: #003739;
   --color-tertiary: #ebb2ff;
   --color-tertiary-container: #390051;
-  --color-error: #ffb4ab;
 
   /* Cursor tracking */
   --cursor-x: 50vw;
@@ -539,10 +565,25 @@
   --color-base: #080705;
   --color-surface: #171510;
   --color-surface-container: #242017;
+  --color-surface-container-high: #2d281e;
+  --color-surface-container-highest: #383226;
+  --color-surface-container-low: #1d1b14;
+  --color-surface-container-lowest: #12100b;
   --color-primary: #ffe49e;
+  --color-primary-container: #543f0b;
   --color-on-surface: #f9f2e3;
+  --color-on-surface-variant: #e6dbcc;
+  --color-outline: #a19685;
+  --color-outline-variant: #4f4a3e;
   --color-cyan: #ff9f00;
+  --color-cyan-dim: #e68f00;
   --color-violet: #0084ff;
+  --color-violet-dim: #b3d7ff;
+  --color-secondary: #fff5e6;
+  --color-secondary-container: #ff9f00;
+  --color-on-secondary: #392200;
+  --color-tertiary: #b3d7ff;
+  --color-tertiary-container: #002d5c;
 }
 
 /* 11. Nordic Aurora Color Accent (Midnight Neon Base) */
