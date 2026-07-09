@@ -7,10 +7,10 @@ import './Projects.css'
 
 const allProjects = [
   { title: 'Sentinel AI', desc: 'Autonomous cybersecurity platform running agentic reconnaissance, exploit simulation, and AI-driven validation triage using state machines.', tech: ['Next.js', 'Supabase', 'BullMQ', 'Redis', 'OpenAI'], icon: 'security', category: 'AI & Web3', link: 'https://sentinel-pentesting.vercel.app/', source: 'https://github.com/AryanSingh2k4/sentinel' },
-  { title: 'Eynexa Corporate Website', desc: 'Corporate digital platform designed to improve pharmaceutical client conversion rates, establish professional brand guidelines, and optimize search discoverability.', tech: ['Web Development', 'SEO', 'Brand Design'], icon: 'medical_services', category: 'Web Apps', link: 'https://eynexapharma.vercel.app/', source: null },
   { title: 'CareFlow', desc: 'AI-powered receptionist platform featuring appointment scheduling, authentication, and intelligent customer interactions.', tech: ['Next.js', 'React', 'Groq API', 'Supabase'], icon: 'smart_toy', category: 'Web Apps', link: 'https://med-careflow.vercel.app/', source: 'https://github.com/aryansingh81167/careflow' },
   { title: 'CodeBot', desc: 'Open-source ChatGPT alternative with real-time streaming responses, chat persistence, and Markdown support.', tech: ['React', 'TypeScript', 'Vite', 'Groq API'], icon: 'chat', category: 'AI & Web3', link: 'https://the-code-bot.vercel.app/', source: 'https://github.com/AryanSingh2k4/CodeBot' },
   { title: 'NFTicketing', desc: 'A decentralized NFT event ticketing platform using ERC721 smart contracts and Ethereum (Sepolia).', tech: ['Solidity', 'React', 'Ethers.js', 'MetaMask'], icon: 'confirmation_number', category: 'AI & Web3', link: 'https://nftticketing.vercel.app/', source: 'https://github.com/AryanSingh2k4/NFTicketing' },
+  { title: 'Eynexa Corporate Website', desc: 'Corporate digital platform designed to improve pharmaceutical client conversion rates, establish professional brand guidelines, and optimize search discoverability.', tech: ['Web Development', 'SEO', 'Brand Design'], icon: 'medical_services', category: 'Web Apps', link: 'https://eynexapharma.vercel.app/', source: null },
 ]
 
 const timeline = [
@@ -37,7 +37,7 @@ const timeline = [
       'Led the creation of brand guidelines and modern identity design.',
       'Established streamlined deployment workflows for company websites.'
     ],
-    tech: ['HTML5', 'Vanilla CSS', 'SEO', 'Brand Design']
+    tech: ['Web Development', 'SEO', 'Brand Design']
   },
 ]
 
