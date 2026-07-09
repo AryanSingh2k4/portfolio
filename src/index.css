@@ -1233,6 +1233,9 @@ img {
   border: 1px solid rgba(0, 244, 254, 0.1);
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
   transition: var(--transition-default);
+  /* Bypass Framer Motion transformed container backdrop-filter rendering bug */
+  transform-style: preserve-3d;
+  backface-visibility: hidden;
 }
 
 .glass-panel:hover {
