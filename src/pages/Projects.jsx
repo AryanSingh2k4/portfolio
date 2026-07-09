@@ -5,9 +5,8 @@ import TiltCard from '../components/TiltCard'
 import { useScrollReveal } from '../hooks/useAnimations'
 import './Projects.css'
 
-const filters = ['All', 'Web Apps', 'AI & Web3']
-
 const allProjects = [
+  { title: 'Sentinel AI', desc: 'Autonomous cybersecurity platform running agentic reconnaissance, exploit simulation, and AI-driven validation triage using state machines.', tech: ['Next.js', 'Supabase', 'BullMQ', 'Redis', 'OpenAI'], icon: 'security', category: 'AI & Web3', link: 'https://sentinel-pentesting.vercel.app/', source: 'https://github.com/AryanSingh2k4/sentinel' },
   { title: 'CareFlow', desc: 'AI-powered receptionist platform featuring appointment scheduling, authentication, and intelligent customer interactions.', tech: ['Next.js', 'React', 'Groq API', 'Supabase'], icon: 'smart_toy', category: 'Web Apps', link: 'https://med-careflow.vercel.app/', source: 'https://github.com/aryansingh81167/careflow' },
   { title: 'CodeBot', desc: 'Open-source ChatGPT alternative with real-time streaming responses, chat persistence, and Markdown support.', tech: ['React', 'TypeScript', 'Vite', 'Groq API'], icon: 'chat', category: 'AI & Web3', link: 'https://the-code-bot.vercel.app/', source: 'https://github.com/AryanSingh2k4/CodeBot' },
   { title: 'NFTicketing', desc: 'A decentralized NFT event ticketing platform using ERC721 smart contracts and Ethereum (Sepolia).', tech: ['Solidity', 'React', 'Ethers.js', 'MetaMask'], icon: 'confirmation_number', category: 'AI & Web3', link: 'https://nftticketing.vercel.app/', source: 'https://github.com/AryanSingh2k4/NFTicketing' },
@@ -41,7 +40,6 @@ const timeline = [
 ]
 
 export default function Projects() {
-  const [activeFilter, setActiveFilter] = useState('All')
   const [expandedIndex, setExpandedIndex] = useState(null)
   const [activeNodes, setActiveNodes] = useState({})
   const sectionRef = useScrollReveal()
@@ -56,9 +54,7 @@ export default function Projects() {
     setExpandedIndex(expandedIndex === index ? null : index)
   }
 
-  const filtered = activeFilter === 'All'
-    ? allProjects
-    : allProjects.filter(p => p.category === activeFilter)
+
 
   return (
     <PageTransition>
@@ -73,20 +69,8 @@ export default function Projects() {
         </section>
 
         <section className="container">
-          <div className="filter-bar scroll-reveal">
-            {filters.map(f => (
-              <button
-                key={f}
-                className={`chip hover-target ${activeFilter === f ? 'active' : ''}`}
-                onClick={() => setActiveFilter(f)}
-              >
-                {f}
-              </button>
-            ))}
-          </div>
-
           <div className="projects-page-grid">
-            {filtered.map((p, i) => (
+            {allProjects.map((p, i) => (
               <TiltCard
                 key={p.title}
                 className="glass-panel project-page-card hover-target scroll-reveal"
@@ -114,12 +98,16 @@ export default function Projects() {
                   ))}
                 </div>
                 <div className="project-page-card__actions">
-                  <a href={p.link} className="btn-primary hover-target" style={{ padding: '8px 20px', fontSize: '12px' }}>
-                    View Project
-                  </a>
-                  <a href={p.source} className="btn-secondary hover-target" style={{ padding: '8px 20px', fontSize: '12px' }}>
-                    Source Code
-                  </a>
+                  {p.link && (
+                    <a href={p.link} target="_blank" rel="noopener noreferrer" className="btn-primary hover-target" style={{ padding: '8px 20px', fontSize: '12px' }}>
+                      View Project
+                    </a>
+                  )}
+                  {p.source && (
+                    <a href={p.source} target="_blank" rel="noopener noreferrer" className="btn-secondary hover-target" style={{ padding: '8px 20px', fontSize: '12px' }}>
+                      Source Code
+                    </a>
+                  )}
                 </div>
               </TiltCard>
             ))}
