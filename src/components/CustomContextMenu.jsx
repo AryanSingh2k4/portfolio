@@ -19,8 +19,8 @@ const themes = [
 ]
 
 const colorAccents = [
-  { id: 'default', label: 'Default Neon' },
   { id: 'cyberpunk', label: 'Cyberpunk Amber' },
+  { id: 'default', label: 'Classic Violet' },
   { id: 'aurora', label: 'Nordic Aurora' },
   { id: 'crimson', label: 'Crimson Eclipse' },
   { id: 'synthwave', label: 'Solarized Synth' },
