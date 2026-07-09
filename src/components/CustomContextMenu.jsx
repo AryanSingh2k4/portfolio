@@ -30,7 +30,7 @@ export default function CustomContextMenu() {
   const [visible, setVisible] = useState(false)
   const [position, setPosition] = useState({ x: 0, y: 0 })
   const [selectedText, setSelectedText] = useState('')
-  const [theme, setTheme] = useState(localStorage.getItem('portfolio-theme') || 'default')
+  const [theme, setTheme] = useState(localStorage.getItem('portfolio-theme') || 'cyberpunk')
   const [submenuOpen, setSubmenuOpen] = useState(false)
   const [accentMenuOpen, setAccentMenuOpen] = useState(false)
   const menuRef = useRef(null)

@@ -10,7 +10,7 @@ const CLIPPY_QUOTES = [
 ]
 
 export default function ThemeWidgets() {
-  const [theme, setTheme] = useState(document.documentElement.getAttribute('data-theme') || 'default')
+  const [theme, setTheme] = useState(document.documentElement.getAttribute('data-theme') || 'cyberpunk')
   const [arcadeOpen, setArcadeOpen] = useState(false)
   const [clippyVisible, setClippyVisible] = useState(true)
   const [clippyText, setClippyText] = useState(CLIPPY_QUOTES[0])
