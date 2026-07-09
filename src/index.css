@@ -29,6 +29,28 @@
   --color-tertiary: #b3d7ff;
   --color-tertiary-container: #002d5c;
   --color-error: #ffb4ab;
+
+  /* Cursor tracking */
+  --cursor-x: 50vw;
+  --cursor-y: 50vh;
+
+  /* Typography */
+  --font-headline: 'Orbitron', 'Space Grotesk', sans-serif;
+  --font-body: 'Space Grotesk', 'Geist', sans-serif;
+  --font-code: 'JetBrains Mono', monospace;
+
+  /* Spacing */
+  --space-unit: 4px;
+  --space-gutter: 24px;
+  --space-margin-safe: 32px;
+  --space-container-max: 1280px;
+  --space-stack-sm: 16px;
+  --space-stack-md: 32px;
+  --space-stack-lg: 64px;
+
+  /* Transitions */
+  --ease-smooth: cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-default: all 0.3s var(--ease-smooth);
 }
 
 /* Midnight Neon (Classic Violet) base alternate */
@@ -55,28 +77,6 @@
   --color-on-secondary: #003739;
   --color-tertiary: #ebb2ff;
   --color-tertiary-container: #390051;
-
-  /* Cursor tracking */
-  --cursor-x: 50vw;
-  --cursor-y: 50vh;
-
-  /* Typography */
-  --font-headline: 'Orbitron', 'Space Grotesk', sans-serif;
-  --font-body: 'Space Grotesk', 'Geist', sans-serif;
-  --font-code: 'JetBrains Mono', monospace;
-
-  /* Spacing */
-  --space-unit: 4px;
-  --space-gutter: 24px;
-  --space-margin-safe: 32px;
-  --space-container-max: 1280px;
-  --space-stack-sm: 16px;
-  --space-stack-md: 32px;
-  --space-stack-lg: 64px;
-
-  /* Transitions */
-  --ease-smooth: cubic-bezier(0.4, 0, 0.2, 1);
-  --transition-default: all 0.3s var(--ease-smooth);
 }
 
 /* Theme Overrides */
