@@ -1228,16 +1228,16 @@ img {
 /* Glassmorphism */
 .glass-panel {
   background: rgba(46, 11, 84, 0.42);
-  backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
+  backdrop-filter: blur(16px);
   border: 1px solid rgba(0, 244, 254, 0.1);
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
   transition: var(--transition-default);
 }
 
 .glass-panel:hover {
-  backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
+  backdrop-filter: blur(20px);
   border-color: rgba(0, 244, 254, 0.4);
   box-shadow: 0 0 25px rgba(0, 244, 254, 0.12);
 }
