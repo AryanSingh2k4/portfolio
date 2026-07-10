@@ -174,7 +174,7 @@ export default function Skills() {
           </h2>
           <div className="learning-grid">
             {learning.map((item, i) => (
-              <div key={item.title} className="learning-card hover-target scroll-reveal" style={{ transitionDelay: `${i * 100}ms` }}>
+              <div key={item.title} className="glass-panel learning-card hover-target scroll-reveal" style={{ transitionDelay: `${i * 100}ms` }}>
                 <h4 className="text-headline-md" style={{ fontSize: '18px', marginBottom: '8px' }}>{item.title}</h4>
                 <p className="text-body-md text-muted">{item.desc}</p>
               </div>
