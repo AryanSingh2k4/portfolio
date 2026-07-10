@@ -1227,15 +1227,12 @@ img {
 
 /* Glassmorphism */
 .glass-panel {
-  background: rgba(46, 11, 84, 0.35);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
+  background: rgba(46, 11, 84, 0.42);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
   border: 1px solid rgba(0, 244, 254, 0.1);
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
   transition: var(--transition-default);
-  /* Bypass Framer Motion transformed container backdrop-filter rendering bug */
-  transform-style: preserve-3d;
-  backface-visibility: hidden;
 }
 
 .glass-panel:hover {
