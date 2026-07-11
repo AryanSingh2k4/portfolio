@@ -84,8 +84,8 @@ export function useParticles(canvasRef, mouseRef) {
         this.y = Math.random() * canvas.height
         this.size = Math.random() * 2.5 + 0.5
         this.color = colors[Math.floor(Math.random() * colors.length)]
-        this.baseX = this.x
-        this.baseY = this.y
+        this.vx = (Math.random() - 0.5) * 0.5
+        this.vy = (Math.random() - 0.5) * 0.5
         this.density = Math.random() * 30 + 1
         this.opacity = Math.random() * 0.5 + 0.2
         this.pulse = Math.random() * Math.PI * 2
@@ -115,10 +115,16 @@ export function useParticles(canvasRef, mouseRef) {
           const force = (maxDist - dist) / maxDist
           this.x += (dx / dist) * force * this.density * 0.3
           this.y += (dy / dist) * force * this.density * 0.3
-        } else {
-          this.x += (this.baseX - this.x) * 0.05
-          this.y += (this.baseY - this.y) * 0.05
         }
+
+        this.x += this.vx
+        this.y += this.vy
+
+        // Wrap around screen
+        if (this.x < 0) this.x = canvas.width
+        if (this.x > canvas.width) this.x = 0
+        if (this.y < 0) this.y = canvas.height
+        if (this.y > canvas.height) this.y = 0
 
         this.draw()
       }
