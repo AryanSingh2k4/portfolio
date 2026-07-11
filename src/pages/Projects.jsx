@@ -1,7 +1,6 @@
 import { useState, useRef } from 'react'
 import { motion, AnimatePresence, useScroll } from 'framer-motion'
 import PageTransition from '../components/PageTransition'
-import TiltCard from '../components/TiltCard'
 import { useScrollReveal } from '../hooks/useAnimations'
 import './Projects.css'
 
@@ -73,7 +72,7 @@ export default function Projects() {
         <section className="container">
           <div className="projects-page-grid">
             {allProjects.map((p, i) => (
-              <TiltCard
+              <div
                 key={p.title}
                 className="glass-panel project-page-card hover-target scroll-reveal"
                 style={{ transitionDelay: `${i * 80}ms` }}
@@ -111,7 +110,7 @@ export default function Projects() {
                     </a>
                   )}
                 </div>
-              </TiltCard>
+              </div>
             ))}
           </div>
         </section>

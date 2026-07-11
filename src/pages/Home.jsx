@@ -1,7 +1,6 @@
 import { useRef, useEffect, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import PageTransition from '../components/PageTransition'
-import TiltCard from '../components/TiltCard'
 import { useScrollReveal, useParticles } from '../hooks/useAnimations'
 import './Home.css'
 
@@ -251,7 +250,7 @@ export default function Home() {
           </h2>
           <div className="projects-grid">
             {projects.map((p, i) => (
-              <TiltCard
+              <div
                 key={p.title}
                 className={`glass-panel project-card hover-target scroll-reveal`}
                 style={{ transitionDelay: `${i * 100}ms` }}
@@ -275,7 +274,7 @@ export default function Home() {
                     <span key={t} className="chip" style={{ fontSize: '12px', padding: '2px 8px' }}>{t}</span>
                   ))}
                 </div>
-              </TiltCard>
+              </div>
             ))}
           </div>
           <div style={{ textAlign: 'center', marginTop: '48px' }} className="scroll-reveal">
