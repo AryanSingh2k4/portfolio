@@ -10,7 +10,10 @@ const projects = [
   { title: 'Eynexa Corporate Website', desc: 'Corporate digital platform designed to improve pharmaceutical client conversion rates, establish professional brand guidelines, and optimize search discoverability.', tech: ['Web Development', 'SEO', 'Brand Design'], icon: 'medical_services', link: 'https://eynexapharma.vercel.app/' },
 ]
 
-const skills = ['React', 'Next.js', 'TypeScript', 'Tailwind CSS', 'Solidity', 'Supabase', 'SQL', 'Node.js']
+const skills = [
+  'React', 'Next.js', 'TypeScript', 'JavaScript', 
+  'Tailwind CSS', 'Supabase', 'SQL', 'Node.js', 'REST APIs'
+]
 
 export default function Home() {
   const navigate = useNavigate()
@@ -173,6 +176,18 @@ export default function Home() {
                 {skills.map(s => (
                   <span key={s} className="chip hover-target">{s}</span>
                 ))}
+                <Link 
+                  to="/skills" 
+                  className="chip hover-target" 
+                  style={{ 
+                    textDecoration: 'none', 
+                    background: 'rgba(0, 244, 254, 0.1)', 
+                    color: 'var(--color-cyan)',
+                    border: '1px solid rgba(0, 244, 254, 0.3)'
+                  }}
+                >
+                  + More
+                </Link>
               </div>
             </div>
 
