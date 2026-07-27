@@ -12,23 +12,22 @@ const allProjects = [
   { title: 'NFTicketing', desc: 'A decentralized NFT event ticketing platform using ERC721 smart contracts and Ethereum (Sepolia).', tech: ['Solidity', 'React', 'Ethers.js', 'MetaMask'], icon: 'confirmation_number', category: 'AI & Web3', link: 'https://nftticketing.vercel.app/', source: 'https://github.com/AryanSingh2k4/NFTicketing' },
   { title: 'Eynexa Pharma Corporate Website', desc: 'Corporate digital platform designed to improve pharmaceutical client conversion rates, establish professional brand guidelines, and optimize search discoverability.', tech: ['Web Development', 'SEO', 'Brand Design'], icon: 'medical_services', category: 'Web Apps', link: 'https://eynexapharma.com/', source: null },
 ]
-
 const timeline = [
   { 
-    year: 'Dec. 2025 — Present', 
-    role: 'Freelance Full-Stack Developer', 
-    company: 'Independent Client', 
-    desc: 'Contributed to a custom responsive e-commerce platform and built dynamic frontend components.',
+    year: 'July 2026 — Present', 
+    role: 'Technical and Digital Operations Intern', 
+    company: 'Purplotus Consultancy', 
+    desc: 'Working on Scale Orbit, an AI-assisted People Systems platform.',
     details: [
-      'Engineered highly responsive modular components using React and Tailwind CSS.',
-      'Optimized page loads by 40% using code splitting and modern asset compression.',
-      'Collaborated closely with clients to translate business goals into clean interactive UI.'
+      'Engineering full-stack features for an AI-assisted People Systems platform.',
+      'Implementing a config-driven tool engine to dynamically generate tools without hardcoded templates.',
+      'Collaborating to build a highly scalable and robust end-to-end web architecture.'
     ],
-    tech: ['React', 'Tailwind CSS', 'Vite', 'Git']
+    tech: ['Full-Stack Development', 'SolidJS', 'TypeScript', 'Tailwind CSS']
   },
   { 
-    year: 'May 2026 — June 2026', 
-    role: 'Technical Operations Management Intern', 
+    year: 'May 2026 — July 2026', 
+    role: 'Freelance Web Developer', 
     company: 'Eynexa Pharma', 
     desc: 'Engineered corporate website, spearheaded brand identity, and managed technical setup.',
     link: 'https://eynexapharma.com/',
@@ -39,6 +38,18 @@ const timeline = [
     ],
     tech: ['Web Development', 'SEO', 'Brand Design']
   },
+  { 
+    year: 'Dec. 2025 — Jan. 2026', 
+    role: 'Freelance Full-Stack Developer', 
+    company: 'Independent Client', 
+    desc: 'Developed a custom responsive web application with real-time features using Next.js and Firebase.',
+    details: [
+      'Engineered highly responsive modular components using Next.js and Tailwind CSS.',
+      'Integrated Firebase for seamless real-time database and secure user authentication.',
+      'Collaborated closely with the client to translate business goals into a clean interactive UI.'
+    ],
+    tech: ['Next.js', 'Firebase', 'Tailwind CSS', 'Git']
+  }
 ]
 
 export default function Projects() {
@@ -152,7 +163,6 @@ export default function Projects() {
                   <div 
                     className="timeline__content glass-panel hover-target"
                     onClick={() => toggleExpand(i)}
-                    style={{ cursor: 'pointer' }}
                   >
                     <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', flexWrap: 'wrap', gap: '8px' }}>
                       <span className="text-label-code text-cyan">{item.year}</span>

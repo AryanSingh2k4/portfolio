@@ -1,0 +1,216 @@
+%-------------------------
+% Resume in Latex
+% Author : Jake Gutierrez
+% Based off of: https://github.com/sb2nov/resume
+% License : MIT
+%------------------------
+
+\documentclass[a4paper,11pt]{article}
+
+\usepackage{latexsym}
+\usepackage[empty]{fullpage}
+\usepackage{titlesec}
+\usepackage{marvosym}
+\usepackage[usenames,dvipsnames]{color}
+\usepackage{verbatim}
+\usepackage{enumitem}
+\usepackage[hidelinks]{hyperref}
+\usepackage{fancyhdr}
+\usepackage[english]{babel}
+\usepackage{tabularx}
+\input{glyphtounicode}
+
+
+%----------FONT OPTIONS----------
+% sans-serif
+% \usepackage[sfdefault]{FiraSans}
+% \usepackage[sfdefault]{roboto}
+% \usepackage[sfdefault]{noto-sans}
+% \usepackage[default]{sourcesanspro}
+
+% serif
+% \usepackage{CormorantGaramond}
+% \usepackage{charter}
+
+
+\pagestyle{fancy}
+\fancyhf{} % clear all header and footer fields
+\fancyfoot{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+
+% Adjust margins
+\addtolength{\oddsidemargin}{-0.5in}
+\addtolength{\evensidemargin}{-0.5in}
+\addtolength{\textwidth}{1in}
+\addtolength{\topmargin}{-.5in}
+\addtolength{\textheight}{1.0in}
+
+\urlstyle{same}
+
+\raggedbottom
+\raggedright
+\setlength{\tabcolsep}{0in}
+
+% Sections formatting
+\titleformat{\section}{
+  \vspace{-4pt}\scshape\raggedright\large
+}{}{0em}{}[\color{black}\titlerule \vspace{-5pt}]
+
+% Ensure that generate pdf is machine readable/ATS parsable
+\pdfgentounicode=1
+
+%-------------------------
+% Custom commands
+\newcommand{\resumeItem}[1]{
+  \item\small{
+    {#1 \vspace{-2pt}}
+  }
+}
+
+\newcommand{\resumeSubheading}[4]{
+  \vspace{-2pt}\item
+    \begin{tabular*}{0.97\textwidth}[t]{l@{\extracolsep{\fill}}r}
+      \textbf{#1} & #2 \\
+      \textit{\small#3} & \textit{\small #4} \\
+    \end{tabular*}\vspace{-7pt}
+}
+
+\newcommand{\resumeSubSubheading}[2]{
+    \item
+    \begin{tabular*}{0.97\textwidth}{l@{\extracolsep{\fill}}r}
+      \textit{\small#1} & \textit{\small #2} \\
+    \end{tabular*}\vspace{-7pt}
+}
+
+\newcommand{\resumeProjectHeading}[2]{
+    \item
+    \begin{tabular*}{0.97\textwidth}{l@{\extracolsep{\fill}}r}
+      \small#1 & #2 \\
+    \end{tabular*}\vspace{-7pt}
+}
+
+\newcommand{\resumeSubItem}[1]{\resumeItem{#1}\vspace{-4pt}}
+
+\renewcommand\labelitemii{$\vcenter{\hbox{\tiny$\bullet$}}$}
+
+\newcommand{\resumeSubHeadingListStart}{\begin{itemize}[leftmargin=0.15in, label={}]}
+\newcommand{\resumeSubHeadingListEnd}{\end{itemize}}
+\newcommand{\resumeItemListStart}{\begin{itemize}}
+\newcommand{\resumeItemListEnd}{\end{itemize}\vspace{-5pt}}
+
+%-------------------------------------------
+%%%%%%  RESUME STARTS HERE  %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\begin{document}
+
+%----------HEADING----------
+
+\begin{center}
+    \textbf{\Huge \scshape Aryan Singh} \\ \vspace{1pt}
+    \small +91 8104515574 $|$ \href{mailto:aryanvsingh641@gmail.com}{\underline{aryanvsingh641@gmail.com}} $|$ 
+    \href{https://www.linkedin.com/in/aryansingh2k4}{\underline{linkedin.com/in/aryansingh2k4}} $|$
+    \href{https://github.com/AryanSingh2k4}{\underline{github.com/AryanSingh2k4}}
+\end{center}
+
+
+%-----------EDUCATION-----------
+\section{Education}
+  \resumeSubHeadingListStart
+    \resumeSubheading
+      {Lokmanya Tilak College of Engineering}{Koparkhairane, Navi Mumbai}
+      {B.E. -- CSE (IoT \& Cyber Security including Blockchain Technology)}{Expected 2027}
+    \resumeSubheading
+      {Model College of Science and Commerce}{Kalyan}
+      {Higher Secondary Education}{2020 -- 2022}
+  \resumeSubHeadingListEnd
+
+
+%-----------EXPERIENCE-----------
+\section{Experience}
+  \resumeSubHeadingListStart
+
+    \resumeSubheading
+      {Technical Operations Management Intern}{May 2026 -- June 2026}
+      {Eynexa Pharma}{Kalyan (Hybrid)}
+      \resumeItemListStart
+        \resumeItem{Engineered the company's corporate website, overseeing the full lifecycle from requirements gathering, design, and development to deployment preparation.}
+        \resumeItem{Spearheaded brand identity development, designing visual assets, logo systems, and guidelines to ensure consistent corporate messaging.}
+        \resumeItem{Helped with technical setup, system functions, and documentation to support day-to-day digital operations.}
+      \resumeItemListEnd
+
+    \resumeSubheading
+      {Freelance Full-Stack Developer}{Dec. 2025 -- Present}
+      {Independent Client}{Remote}
+      \resumeItemListStart
+        \resumeItem{Made a major contribution to the development of a custom responsive e-commerce platform, translating business requirements into technical architecture and design blueprints.}
+        \resumeItem{Built dynamic frontend components to streamline the user shopping experience, improve product discoverability, and gained experience creating and maintaining project documentation.}
+    \resumeItemListEnd
+
+    \resumeSubheading
+      {Administrative Assistant (Part-Time)}{Dec. 2024 -- Apr. 2025}
+      {Excellent Tutorials}{Kalyan}
+      \resumeItemListStart
+        \resumeItem{Managed daily operations including attendance, scheduling, and student records with strict accuracy and minimal oversight.}
+        \resumeItem{Coordinated examination logistics ensuring adherence to tight operational timelines.}
+      \resumeItemListEnd
+
+  \resumeSubHeadingListEnd
+
+
+%-----------PROJECTS-----------
+\section{Projects}
+    \resumeSubHeadingListStart
+      \resumeProjectHeading
+          {\textbf{Careflow: AI-Based Receptionist System} $|$ \href{https://med-careflow.vercel.app/}{\textbf{Link}} $|$ \emph{Next.js, React, Groq API, Supabase, Tailwind CSS}}{}
+          \resumeItemListStart
+            \resumeItem{Engineered a Next.js application using Supabase for secure data management and user authentication.}
+            \resumeItem{Integrated the Groq API to process language model queries, delivering context-aware AI responses with sub-second latency.}
+            \resumeItem{Implemented responsive and animated user interfaces using Tailwind CSS and Framer Motion.}
+          \resumeItemListEnd
+      \resumeProjectHeading
+          {\textbf{Codebot: Open-Source ChatGPT Alternative} $|$ \href{https://the-code-bot.vercel.app/}{\textbf{Link}} $|$ \emph{React, TypeScript, Groq API, Vite, Tailwind CSS}}{}
+          \resumeItemListStart
+            \resumeItem{Developed a conversational AI interface using React and Vite.}
+            \resumeItem{Integrated the Groq SDK for language model inference with real-time streaming and sub-second latency.}
+            \resumeItem{Configured LocalForage for chat persistence and React Markdown for syntax-highlighted text rendering.}
+          \resumeItemListEnd
+      \resumeProjectHeading
+          {\textbf{NFTicketing: Decentralized Event Ticketing Platform} $|$ \href{https://nftticketing.vercel.app/}{\textbf{Link}} $|$ \emph{Solidity, React, Ethers.js, Sepolia}}{}
+          \resumeItemListStart
+            \resumeItem{Developed a decentralized application (dApp) using React and Vite to facilitate NFT-based event ticketing.}
+            \resumeItem{Designed ERC721 smart contracts to issue tamper-proof tokens, ensuring verifiable ownership and eliminating fraud.}
+            \resumeItem{Integrated Ethers.js to securely connect the frontend with Ethereum and enable MetaMask transactions.}
+          \resumeItemListEnd
+    \resumeSubHeadingListEnd
+
+
+%-----------LEADERSHIP-----------
+\section{Leadership}
+  \resumeSubHeadingListStart
+    \resumeSubheading
+      {Design Head}{College Events}
+      {Model Business Summit \& Zephyr 2026}{}
+      \resumeItemListStart
+        \resumeItem{Directed visual branding and social media campaigns for two large-scale inter-college events, leading design teams to produce high-conversion marketing assets.}
+      \resumeItemListEnd
+  \resumeSubHeadingListEnd
+
+
+
+%
+%-----------PROGRAMMING SKILLS-----------
+\section{Skills}
+ \begin{itemize}[leftmargin=0.15in, label={}]
+    \small{\item{
+     \textbf{Technical}{: HTML5, CSS3, Tailwind CSS, JavaScript, TypeScript, Node.js, React.js, Next.js, Solidity, Supabase, SQL, Responsive Design, SEO} \\
+     \textbf{Tools \& APIs}{: Git, GitHub, REST APIs, Groq API, Vite, Ethers.js} \\
+     \textbf{Design}{: Brand Identity, Visual Design, Social Media Graphics, Canva} \\
+     \textbf{Operations}{: Workflow Optimization, Project Coordination, Process Documentation, MS Office Suite}
+    }}
+ \end{itemize}
+
+
+%-------------------------------------------
+\end{document}
