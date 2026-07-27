@@ -7,14 +7,14 @@ import './Projects.css'
 const allProjects = [
   { title: 'Sentinel', desc: 'Autonomous cybersecurity platform running agentic reconnaissance, exploit simulation, and AI-driven validation triage using state machines.', tech: ['Next.js', 'Nuclei', 'Katana', 'BullMQ', 'Supabase'], icon: 'security', category: 'AI & Web3', link: 'https://sentinel-pentesting.vercel.app/?v=1', source: 'https://github.com/AryanSingh2k4/sentinel' },
   { title: 'Dropline', desc: 'Peer-to-peer file sharing application built with WebRTC for direct, secure data transfers and Supabase for signaling.', tech: ['Next.js', 'WebRTC', 'TypeScript', 'Supabase'], icon: 'folder_shared', category: 'Web Apps', link: 'https://droplinegg.vercel.app/', source: 'https://github.com/AryanSingh2k4/drop-line' },
-  { title: 'CareFlow', desc: 'AI-powered receptionist platform featuring appointment scheduling, authentication, and intelligent customer interactions.', tech: ['Next.js', 'React', 'Groq API', 'Supabase'], icon: 'smart_toy', category: 'Web Apps', link: 'https://med-careflow.vercel.app/', source: 'https://github.com/aryansingh81167/careflow' },
+  { title: 'CareFlow', desc: 'AI-powered receptionist platform featuring appointment scheduling, authentication, and intelligent customer interactions.', tech: ['Next.js', 'Groq API', 'Supabase', 'Tailwind CSS'], icon: 'smart_toy', category: 'Web Apps', link: 'https://med-careflow.vercel.app/', source: 'https://github.com/aryansingh81167/careflow' },
   { title: 'CodeBot', desc: 'Open-source ChatGPT alternative with real-time streaming responses, chat persistence, and Markdown support.', tech: ['React', 'TypeScript', 'Vite', 'Groq API'], icon: 'chat', category: 'AI & Web3', link: 'https://the-code-bot.vercel.app/', source: 'https://github.com/AryanSingh2k4/CodeBot' },
   { title: 'NFTicketing', desc: 'A decentralized NFT event ticketing platform using ERC721 smart contracts and Ethereum (Sepolia).', tech: ['Solidity', 'React', 'Ethers.js', 'MetaMask'], icon: 'confirmation_number', category: 'AI & Web3', link: 'https://nftticketing.vercel.app/', source: 'https://github.com/AryanSingh2k4/NFTicketing' },
   { title: 'Eynexa Pharma Corporate Website', desc: 'Corporate digital platform designed to improve pharmaceutical client conversion rates, establish professional brand guidelines, and optimize search discoverability.', tech: ['Web Development', 'SEO', 'Brand Design'], icon: 'medical_services', category: 'Web Apps', link: 'https://eynexapharma.com/', source: null },
 ]
 const timeline = [
   { 
-    year: 'July 2026 — Present', 
+    year: 'Ongoing', 
     role: 'Technical and Digital Operations Intern', 
     company: 'Purplotus Consultancy', 
     desc: 'Working on Scale Orbit, an AI-assisted People Systems platform.',
