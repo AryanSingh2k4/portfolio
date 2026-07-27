@@ -149,7 +149,7 @@ export default function Home() {
               <Link to="/projects" className="btn-primary hover-target">
                 View Projects
               </Link>
-              <a href="/resume.pdf" target="_blank" rel="noopener noreferrer" className="btn-secondary hover-target" style={{ display: 'inline-flex', alignItems: 'center', gap: '8px' }}>
+              <a href="/Aryan%20Singh%20Resume.pdf" target="_blank" rel="noopener noreferrer" className="btn-secondary hover-target" style={{ display: 'inline-flex', alignItems: 'center', gap: '8px' }}>
                 <span className="material-symbols-outlined" style={{ fontSize: '20px' }}>description</span>
                 Resume
               </a>

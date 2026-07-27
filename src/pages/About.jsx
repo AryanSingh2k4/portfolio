@@ -80,7 +80,7 @@ export default function About() {
             <Link to="/contact" className="btn-primary hover-target" style={{ padding: '16px 48px', fontSize: '16px' }}>
               Get in Touch
             </Link>
-            <a href="/resume.pdf" target="_blank" rel="noopener noreferrer" className="btn-secondary hover-target" style={{ padding: '16px 48px', fontSize: '16px', display: 'inline-flex', alignItems: 'center', gap: '8px' }}>
+            <a href="/Aryan%20Singh%20Resume.pdf" target="_blank" rel="noopener noreferrer" className="btn-secondary hover-target" style={{ padding: '16px 48px', fontSize: '16px', display: 'inline-flex', alignItems: 'center', gap: '8px' }}>
               <span className="material-symbols-outlined" style={{ fontSize: '20px' }}>description</span>
               Resume
             </a>
