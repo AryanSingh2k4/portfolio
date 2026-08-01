@@ -14,7 +14,7 @@ const allProjects = [
 ]
 const timeline = [
   { 
-    year: 'Ongoing', 
+    year: 'Aug. 2026 — Present', 
     role: 'Technical and Digital Operations Intern', 
     company: 'Purplotus Consultancy', 
     desc: 'Working on Scale Orbit, an AI-assisted People Systems platform.',
