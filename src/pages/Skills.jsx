@@ -54,7 +54,6 @@ const stats = [
   { value: 14, suffix: '+', label: 'Projects' },
   { value: 2, suffix: '+', label: 'Years' },
   { value: categories.reduce((acc, cat) => acc + cat.skills.length, 0), suffix: '+', label: 'Technologies' },
-  { value: 26, suffix: 'K+', label: 'Lines of Code' },
 ]
 
 const learning = [
