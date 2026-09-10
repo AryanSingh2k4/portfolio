@@ -103,7 +103,7 @@ export default function Contact() {
     // Construct mailto link
     const subject = encodeURIComponent(`Portfolio Inquiry: ${formData.subject}`)
     const body = encodeURIComponent(`Name: ${formData.name}\nEmail: ${formData.email}\nBudget: ${formData.budget || 'N/A'}\n\nMessage:\n${formData.message}`)
-    window.location.href = `mailto:aryan@dev.com?subject=${subject}&body=${body}`
+    window.location.href = `mailto:aryanvsingh641@gmail.com?subject=${subject}&body=${body}`
 
     setSubmitted(true)
     setTimeout(() => setSubmitted(false), 3000)
