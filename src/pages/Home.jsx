@@ -7,12 +7,12 @@ import './Home.css'
 const projects = [
   { title: 'Sentinel', desc: 'Autonomous threat hunting scanner mapping attack surfaces and triaging findings via agent state machines.', tech: ['Next.js', 'Nuclei', 'Katana'], icon: 'security', link: 'https://sentinel-pentesting.vercel.app/?v=1' },
   { title: 'CareFlow', desc: 'AI-powered receptionist platform featuring appointment scheduling and intelligent customer interactions.', tech: ['Next.js', 'Groq API', 'Supabase'], icon: 'smart_toy', link: 'https://med-careflow.vercel.app/' },
-  { title: 'Eynexa Pharma Corporate Website', desc: 'Corporate digital platform designed to improve pharmaceutical client conversion rates, establish professional brand guidelines, and optimize search discoverability.', tech: ['Web Development', 'SEO', 'Brand Design'], icon: 'medical_services', link: 'https://eynexapharma.com/' },
+  { title: 'Dropline', desc: 'Serverless P2P file sharing platform using WebRTC DataChannels with 64KB chunked binary streaming and zero cloud storage.', tech: ['Next.js', 'WebRTC', 'Supabase', 'TypeScript'], icon: 'folder_shared', link: 'https://droplinegg.vercel.app/' },
 ]
 
 const skills = [
   'React', 'Next.js', 'TypeScript', 'JavaScript', 
-  'Tailwind CSS', 'Supabase', 'SQL', 'Node.js', 'REST APIs'
+  'Tailwind CSS', 'Supabase', 'SQL', 'Node.js', 'WebRTC', 'REST APIs'
 ]
 
 export default function Home() {
@@ -149,7 +149,7 @@ export default function Home() {
               <Link to="/projects" className="btn-primary hover-target">
                 View Projects
               </Link>
-              <a href="/resume.pdf" target="_blank" rel="noopener noreferrer" className="btn-secondary hover-target" style={{ display: 'inline-flex', alignItems: 'center', gap: '8px' }}>
+              <a href="/Aryan_Singh_Resume.pdf" target="_blank" rel="noopener noreferrer" className="btn-secondary hover-target" style={{ display: 'inline-flex', alignItems: 'center', gap: '8px' }}>
                 <span className="material-symbols-outlined" style={{ fontSize: '20px' }}>description</span>
                 Resume
               </a>

@@ -5,9 +5,9 @@ import { useScrollReveal } from '../hooks/useAnimations'
 import './Projects.css'
 
 const allProjects = [
-  { title: 'Sentinel', desc: 'Autonomous cybersecurity platform running agentic reconnaissance, exploit simulation, and AI-driven validation triage using state machines.', tech: ['Next.js', 'Nuclei', 'Katana', 'BullMQ', 'Supabase'], icon: 'security', category: 'AI & Web3', link: 'https://sentinel-pentesting.vercel.app/?v=1', source: 'https://github.com/AryanSingh2k4/sentinel' },
-  { title: 'Dropline', desc: 'Peer-to-peer file sharing application built with WebRTC for direct, secure data transfers and Supabase for signaling.', tech: ['Next.js', 'WebRTC', 'TypeScript', 'Supabase'], icon: 'folder_shared', category: 'Web Apps', link: 'https://droplinegg.vercel.app/', source: 'https://github.com/AryanSingh2k4/drop-line' },
-  { title: 'CareFlow', desc: 'AI-powered receptionist platform featuring appointment scheduling, authentication, and intelligent customer interactions.', tech: ['Next.js', 'Groq API', 'Supabase', 'Tailwind CSS'], icon: 'smart_toy', category: 'Web Apps', link: 'https://med-careflow.vercel.app/', source: 'https://github.com/aryansingh81167/careflow' },
+  { title: 'Sentinel', desc: 'Autonomous cybersecurity platform with a 5-stage agent state machine, 800+ TruffleHog rules, and AST-based self-healing auto-patcher.', tech: ['Next.js', 'Nuclei', 'Katana', 'Supabase'], icon: 'security', category: 'AI & Web3', link: 'https://sentinel-pentesting.vercel.app/?v=1', source: 'https://github.com/AryanSingh2k4/sentinel' },
+  { title: 'Dropline', desc: 'Serverless P2P file sharing platform using WebRTC DataChannels with 64KB chunked binary streaming and zero cloud storage.', tech: ['Next.js', 'WebRTC', 'TypeScript', 'Supabase'], icon: 'folder_shared', category: 'Web Apps', link: 'https://droplinegg.vercel.app/', source: 'https://github.com/AryanSingh2k4/drop-line' },
+  { title: 'CareFlow', desc: 'AI medical receptionist built with Next.js, Groq Llama 3.1 API (sub-400ms latency), and Supabase RLS for patient data isolation.', tech: ['Next.js', 'Groq API', 'Supabase', 'Tailwind CSS'], icon: 'smart_toy', category: 'Web Apps', link: 'https://med-careflow.vercel.app/', source: 'https://github.com/aryansingh81167/careflow' },
   { title: 'CodeBot', desc: 'Open-source ChatGPT alternative with real-time streaming responses, chat persistence, and Markdown support.', tech: ['React', 'TypeScript', 'Vite', 'Groq API'], icon: 'chat', category: 'AI & Web3', link: 'https://the-code-bot.vercel.app/', source: 'https://github.com/AryanSingh2k4/CodeBot' },
   { title: 'NFTicketing', desc: 'A decentralized NFT event ticketing platform using ERC721 smart contracts and Ethereum (Sepolia).', tech: ['Solidity', 'React', 'Ethers.js', 'MetaMask'], icon: 'confirmation_number', category: 'AI & Web3', link: 'https://nftticketing.vercel.app/', source: 'https://github.com/AryanSingh2k4/NFTicketing' },
   { title: 'Eynexa Pharma Corporate Website', desc: 'Corporate digital platform designed to improve pharmaceutical client conversion rates, establish professional brand guidelines, and optimize search discoverability.', tech: ['Web Development', 'SEO', 'Brand Design'], icon: 'medical_services', category: 'Web Apps', link: 'https://eynexapharma.com/', source: null },
@@ -17,38 +17,38 @@ const timeline = [
     year: 'Aug. 2026 — Present', 
     role: 'Technical and Digital Operations Intern', 
     company: 'Purplotus Consultancy', 
-    desc: 'Working on Scale Orbit, an AI-assisted People Systems platform.',
+    desc: 'Working on Scale Orbit, an AI-assisted People Systems platform automating organizational workflows.',
     details: [
-      'Engineering full-stack features for an AI-assisted People Systems platform.',
-      'Implementing a config-driven tool engine to dynamically generate tools without hardcoded templates.',
-      'Collaborating to build a highly scalable and robust end-to-end web architecture.'
+      'Engineered frontend modules for Scale Orbit, an AI-assisted People Systems platform that automates organizational workflows and HR diagnostic toolkits.',
+      'Built a config-driven schema engine to dynamically generate 18+ business tools without hardcoded templates.',
+      'Implemented modular configuration packages across diagnostic, psychometric, and HR tools within a pnpm monorepo.'
     ],
-    tech: ['Full-Stack Development', 'SolidJS', 'TypeScript', 'Tailwind CSS']
+    tech: ['Solid.js', 'TypeScript', 'Tailwind CSS', 'pnpm']
   },
   { 
-    year: 'May 2026 — July 2026', 
-    role: 'Freelance Web Developer', 
-    company: 'Eynexa Pharma', 
-    desc: 'Engineered corporate website, spearheaded brand identity, and managed technical setup.',
-    link: 'https://eynexapharma.com/',
+    year: 'Nov. 2025 — Present', 
+    role: 'Technical Operations Lead (Part-Time)', 
+    company: 'Phasecor Healthcare', 
+    desc: 'Managing corporate platforms, e-commerce automation, and technical infrastructure.',
     details: [
-      'Designed and deployed the corporate website improving client conversion rates.',
-      'Led the creation of brand guidelines and modern identity design.',
-      'Established streamlined deployment workflows for company websites.'
+      'Develop and maintain corporate and e-commerce platforms on Vercel using Next.js, sustaining 99.99% uptime and under 1.5s load times.',
+      'Automate e-commerce workflows and product enquiry pipelines, reducing manual processing by 70%.',
+      'Manage daily technical operations, domain DNS, corporate email infrastructure, and e-commerce operations.'
     ],
-    tech: ['Web Development', 'SEO', 'Brand Design']
+    tech: ['Next.js', 'Vercel', 'E-commerce', 'Automation', 'DNS']
   },
   { 
-    year: 'Dec. 2025 — Jan. 2026', 
-    role: 'Freelance Full-Stack Developer', 
-    company: 'Independent Client', 
-    desc: 'Developed a custom responsive web application with real-time features using Next.js and Firebase.',
+    year: 'Oct. 2025 — Present', 
+    role: 'Freelance Developer', 
+    company: 'Freelance', 
+    desc: 'Engineering responsive corporate websites, brand identities, and modern web applications.',
+    link: 'https://aryan-singh.me',
     details: [
-      'Engineered highly responsive modular components using Next.js and Tailwind CSS.',
-      'Integrated Firebase for seamless real-time database and secure user authentication.',
-      'Collaborated closely with the client to translate business goals into a clean interactive UI.'
+      'Engineer responsive corporate websites and web applications tailored to diverse client specifications.',
+      'Develop modern full-stack web applications using Next.js and Tailwind CSS with modular architectures.',
+      'Spearheaded brand guidelines, deployment workflows, and client conversion design for corporate platforms like Eynexa Pharma.'
     ],
-    tech: ['Next.js', 'Firebase', 'Tailwind CSS', 'Git']
+    tech: ['Next.js', 'Tailwind CSS', 'React', 'SEO', 'Brand Design']
   }
 ]
 

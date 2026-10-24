@@ -13,6 +13,7 @@ const categories = [
       { name: 'TypeScript', level: 85 },
       { name: 'JavaScript', level: 90 },
       { name: 'Tailwind CSS', level: 95 },
+      { name: 'Solid.js', level: 80 },
       { name: 'HTML5/CSS3', level: 95 },
     ]
   },
@@ -21,11 +22,12 @@ const categories = [
     icon: 'dns',
     skills: [
       { name: 'Node.js', level: 80 },
-      { name: 'Solidity', level: 75 },
+      { name: 'WebRTC', level: 85 },
       { name: 'Supabase', level: 85 },
       { name: 'SQL', level: 80 },
-      { name: 'Ethers.js', level: 75 },
       { name: 'REST APIs', level: 85 },
+      { name: 'Solidity', level: 75 },
+      { name: 'Ethers.js', level: 75 },
     ]
   },
   {
@@ -33,6 +35,7 @@ const categories = [
     icon: 'build',
     skills: [
       { name: 'Git & GitHub', level: 90 },
+      { name: 'Docker', level: 75 },
       { name: 'Vite', level: 85 },
       { name: 'Groq API', level: 85 },
       { name: 'SEO', level: 80 },
@@ -42,10 +45,11 @@ const categories = [
     title: 'Design & Operations',
     icon: 'palette',
     skills: [
+      { name: 'Workflow Optimization', level: 85 },
+      { name: 'Project Coordination', level: 85 },
       { name: 'Visual Design', level: 80 },
       { name: 'Brand Identity', level: 75 },
       { name: 'Canva', level: 80 },
-      { name: 'Workflow Optimization', level: 85 },
     ]
   },
 ]
