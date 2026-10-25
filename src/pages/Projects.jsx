@@ -5,12 +5,13 @@ import { useScrollReveal } from '../hooks/useAnimations'
 import './Projects.css'
 
 const allProjects = [
-  { title: 'Sentinel', desc: 'Autonomous cybersecurity platform with a 5-stage agent state machine, 800+ TruffleHog rules, and AST-based self-healing auto-patcher.', tech: ['Next.js', 'Nuclei', 'Katana', 'Supabase'], icon: 'security', category: 'AI & Web3', link: 'https://sentinel-pentesting.vercel.app/?v=1', source: 'https://github.com/AryanSingh2k4/sentinel' },
-  { title: 'Dropline', desc: 'Serverless P2P file sharing platform using WebRTC DataChannels with 64KB chunked binary streaming and zero cloud storage.', tech: ['Next.js', 'WebRTC', 'TypeScript', 'Supabase'], icon: 'folder_shared', category: 'Web Apps', link: 'https://droplinegg.vercel.app/', source: 'https://github.com/AryanSingh2k4/drop-line' },
-  { title: 'CareFlow', desc: 'AI medical receptionist built with Next.js, Groq Llama 3.1 API (sub-400ms latency), and Supabase RLS for patient data isolation.', tech: ['Next.js', 'Groq API', 'Supabase', 'Tailwind CSS'], icon: 'smart_toy', category: 'Web Apps', link: 'https://med-careflow.vercel.app/', source: 'https://github.com/aryansingh81167/careflow' },
-  { title: 'CodeBot', desc: 'Open-source ChatGPT alternative with real-time streaming responses, chat persistence, and Markdown support.', tech: ['React', 'TypeScript', 'Vite', 'Groq API'], icon: 'chat', category: 'AI & Web3', link: 'https://the-code-bot.vercel.app/', source: 'https://github.com/AryanSingh2k4/CodeBot' },
-  { title: 'NFTicketing', desc: 'A decentralized NFT event ticketing platform using ERC721 smart contracts and Ethereum (Sepolia).', tech: ['Solidity', 'React', 'Ethers.js', 'MetaMask'], icon: 'confirmation_number', category: 'AI & Web3', link: 'https://nftticketing.vercel.app/', source: 'https://github.com/AryanSingh2k4/NFTicketing' },
-  { title: 'Eynexa Pharma Corporate Website', desc: 'Corporate digital platform designed to improve pharmaceutical client conversion rates, establish professional brand guidelines, and optimize search discoverability.', tech: ['Web Development', 'SEO', 'Brand Design'], icon: 'medical_services', category: 'Web Apps', link: 'https://eynexapharma.com/', source: null },
+  { title: 'Sentinel', desc: 'Autonomous security scanner that maps attack surfaces, discovers vulnerabilities, and simulates exploits.', tech: ['Next.js', 'Nuclei', 'Katana', 'Supabase'], icon: 'security', category: 'AI & Web3', link: 'https://sentinel-pentesting.vercel.app/?v=1', source: 'https://github.com/AryanSingh2k4/sentinel' },
+  { title: 'Dropline', desc: 'Peer-to-peer file sharing app for sending files directly between browsers with no size limits or cloud storage.', tech: ['Next.js', 'WebRTC', 'TypeScript', 'Supabase'], icon: 'folder_shared', category: 'Web Apps', link: 'https://droplinegg.vercel.app/', source: 'https://github.com/AryanSingh2k4/drop-line' },
+  { title: 'CareFlow', desc: 'AI receptionist that handles patient intake, automated appointment scheduling, and front-desk workflows.', tech: ['Next.js', 'Groq API', 'Supabase', 'Tailwind CSS'], icon: 'smart_toy', category: 'Web Apps', link: 'https://med-careflow.vercel.app/', source: 'https://github.com/aryansingh81167/careflow' },
+  { title: 'CodeBot', desc: 'Open-source AI coding assistant with real-time streaming responses, persistent chats, and Markdown support.', tech: ['React', 'TypeScript', 'Vite', 'Groq API'], icon: 'chat', category: 'AI & Web3', link: 'https://the-code-bot.vercel.app/', source: 'https://github.com/AryanSingh2k4/CodeBot' },
+  { title: 'NFTicketing', desc: 'Decentralized ticketing app that mints tickets as NFTs to prevent scalping and verify event access.', tech: ['Solidity', 'React', 'Ethers.js', 'MetaMask'], icon: 'confirmation_number', category: 'AI & Web3', link: 'https://nftticketing.vercel.app/', source: 'https://github.com/AryanSingh2k4/NFTicketing' },
+  { title: 'Eynexa Pharma Corporate Website', desc: 'Corporate platform and brand identity built for a pharmaceutical company to showcase products and drive leads.', tech: ['Web Development', 'SEO', 'Brand Design'], icon: 'medical_services', category: 'Web Apps', link: 'https://eynexapharma.com/', source: null },
+  { title: 'Phasecor Healthcare Corporate Website', desc: 'Corporate healthcare portal and product catalog built for browsing medicines and submitting direct inquiries.', tech: ['Next.js', 'React', 'Tailwind CSS', 'TypeScript'], icon: 'medical_services', category: 'Web Apps', link: 'https://healthcare.phasecor.com', source: 'https://github.com/aryansingh2k04/Phasecor_Healthcare' },
 ]
 const timeline = [
   { 
@@ -30,6 +31,7 @@ const timeline = [
     role: 'Technical Operations Lead (Part-Time)', 
     company: 'Phasecor Healthcare', 
     desc: 'Managing corporate platforms, e-commerce automation, and technical infrastructure.',
+    link: 'https://healthcare.phasecor.com',
     details: [
       'Develop and maintain corporate and e-commerce platforms on Vercel using Next.js, sustaining 99.99% uptime and under 1.5s load times.',
       'Automate e-commerce workflows and product enquiry pipelines, reducing manual processing by 70%.',
@@ -103,8 +105,8 @@ export default function Projects() {
                     </span>
                   )}
                 </div>
-                <h3 className="text-headline-md" style={{ fontSize: '22px', marginBottom: '8px' }}>{p.title}</h3>
-                <p className="text-body-md text-muted" style={{ marginBottom: '16px', flex: 1 }}>{p.desc}</p>
+                <h3 className="text-headline-md project-page-card__title">{p.title}</h3>
+                <p className="text-body-md text-muted project-page-card__desc">{p.desc}</p>
                 <div className="project-page-card__tech">
                   {p.tech.map(t => (
                     <span key={t} className="chip" style={{ fontSize: '11px', padding: '2px 8px' }}>{t}</span>

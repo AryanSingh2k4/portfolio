@@ -5,9 +5,9 @@ import { useScrollReveal, useParticles } from '../hooks/useAnimations'
 import './Home.css'
 
 const projects = [
-  { title: 'Sentinel', desc: 'Autonomous threat hunting scanner mapping attack surfaces and triaging findings via agent state machines.', tech: ['Next.js', 'Nuclei', 'Katana'], icon: 'security', link: 'https://sentinel-pentesting.vercel.app/?v=1' },
-  { title: 'CareFlow', desc: 'AI-powered receptionist platform featuring appointment scheduling and intelligent customer interactions.', tech: ['Next.js', 'Groq API', 'Supabase'], icon: 'smart_toy', link: 'https://med-careflow.vercel.app/' },
-  { title: 'Dropline', desc: 'Serverless P2P file sharing platform using WebRTC DataChannels with 64KB chunked binary streaming and zero cloud storage.', tech: ['Next.js', 'WebRTC', 'Supabase', 'TypeScript'], icon: 'folder_shared', link: 'https://droplinegg.vercel.app/' },
+  { title: 'Sentinel', desc: 'Autonomous security scanner that maps attack surfaces, discovers vulnerabilities, and simulates exploits.', tech: ['Next.js', 'Nuclei', 'Katana'], icon: 'security', link: 'https://sentinel-pentesting.vercel.app/?v=1' },
+  { title: 'Dropline', desc: 'Peer-to-peer file sharing app for sending files directly between browsers with no size limits or cloud storage.', tech: ['Next.js', 'WebRTC', 'Supabase', 'TypeScript'], icon: 'folder_shared', link: 'https://droplinegg.vercel.app/' },
+  { title: 'CareFlow', desc: 'AI receptionist that handles patient intake, automated appointment scheduling, and front-desk workflows.', tech: ['Next.js', 'Groq API', 'Supabase'], icon: 'smart_toy', link: 'https://med-careflow.vercel.app/' },
 ]
 
 const skills = [
