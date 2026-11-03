@@ -1,26 +1,32 @@
+/* ============================================
+   ARYAN.DEV — Custom Context Menu
+   Editorial Design System
+   ============================================ */
+
 .custom-context-menu {
   position: fixed;
   z-index: 10000;
-  width: 200px;
-  padding: 6px;
-  border-radius: 8px;
-  background: rgba(10, 3, 18, 0.85);
-  -webkit-backdrop-filter: blur(16px);
-  backdrop-filter: blur(16px);
-  border: 1px solid rgba(188, 19, 254, 0.25);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6), 0 0 20px rgba(188, 19, 254, 0.1);
+  width: 220px;
+  padding: 8px;
+  border-radius: 16px;
+  background: color-mix(in srgb, var(--t) 95%, transparent);
+  -webkit-backdrop-filter: blur(20px);
+  backdrop-filter: blur(20px);
+  border: 1.5px solid var(--h);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.15);
   animation: contextMenuFadeIn 0.2s cubic-bezier(0.16, 1, 0.3, 1);
   will-change: transform, opacity;
+  color: var(--b);
 }
 
 @keyframes contextMenuFadeIn {
   from {
     opacity: 0;
-    transform: scale(0.95);
+    transform: scale(0.96) translateY(-4px);
   }
   to {
     opacity: 1;
-    transform: scale(1);
+    transform: scale(1) translateY(0);
   }
 }
 
@@ -38,50 +44,45 @@
   background: transparent;
   border: none;
   outline: none;
-  color: var(--color-on-surface-variant);
+  color: var(--b);
   font-family: var(--font-body);
-  font-size: 14px;
-  font-weight: 500;
+  font-size: 13px;
+  font-weight: 600;
   text-align: left;
-  border-radius: 4px;
-  transition: all 0.2s var(--ease-smooth);
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s var(--e);
 }
 
 .menu-item:hover {
-  background: rgba(188, 19, 254, 0.15);
-  color: var(--color-cyan);
-  text-shadow: 0 0 8px rgba(0, 244, 254, 0.3);
+  background: var(--o);
+  color: #191812;
 }
 
 .menu-item--active {
-  color: var(--color-cyan) !important;
-  background: rgba(0, 244, 254, 0.08) !important;
+  color: var(--o) !important;
+  font-weight: 700;
 }
 
 .menu-icon {
-  font-size: 18px !important;
-  margin-right: 12px;
-  color: var(--color-outline);
+  font-size: 16px !important;
+  margin-right: 10px;
+  color: inherit;
   transition: color 0.2s;
-}
-
-.menu-item:hover .menu-icon {
-  color: var(--color-cyan);
 }
 
 .menu-divider {
   height: 1px;
-  background: rgba(150, 142, 154, 0.15);
-  margin: 4px 6px;
+  background: var(--h);
+  margin: 6px 4px;
 }
 
 .custom-context-submenu {
-  background: rgba(46, 11, 84, 0.35) !important;
-  -webkit-backdrop-filter: blur(16px) !important;
-  backdrop-filter: blur(16px) !important;
-  border: 1px solid rgba(188, 19, 254, 0.25) !important;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6), 0 0 20px rgba(188, 19, 254, 0.1) !important;
-  /* Bypass Framer Motion transformed container backdrop-filter rendering bug */
-  transform-style: preserve-3d;
-  backface-visibility: hidden;
+  background: color-mix(in srgb, var(--t) 95%, transparent) !important;
+  -webkit-backdrop-filter: blur(20px) !important;
+  backdrop-filter: blur(20px) !important;
+  border: 1.5px solid var(--h) !important;
+  border-radius: 14px !important;
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.15) !important;
+  color: var(--b) !important;
 }

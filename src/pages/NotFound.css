@@ -1,64 +1,62 @@
-.not-found-container {
-  min-height: 70vh;
+/* ============================================
+   ARYAN.DEV — 404 Page Styles
+   Editorial Design System
+   ============================================ */
+
+.not-found-page {
+  min-height: 80vh;
   display: flex;
   align-items: center;
   justify-content: center;
+  padding: 80px 0;
   text-align: center;
 }
 
-.not-found-glitch {
-  position: relative;
-  font-size: clamp(80px, 15vw, 150px);
-  color: var(--color-cyan);
-  text-shadow: 0 0 20px rgba(0, 244, 254, 0.4);
-  letter-spacing: 0.1em;
-  margin-bottom: 0;
-  line-height: 1;
+.not-found-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
-.not-found-glitch::before,
-.not-found-glitch::after {
-  content: attr(data-text);
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  opacity: 0.8;
+.not-found-num {
+  font-size: clamp(96px, 18vw, 240px);
+  font-weight: 800;
+  letter-spacing: -0.06em;
+  line-height: 0.9;
+  color: transparent;
+  -webkit-text-stroke: 2px var(--b);
+  margin: 0 0 20px;
+  user-select: none;
+  transition: transform 0.6s var(--e), color 0.6s var(--e), -webkit-text-stroke-color 0.6s var(--e);
 }
 
-.not-found-glitch::before {
-  color: var(--color-violet);
-  z-index: -1;
-  animation: glitch-anim-1 2s infinite linear alternate-reverse;
+.not-found-num:hover {
+  color: var(--o);
+  -webkit-text-stroke-color: var(--o);
+  transform: scale(1.04);
 }
 
-.not-found-glitch::after {
-  color: var(--color-primary);
-  z-index: -2;
-  animation: glitch-anim-2 3s infinite linear alternate-reverse;
+.not-found-title {
+  font-size: clamp(36px, 5vw, 64px);
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  margin: 0 0 16px;
+  line-height: 1.1;
 }
 
-@keyframes glitch-anim-1 {
-  0% { clip-path: inset(20% 0 80% 0); transform: translate(-2px, 1px); }
-  20% { clip-path: inset(60% 0 10% 0); transform: translate(2px, -1px); }
-  40% { clip-path: inset(40% 0 50% 0); transform: translate(-2px, 2px); }
-  60% { clip-path: inset(80% 0 5% 0); transform: translate(2px, -2px); }
-  80% { clip-path: inset(10% 0 70% 0); transform: translate(-1px, 1px); }
-  100% { clip-path: inset(30% 0 40% 0); transform: translate(1px, -1px); }
-}
-
-@keyframes glitch-anim-2 {
-  0% { clip-path: inset(10% 0 60% 0); transform: translate(2px, -1px); }
-  20% { clip-path: inset(30% 0 20% 0); transform: translate(-2px, 1px); }
-  40% { clip-path: inset(70% 0 10% 0); transform: translate(2px, 2px); }
-  60% { clip-path: inset(20% 0 50% 0); transform: translate(-2px, -2px); }
-  80% { clip-path: inset(50% 0 30% 0); transform: translate(1px, 1px); }
-  100% { clip-path: inset(5% 0 80% 0); transform: translate(-1px, -1px); }
+.not-found-desc {
+  font-size: 18px;
+  line-height: 1.6;
+  opacity: 0.85;
+  max-width: 480px;
+  margin: 0 auto 36px;
 }
 
 .not-found-actions {
   display: flex;
+  gap: 20px;
+  align-items: center;
   justify-content: center;
-  gap: 16px;
+  flex-wrap: wrap;
 }

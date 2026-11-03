@@ -1,80 +1,78 @@
 import { Link } from 'react-router-dom'
-import { GithubIcon, LinkedInIcon } from './Icons'
+import { GithubIcon, LinkedInIcon, DiscordIcon } from './Icons'
 import './Footer.css'
 
 export default function Footer() {
   const year = new Date().getFullYear()
-  const socials = [
-    { label: 'GitHub', url: 'https://github.com/AryanSingh2k4', icon: <GithubIcon /> },
-    { label: 'LinkedIn', url: 'https://linkedin.com/in/aryansingh2k4', icon: <LinkedInIcon /> },
-  ]
+
+  const scrollToTop = (e) => {
+    e.preventDefault()
+    window.scrollTo({ top: 0, behavior: 'smooth' })
+  }
 
   return (
-    <footer className="footer">
-      <div className="footer__container container">
-        <div className="footer__grid">
-          {/* Tagline / Logo Col */}
-          <div className="footer__col footer__brand">
-            <Link to="/" className="footer__logo hover-target">
-              ARYAN<span className="footer__logo-dot">.DEV</span>
-            </Link>
-            <p className="footer__tagline text-body-md text-muted" style={{ marginTop: '12px', maxWidth: '280px' }}>
-              Building highly optimized frontend systems, interactive Web3 solutions, and scalable decentralized platforms.
+    <footer className="ft">
+      <div className="w">
+        {/* Massive Watermark Signature */}
+        <div className="wm hover-target" aria-hidden="true">
+          ARYAN SINGH
+        </div>
+
+        <div className="ft-grid">
+          <div>
+            <p className="mono" style={{ color: 'var(--o)', marginBottom: '8px' }}>
+              // Systems & Full Stack Engineer
             </p>
-            <div className="footer__socials" style={{ marginTop: '20px' }}>
-              {socials.map(s => (
-                <a
-                  key={s.label}
-                  href={s.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="footer__social-link hover-target"
-                  aria-label={s.label}
-                >
-                  {s.icon}
-                </a>
-              ))}
+            <p style={{ maxWidth: '380px', lineHeight: '1.6', fontSize: '15px', opacity: 0.85, margin: 0 }}>
+              Computer Science Engineering student specializing in IoT, Cyber Security, and Blockchain Technology. Crafting systems and interfaces that feel alive.
+            </p>
+          </div>
+
+          <div className="ft-nav-col">
+            <span className="mono" style={{ opacity: 0.5, display: 'block', marginBottom: '12px' }}>
+              Navigation
+            </span>
+            <div className="ft-links">
+              <Link to="/" className="hover-target">Home</Link>
+              <Link to="/projects" className="hover-target">Work</Link>
+              <Link to="/skills" className="hover-target">Skills</Link>
+              <Link to="/about" className="hover-target">About</Link>
+              <Link to="/contact" className="hover-target">Contact</Link>
             </div>
           </div>
 
-          {/* Quick Links Col */}
-          <div className="footer__col">
-            <h4 className="footer__title text-label-code text-cyan">Navigation</h4>
-            <ul className="footer__links">
-              <li><Link to="/" className="footer__link hover-target">Home</Link></li>
-              <li><Link to="/projects" className="footer__link hover-target">Work</Link></li>
-              <li><Link to="/skills" className="footer__link hover-target">Skills</Link></li>
-              <li><Link to="/about" className="footer__link hover-target">About</Link></li>
-              <li><Link to="/contact" className="footer__link hover-target">Contact</Link></li>
-            </ul>
-          </div>
-
-          {/* Contact Col */}
-          <div className="footer__col">
-            <h4 className="footer__title text-label-code text-cyan">Get in Touch</h4>
-            <p className="text-body-md text-muted" style={{ marginBottom: '8px' }}>
-              Have an idea? Let's build it together.
-            </p>
-            <a href="mailto:aryanvsingh641@gmail.com" className="footer__contact-email hover-target text-label-code text-violet" style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
-              <span className="material-symbols-outlined" style={{ fontSize: '16px' }}>mail</span>
-              aryanvsingh641@gmail.com
-            </a>
-            <p className="text-body-md text-muted" style={{ marginTop: '12px', fontSize: '13px', display: 'flex', alignItems: 'center', gap: '6px' }}>
-              <span className="material-symbols-outlined" style={{ fontSize: '16px', color: 'var(--color-cyan)' }}>location_on</span>
-              India
-            </p>
+          <div>
+            <span className="mono" style={{ opacity: 0.5, display: 'block', marginBottom: '12px' }}>
+              Connect
+            </span>
+            <div className="ft-socials">
+              <a href="https://github.com/AryanSingh2k4" target="_blank" rel="noopener noreferrer" className="hover-target" aria-label="GitHub">
+                <GithubIcon size={20} />
+                <span className="mono">GitHub</span>
+              </a>
+              <a href="https://linkedin.com/in/aryansingh2k4" target="_blank" rel="noopener noreferrer" className="hover-target" aria-label="LinkedIn">
+                <LinkedInIcon size={20} />
+                <span className="mono">LinkedIn</span>
+              </a>
+              <a href="https://discordapp.com/users/carnage__2k4" target="_blank" rel="noopener noreferrer" className="hover-target" aria-label="Discord">
+                <DiscordIcon size={20} />
+                <span className="mono">Discord</span>
+              </a>
+            </div>
           </div>
         </div>
 
-        <div className="footer__divider" />
+        <div className="ft-bottom">
+          <span className="mono">© {year} ARYAN SINGH</span>
+          
+          <a href="#top" onClick={scrollToTop} className="mono ghost hover-target" style={{ color: '#F0ECE2' }}>
+            Back to top ↑
+          </a>
 
-        <div className="footer__bottom">
-          <p className="footer__copyright text-label-code text-muted">
-            © {year} ARYAN.DEV — Full Stack & Web3 Engineer
-          </p>
-          <p className="footer__stamp text-label-code text-muted" style={{ fontSize: '11px' }}>
-            Designed & Crafted by Aryan Singh
-          </p>
+          <details className="eg">
+            <summary className="mono hover-target">One more thing ↓</summary>
+            <p>You scrolled all the way down. That’s the kind of curiosity I like to build with.</p>
+          </details>
         </div>
       </div>
     </footer>

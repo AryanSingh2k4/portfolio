@@ -1,313 +1,303 @@
-import { useRef, useEffect, useState } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
+import { useEffect, useState } from 'react'
+import { Link } from 'react-router-dom'
 import PageTransition from '../components/PageTransition'
-import { useScrollReveal, useParticles } from '../hooks/useAnimations'
+import { ScrollDownBadge, SayHelloBadge, HeadlineUnderline } from '../components/Icons'
 import './Home.css'
 
-const projects = [
-  { title: 'Sentinel', desc: 'Autonomous security scanner that maps attack surfaces, discovers vulnerabilities, and simulates exploits.', tech: ['Next.js', 'Nuclei', 'Katana'], icon: 'security', link: 'https://sentinel-pentesting.vercel.app/?v=1' },
-  { title: 'Dropline', desc: 'Peer-to-peer file sharing app for sending files directly between browsers with no size limits or cloud storage.', tech: ['Next.js', 'WebRTC', 'Supabase', 'TypeScript'], icon: 'folder_shared', link: 'https://droplinegg.vercel.app/' },
-  { title: 'CareFlow', desc: 'AI receptionist that handles patient intake, automated appointment scheduling, and front-desk workflows.', tech: ['Next.js', 'Groq API', 'Supabase'], icon: 'smart_toy', link: 'https://med-careflow.vercel.app/' },
-]
-
-const skills = [
-  'React', 'Next.js', 'TypeScript', 'JavaScript', 
-  'Tailwind CSS', 'Supabase', 'SQL', 'Node.js', 'WebRTC', 'REST APIs'
-]
-
 export default function Home() {
-  const navigate = useNavigate()
-  const sectionRef = useScrollReveal()
-  const canvasRef = useRef(null)
-  const mouseRef = useRef({ x: -1000, y: -1000 })
-  const [terminalStep, setTerminalStep] = useState(0)
-  const [typedText, setTypedText] = useState('')
-  const [isInteractive, setIsInteractive] = useState(false)
-  const [history, setHistory] = useState([
-    { type: 'input', text: 'whoami' },
-    { type: 'output', text: 'aryan - full stack developer & Web3 builder' },
-    { type: 'input', text: 'cat status.log' },
-    { type: 'output', text: 'Building the future of the web...' },
-    { type: 'output', text: "Type '/help' to see what else I can do.", color: '#27c93f' }
-  ])
-  const [inputVal, setInputVal] = useState('')
-  const inputRef = useRef(null)
+  const [wordIndex, setWordIndex] = useState(0)
+  const rotatingWords = ['interfaces', 'motion', 'systems', 'platforms']
 
-  useParticles(canvasRef, mouseRef)
-
-  // Track mouse for particles
   useEffect(() => {
-    const handleMove = (e) => { mouseRef.current = { x: e.clientX, y: e.clientY } }
-    window.addEventListener('mousemove', handleMove)
-    return () => window.removeEventListener('mousemove', handleMove)
+    const interval = setInterval(() => {
+      setWordIndex(prev => (prev + 1) % rotatingWords.length)
+    }, 2800)
+    return () => clearInterval(interval)
   }, [])
-
-  // Terminal typing animation
-  useEffect(() => {
-    const texts = [
-      'Full Stack Developer...',
-      'Building AI Powered Applications...',
-      'React | Next.js | TypeScript...',
-      'Exploring AI and Emerging Technologies...'
-    ]
-    let currentTextIndex = 0
-    let i = 0
-    let isDeleting = false
-
-    const type = () => {
-      const currentText = texts[currentTextIndex]
-      
-      if (!isDeleting) {
-        setTypedText(currentText.slice(0, i + 1))
-        i++
-        if (i === currentText.length) {
-          isDeleting = true
-          setTimeout(type, 1500) // Pause at end of sentence
-          return
-        }
-      } else {
-        setTypedText(currentText.slice(0, i - 1))
-        i--
-        if (i === 0) {
-          isDeleting = false
-          currentTextIndex = (currentTextIndex + 1) % texts.length
-        }
-      }
-
-      setTimeout(type, isDeleting ? 30 : 60)
-    }
-
-    const timer = setTimeout(() => {
-      type()
-      setTimeout(() => setTerminalStep(1), 1000)
-      setTimeout(() => setTerminalStep(2), 2000)
-      setTimeout(() => setTerminalStep(3), 3000)
-    }, 800)
-    
-    return () => clearTimeout(timer)
-  }, [])
-
-  const handleTerminalClick = () => {
-    setIsInteractive(true)
-    setTimeout(() => {
-      if (inputRef.current) inputRef.current.focus()
-    }, 50)
-  }
-
-  const handleKeyDown = (e) => {
-    if (e.key === 'Enter') {
-      const cmd = inputVal.trim().toLowerCase()
-      const newHistory = [...history, { type: 'input', text: inputVal }]
-      
-      if (cmd === '/help') {
-        newHistory.push({ type: 'output', text: 'Available commands: /projects, /skills, /about, /contact, /clear, /help' })
-      } else if (cmd === '/unlock-themes') {
-        localStorage.setItem('themes-unlocked', 'true')
-        newHistory.push({ type: 'output', text: 'Theme selector system unlocked! Right-click anywhere to select themes.' })
-      } else if (cmd === '/lock-themes') {
-        localStorage.setItem('themes-unlocked', 'false')
-        newHistory.push({ type: 'output', text: 'Theme selector system locked.' })
-      } else if (cmd === '/projects') {
-        newHistory.push({ type: 'output', text: 'Redirecting to Projects page...' })
-        setTimeout(() => navigate('/projects'), 800)
-      } else if (cmd === '/skills') {
-        newHistory.push({ type: 'output', text: 'Redirecting to Skills page...' })
-        setTimeout(() => navigate('/skills'), 800)
-      } else if (cmd === '/about') {
-        newHistory.push({ type: 'output', text: 'Computer Science Engineering student specializing in IoT, Cyber Security, and Blockchain.' })
-      } else if (cmd === '/contact') {
-        newHistory.push({ type: 'output', text: 'Redirecting to Contact page...' })
-        setTimeout(() => navigate('/contact'), 800)
-      } else if (cmd === '/clear') {
-        setHistory([])
-        setInputVal('')
-        return
-      } else if (cmd) {
-        newHistory.push({ type: 'output', text: `Command not found: ${cmd}. Type /help for options.` })
-      }
-      
-      setHistory(newHistory)
-      setInputVal('')
-    }
-  }
 
   return (
     <PageTransition>
-      <div ref={sectionRef}>
+      <div className="home-page">
         {/* Hero Section */}
-        <section className="hero">
-          <canvas ref={canvasRef} className="hero-canvas" />
-          <div className="hero__content container">
-            <h1 className="text-display-xl scroll-reveal">
-              Full Stack & <span className="gradient-text">Web3 Engineer</span>
-            </h1>
-            <p className="hero__subtitle text-body-lg text-muted scroll-reveal">
-              Computer Science Engineering student specializing in IoT, Cyber Security, and Blockchain Technology. 
-              Building practical solutions that combine clean user experiences with solid engineering, focusing on AI, scalable platforms, and Web3.
-            </p>
-            <div className="hero__actions scroll-reveal" style={{ display: 'flex', gap: '16px', flexWrap: 'wrap' }}>
-              <Link to="/projects" className="btn-primary hover-target">
-                View Projects
-              </Link>
-              <a href="/Aryan_Singh_Resume.pdf" target="_blank" rel="noopener noreferrer" className="btn-secondary hover-target" style={{ display: 'inline-flex', alignItems: 'center', gap: '8px' }}>
-                <span className="material-symbols-outlined" style={{ fontSize: '20px' }}>description</span>
-                Resume
-              </a>
-              <Link to="/contact" className="btn-secondary hover-target">
-                Get in Touch
-              </Link>
-            </div>
-          </div>
-        </section>
+        <header className="hero" id="top">
+          {/* Vertical Guidelines */}
+          <div className="gl" style={{ left: '25%', animationDelay: '0.2s' }} aria-hidden="true" />
+          <div className="gl" style={{ left: '50%', animationDelay: '0.35s' }} aria-hidden="true" />
+          <div className="gl" style={{ left: '75%', animationDelay: '0.5s' }} aria-hidden="true" />
 
-        {/* Skills + Terminal Section */}
-        <section className="section container">
-          <div className="home-grid">
-            <div className="scroll-reveal">
-              <h2 className="text-headline-lg text-cyan" style={{ marginBottom: '24px' }}>
-                The Stack
-              </h2>
-              <p className="text-body-md text-muted" style={{ marginBottom: '32px' }}>
-                Specializing in modern JavaScript frameworks, robust backend architectures,
-                and pixel-perfect UI implementations. Every line of code is written with
-                scalability and performance in mind.
-              </p>
-              <div className="skills-chips">
-                {skills.map(s => (
-                  <span key={s} className="chip hover-target">{s}</span>
-                ))}
-                <Link 
-                  to="/skills" 
-                  className="chip hover-target" 
-                  style={{ 
-                    textDecoration: 'none', 
-                    background: 'rgba(0, 244, 254, 0.1)', 
-                    color: 'var(--color-cyan)',
-                    border: '1px solid rgba(0, 244, 254, 0.3)'
-                  }}
-                >
-                  + More
-                </Link>
-              </div>
+          <div className="w">
+            {/* Metadata Bar */}
+            <div className="meta mono">
+              <span>Navi Mumbai, India</span>
+              <span><i className="pd" aria-hidden="true" />Available for opportunities — 2026</span>
+              <span>Aryan Singh • Portfolio</span>
             </div>
 
-            <div className="terminal-container scroll-reveal">
-              <div className="terminal-header">
-                <div className="terminal-dot red" />
-                <div className="terminal-dot yellow" />
-                <div className="terminal-dot green" />
-                <span className="text-label-code text-outline" style={{ marginLeft: '16px', fontSize: '12px' }}>
-                  aryan@dev:~
+            {/* Giant Headline with Rotating Italic Accent */}
+            <h1 className="hero-title">
+              <span className="ln"><span>Building</span></span>
+              <span className="ln">
+                <span className="hero-cycler">
+                  <span className="it hero-rotating-word" key={wordIndex}>
+                    {rotatingWords[wordIndex]}
+                  </span>
                 </span>
+              </span>
+              <span className="ln">
+                <span>
+                  that feel{' '}
+                  <span className="al">
+                    alive.
+                    <HeadlineUnderline />
+                  </span>
+                </span>
+              </span>
+            </h1>
+
+            {/* Sub-Hero Description & Actions */}
+            <div className="sub">
+              <div>
+                <p className="hero-bio">
+                  Computer Science Engineering student specializing in IoT, Cyber Security, and Blockchain Technology. 
+                  Building high-performance systems, autonomous AI platforms, and practical digital experiences.
+                </p>
+                <div className="hero-cta-group">
+                  <Link to="/projects" className="btn hover-target">
+                    View selected work
+                  </Link>
+                  <Link to="/about" className="ghost hover-target">
+                    About me →
+                  </Link>
+                  <a
+                    href="/Aryan_Singh_Resume.pdf"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="ghost hover-target"
+                    style={{ marginLeft: '12px' }}
+                  >
+                    Resume ↗
+                  </a>
+                </div>
               </div>
-              <div 
-                className="terminal-body text-label-code" 
-                onClick={handleTerminalClick}
-                style={{ cursor: 'text', minHeight: '180px', maxHeight: '240px', overflowY: 'auto' }}
-              >
-                {!isInteractive ? (
-                  <>
-                    <p className="text-cyan">$ whoami</p>
-                    <p className="text-muted terminal-typed">{typedText}<span className="terminal-cursor">|</span></p>
-                    <p className={`text-cyan terminal-fade ${terminalStep >= 1 ? 'show' : ''}`}>$ cat status.log</p>
-                    <p className={`terminal-fade ${terminalStep >= 2 ? 'show' : ''}`} style={{ color: '#27c93f' }}>
-                      &gt; Building the future of the web...
-                    </p>
-                    <p className={`text-cyan terminal-fade ${terminalStep >= 3 ? 'show' : ''}`} style={{ marginTop: '8px', color: '#ffb86c' }}>
-                      [Click here to type commands]
-                    </p>
-                  </>
-                ) : (
-                  <>
-                    {history.map((line, index) => (
-                      <div key={index} style={{ marginBottom: '6px', lineHeight: '1.4' }}>
-                        {line.type === 'input' ? (
-                          <span className="text-cyan">$ {line.text}</span>
-                        ) : (
-                          <span style={{ color: line.color || 'var(--color-on-surface-variant)' }}>{line.text}</span>
-                        )}
-                      </div>
-                    ))}
-                    
-                    <div style={{ display: 'flex', alignItems: 'center', marginTop: '6px' }}>
-                      <span className="text-cyan" style={{ marginRight: '8px' }}>$</span>
-                      <input
-                        ref={inputRef}
-                        type="text"
-                        value={inputVal}
-                        onChange={(e) => setInputVal(e.target.value)}
-                        onKeyDown={handleKeyDown}
-                        style={{
-                          background: 'transparent',
-                          border: 'none',
-                          outline: 'none',
-                          color: 'var(--color-on-surface)',
-                          fontFamily: 'var(--font-code)',
-                          fontSize: 'inherit',
-                          flex: 1,
-                          padding: 0,
-                        }}
-                        placeholder="type /help..."
-                        autoFocus
-                      />
-                    </div>
-                  </>
-                )}
+
+              <a href="#work" className="hover-target" aria-label="Scroll to selected work">
+                <ScrollDownBadge />
+              </a>
+            </div>
+          </div>
+        </header>
+
+        {/* Dual-Track Infinite Marquee Banner */}
+        <div className="mq" aria-hidden="true">
+          <div className="tr">
+            <span>Interaction</span><span className="ol">Motion</span>
+            <span>AI Systems</span><span className="ol">Full Stack</span>
+            <span>Web3</span><span className="ol">Cybersecurity</span>
+            <span>Interaction</span><span className="ol">Motion</span>
+            <span>AI Systems</span><span className="ol">Full Stack</span>
+            <span>Web3</span><span className="ol">Cybersecurity</span>
+          </div>
+          <div className="tr rv">
+            <span className="ol">TypeScript</span><span>Next.js</span>
+            <span className="ol">React</span><span>Supabase</span>
+            <span className="ol">WebRTC</span><span>Performance</span>
+            <span className="ol">TypeScript</span><span>Next.js</span>
+            <span className="ol">React</span><span>Supabase</span>
+            <span className="ol">WebRTC</span><span>Performance</span>
+          </div>
+        </div>
+
+        {/* Philosophy Statement Section */}
+        <section className="philosophy-section">
+          <div className="w">
+            <div className="mono" style={{ color: 'var(--o)', marginBottom: '16px' }}>(01) Philosophy</div>
+            <p className="fill-quote">
+              Software should be <span className="it" style={{ color: 'inherit' }}>fast</span>, motion should guide attention, and every interface deserves precision craftsmanship.
+            </p>
+          </div>
+        </section>
+
+        {/* Featured Work Stacking Sticky Showcase */}
+        <section id="work" className="featured-work-section">
+          <div className="w">
+            <div className="section-hd">
+              <div>
+                <div className="mono" style={{ color: 'var(--o)', marginBottom: '8px' }}>(02) Featured Work</div>
+                <h2 className="section-title">
+                  Work that <span className="it">moves</span> people.
+                </h2>
+              </div>
+              <Link to="/projects" className="btn-secondary hover-target">
+                View all 7 projects →
+              </Link>
+            </div>
+
+            {/* Card 01: Sentinel (Dark Card) */}
+            <div className="fc a">
+              <div className="fl">
+                <div>
+                  <div className="mono" style={{ color: 'var(--o)' }}>01 — Cybersecurity & AI</div>
+                  <h3>Sentinel</h3>
+                  <p>
+                    Autonomous security scanner that maps attack surfaces, discovers vulnerabilities, and simulates exploits via state machine agents.
+                  </p>
+                </div>
+                <div>
+                  <div>
+                    <span className="tag">Next.js</span>
+                    <span className="tag">Nuclei</span>
+                    <span className="tag">Katana</span>
+                    <span className="tag">Supabase</span>
+                  </div>
+                  <div style={{ marginTop: '24px', display: 'flex', gap: '20px', alignItems: 'center' }}>
+                    <a href="https://sentinel-pentesting.vercel.app/?v=1" target="_blank" rel="noopener noreferrer" className="ghost hover-target" style={{ color: 'var(--t)' }}>
+                      Live Demo ↗
+                    </a>
+                    <a href="https://github.com/AryanSingh2k4/sentinel" target="_blank" rel="noopener noreferrer" className="ghost hover-target" style={{ color: 'var(--t)' }}>
+                      Source Code ↗
+                    </a>
+                  </div>
+                </div>
+              </div>
+              <div className="art">
+                <i className="cr" />
+                <i className="cr x" />
+                <i className="cr y" />
+                <i className="cr d" />
+              </div>
+            </div>
+
+            {/* Card 02: Dropline (Orange Card) */}
+            <div className="fc b">
+              <div className="fl">
+                <div>
+                  <div className="mono" style={{ color: '#191812', opacity: 0.75 }}>02 — WebRTC & P2P Streaming</div>
+                  <h3>Dropline</h3>
+                  <p style={{ color: '#191812' }}>
+                    Peer-to-peer file sharing app for sending files directly between browsers with zero cloud storage and no size limits.
+                  </p>
+                </div>
+                <div>
+                  <div>
+                    <span className="tag" style={{ borderColor: '#191812', color: '#191812' }}>WebRTC</span>
+                    <span className="tag" style={{ borderColor: '#191812', color: '#191812' }}>Next.js</span>
+                    <span className="tag" style={{ borderColor: '#191812', color: '#191812' }}>TypeScript</span>
+                    <span className="tag" style={{ borderColor: '#191812', color: '#191812' }}>Supabase</span>
+                  </div>
+                  <div style={{ marginTop: '24px', display: 'flex', gap: '20px', alignItems: 'center' }}>
+                    <a href="https://droplinegg.vercel.app/" target="_blank" rel="noopener noreferrer" className="ghost hover-target" style={{ color: '#191812', background: 'linear-gradient(#191812, #191812) left bottom / 100% 3px no-repeat' }}>
+                      Live Demo ↗
+                    </a>
+                    <a href="https://github.com/AryanSingh2k4/drop-line" target="_blank" rel="noopener noreferrer" className="ghost hover-target" style={{ color: '#191812', background: 'linear-gradient(#191812, #191812) left bottom / 100% 3px no-repeat' }}>
+                      Source Code ↗
+                    </a>
+                  </div>
+                </div>
+              </div>
+              <div className="art">
+                <i className="sq" />
+                <i className="sq x" />
+                <i className="sq y" />
+              </div>
+            </div>
+
+            {/* Card 03: CareFlow (Parchment Card) */}
+            <div className="fc c">
+              <div className="fl">
+                <div>
+                  <div className="mono" style={{ color: 'var(--o)' }}>03 — AI Systems & Automation</div>
+                  <h3>CareFlow</h3>
+                  <p>
+                    AI medical receptionist that handles conversational patient intake, automated appointment booking, and clinic triage.
+                  </p>
+                </div>
+                <div>
+                  <div>
+                    <span className="tag">Next.js</span>
+                    <span className="tag">Groq API</span>
+                    <span className="tag">Supabase</span>
+                    <span className="tag">Tailwind</span>
+                  </div>
+                  <div style={{ marginTop: '24px', display: 'flex', gap: '20px', alignItems: 'center' }}>
+                    <a href="https://med-careflow.vercel.app/" target="_blank" rel="noopener noreferrer" className="ghost hover-target">
+                      Live Demo ↗
+                    </a>
+                    <a href="https://github.com/aryansingh81167/careflow" target="_blank" rel="noopener noreferrer" className="ghost hover-target">
+                      Source Code ↗
+                    </a>
+                  </div>
+                </div>
+              </div>
+              <div className="art">
+                <div className="bars">
+                  <i /><i /><i /><i /><i /><i /><i />
+                </div>
               </div>
             </div>
           </div>
         </section>
 
-        {/* Featured Work */}
-        <section className="section container">
-          <h2 className="text-headline-lg text-cyan scroll-reveal" style={{ textAlign: 'center', marginBottom: '48px' }}>
-            Featured Work
-          </h2>
-          <div className="projects-grid">
-            {projects.map((p, i) => (
-              <div
-                key={p.title}
-                className={`glass-panel project-card hover-target scroll-reveal`}
-                style={{ transitionDelay: `${i * 100}ms` }}
-              >
-                <div className="project-card__image">
-                  <div className="project-card__overlay" />
-                  {p.link ? (
-                    <img 
-                      src={`https://api.microlink.io/?url=${encodeURIComponent(p.link)}&screenshot=true&meta=false&embed=screenshot.url`} 
-                      alt={p.title} 
-                      style={{ width: '100%', height: '100%', objectFit: 'cover' }} 
-                    />
-                  ) : (
-                    <span className="material-symbols-outlined project-card__icon">{p.icon}</span>
-                  )}
-                </div>
-                <h3 className="text-headline-md" style={{ marginBottom: '8px', fontSize: '24px' }}>{p.title}</h3>
-                <p className="text-body-md text-muted" style={{ marginBottom: '16px', flex: 1 }}>{p.desc}</p>
-                <div className="project-card__tech">
-                  {p.tech.map(t => (
-                    <span key={t} className="chip" style={{ fontSize: '12px', padding: '2px 8px' }}>{t}</span>
-                  ))}
-                </div>
+        {/* Approach / "How I Build" Track Section */}
+        <section className="dark-section" id="approach">
+          <div className="w">
+            <div className="section-hd" style={{ marginBottom: '32px' }}>
+              <div>
+                <div className="mono" style={{ color: '#FD4F04', marginBottom: '8px' }}>(03) Methodology</div>
+                <h2 className="section-title" style={{ color: '#F0ECE2' }}>
+                  How I <span className="it" style={{ color: '#FD4F04' }}>build</span>.
+                </h2>
               </div>
-            ))}
-          </div>
-          <div style={{ textAlign: 'center', marginTop: '48px' }} className="scroll-reveal">
-            <Link to="/projects" className="btn-secondary hover-target">
-              View All Projects →
-            </Link>
+            </div>
+
+            {/* Laser runner track */}
+            <div className="trk" aria-hidden="true" />
+
+            <div className="cols">
+              <div className="sc">
+                <div className="nu">01</div>
+                <h3>Understand</h3>
+                <p>Deconstruct requirements, threat models, and architectural constraints before writing a single line of code.</p>
+              </div>
+              <div className="sc">
+                <div className="nu">02</div>
+                <h3>Architect</h3>
+                <p>Design modular, scalable foundations with robust state machines, typed schemas, and edge runtime optimization.</p>
+              </div>
+              <div className="sc">
+                <div className="nu">03</div>
+                <h3>Animate</h3>
+                <p>Implement purposeful micro-interactions, smooth physics-based motion, and responsive tactile feedback.</p>
+              </div>
+              <div className="sc">
+                <div className="nu">04</div>
+                <h3>Ship</h3>
+                <p>Ensure sub-second load times, clean accessibility compliance, strict data isolation, and resilient reliability.</p>
+              </div>
+            </div>
           </div>
         </section>
 
-        {/* CTA Section */}
-        <section className="section container scroll-reveal" style={{ textAlign: 'center', paddingBottom: '80px' }}>
-          <h2 className="text-headline-lg text-cyan" style={{ marginBottom: '16px' }}>Let's Work Together</h2>
-          <p className="text-body-lg text-muted" style={{ marginBottom: '32px', maxWidth: '600px', margin: '0 auto 32px' }}>
-            Ready to build something extraordinary? Let's connect and create the future together.
-          </p>
-          <Link to="/contact" className="btn-primary hover-target" style={{ padding: '16px 48px', fontSize: '16px' }}>
-            Get In Touch
+        {/* Contact High-Impact Banner */}
+        <section className="ct">
+          <Link to="/contact" className="hover-target" aria-label="Go to contact page">
+            <SayHelloBadge />
           </Link>
+          <div className="w">
+            <div className="mono" style={{ color: '#191812', opacity: 0.75, marginBottom: '8px' }}>
+              (04) Contact
+            </div>
+            <h2>
+              Let’s create something <span className="it">memorable.</span>
+            </h2>
+            <a href="mailto:aryanvsingh641@gmail.com" className="mail hover-target">
+              aryanvsingh641@gmail.com
+            </a>
+            <div className="soc mono" style={{ marginTop: '50px' }}>
+              <a href="https://github.com/AryanSingh2k4" target="_blank" rel="noopener noreferrer" className="hover-target">GitHub</a>
+              <a href="https://linkedin.com/in/aryansingh2k4" target="_blank" rel="noopener noreferrer" className="hover-target">LinkedIn</a>
+              <a href="https://discordapp.com/users/carnage__2k4" target="_blank" rel="noopener noreferrer" className="hover-target">Discord</a>
+            </div>
+          </div>
         </section>
       </div>
     </PageTransition>
