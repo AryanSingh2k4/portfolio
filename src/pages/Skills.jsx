@@ -1,236 +1,187 @@
 import { useEffect, useRef, useState } from 'react'
 import PageTransition from '../components/PageTransition'
+import { useScrollReveal } from '../hooks/useAnimations'
 import './Skills.css'
 
 const categories = [
   {
-    num: '01',
-    title: 'Frontend Architecture',
-    desc: 'Engineering accessible, responsive, and buttery-smooth user interfaces with strict type safety and sub-frame performance.',
+    title: 'Frontend',
+    icon: 'web',
     skills: [
-      { name: 'React.js', level: 92 },
-      { name: 'Next.js', level: 90 },
-      { name: 'TypeScript', level: 88 },
-      { name: 'JavaScript (ESNext)', level: 92 },
+      { name: 'React.js', level: 90 },
+      { name: 'Next.js', level: 85 },
+      { name: 'TypeScript', level: 85 },
+      { name: 'JavaScript', level: 90 },
       { name: 'Tailwind CSS', level: 95 },
-      { name: 'Solid.js', level: 82 },
-      { name: 'HTML5 & Modern CSS', level: 96 },
-      { name: 'Framer Motion', level: 88 },
+      { name: 'Solid.js', level: 80 },
+      { name: 'HTML5/CSS3', level: 95 },
     ]
   },
   {
-    num: '02',
-    title: 'Backend & Distributed Systems',
-    desc: 'Designing serverless endpoints, real-time protocols, database schemas, and peer-to-peer data transport pipelines.',
+    title: 'Backend & Web3',
+    icon: 'dns',
     skills: [
-      { name: 'Node.js', level: 84 },
-      { name: 'WebRTC (DataChannels)', level: 88 },
-      { name: 'Supabase & PostgreSQL', level: 86 },
-      { name: 'REST & GraphQL APIs', level: 88 },
-      { name: 'Solidity & Smart Contracts', level: 76 },
-      { name: 'Ethers.js / Web3.js', level: 76 },
+      { name: 'Node.js', level: 80 },
+      { name: 'WebRTC', level: 85 },
+      { name: 'Supabase', level: 85 },
+      { name: 'SQL', level: 80 },
+      { name: 'REST APIs', level: 85 },
+      { name: 'Solidity', level: 75 },
+      { name: 'Ethers.js', level: 75 },
     ]
   },
   {
-    num: '03',
-    title: 'Developer Tooling & Cloud',
-    desc: 'Automating build pipelines, vulnerability discovery, continuous integration, and production Vercel infrastructure.',
+    title: 'Tools & APIs',
+    icon: 'build',
     skills: [
-      { name: 'Git & GitHub Workflows', level: 92 },
-      { name: 'Vite & pnpm Monorepos', level: 88 },
-      { name: 'Docker Containers', level: 78 },
-      { name: 'Groq API & Llama-3', level: 88 },
-      { name: 'Nuclei & Katana (Security)', level: 82 },
-      { name: 'DNS & Domain Ops', level: 86 },
+      { name: 'Git & GitHub', level: 90 },
+      { name: 'Docker', level: 75 },
+      { name: 'Vite', level: 85 },
+      { name: 'Groq API', level: 85 },
+      { name: 'SEO', level: 80 },
     ]
   },
   {
-    num: '04',
-    title: 'Product & Operations',
-    desc: 'Translating business logic into config-driven systems, enterprise workflows, and high-conversion client platforms.',
+    title: 'Design & Operations',
+    icon: 'palette',
     skills: [
-      { name: 'Config-Driven Schema UIs', level: 90 },
-      { name: 'E-commerce Workflow Automation', level: 88 },
-      { name: 'SEO & Performance Optimization', level: 85 },
-      { name: 'System Architecture Design', level: 86 },
-      { name: 'Brand & Visual Direction', level: 82 },
+      { name: 'Workflow Optimization', level: 85 },
+      { name: 'Project Coordination', level: 85 },
+      { name: 'Visual Design', level: 80 },
+      { name: 'Brand Identity', level: 75 },
+      { name: 'Canva', level: 80 },
     ]
   },
 ]
 
 const stats = [
-  { value: 14, suffix: '+', label: 'Projects Shipped' },
-  { value: 2, suffix: '+', label: 'Years of Craft' },
-  { value: 24, suffix: '+', label: 'Technologies Mastered' },
-  { value: 100, suffix: '%', label: 'Curiosity & Ownership' },
+  { value: 14, suffix: '+', label: 'Projects' },
+  { value: 2, suffix: '+', label: 'Years' },
+  { value: categories.reduce((acc, cat) => acc + cat.skills.length, 0), suffix: '+', label: 'Technologies' },
 ]
 
-const focusAreas = [
-  {
-    step: '01',
-    title: 'Autonomous AI & State Machines',
-    desc: 'Building intelligent workflows using high-speed LLM inference (Groq), AST self-healing analysis, and multi-stage agent state machines that solve real problems without hallucinations.'
-  },
-  {
-    step: '02',
-    title: 'Real-Time & P2P Networking',
-    desc: 'Deploying direct browser-to-browser WebRTC DataChannels with 64KB binary chunking and zero cloud server dependencies for friction-free data transfers.'
-  },
-  {
-    step: '03',
-    title: 'Config-Driven Enterprise Frontends',
-    desc: 'Developing schema-driven component engines within pnpm monorepos (Scale Orbit) that generate dozens of dynamic diagnostic business tools without repetitive code.'
-  }
+const learning = [
+  { title: 'AI-Powered Applications', desc: 'Building intelligent applications with LLMs and prompt engineering.' },
+  { title: 'Full-Stack Ecosystems', desc: 'Deep diving into React, Next.js, and scalable system design.' },
+  { title: 'Cyber Security & Blockchain', desc: 'Exploring secure software architecture and Web3 technologies.' },
 ]
 
-function AnimatedCounter({ target, suffix }) {
-  const [val, setVal] = useState(0)
-  const nodeRef = useRef(null)
+function AnimatedNumber({ value, suffix }) {
+  const [count, setCount] = useState(0)
+  const ref = useRef(null)
 
   useEffect(() => {
-    const observer = new IntersectionObserver(([entry]) => {
-      if (entry.isIntersecting) {
+    const observer = new IntersectionObserver(entries => {
+      if (entries[0].isIntersecting) {
         let start = 0
-        const duration = 1800
-        const startTime = performance.now()
-        const step = (now) => {
-          const progress = Math.min((now - startTime) / duration, 1)
-          const easeOut = 1 - Math.pow(1 - progress, 3)
-          setVal(Math.floor(easeOut * target))
-          if (progress < 1) requestAnimationFrame(step)
+        const duration = 2000
+        const startTime = Date.now()
+        const animate = () => {
+          const elapsed = Date.now() - startTime
+          const progress = Math.min(elapsed / duration, 1)
+          const eased = 1 - Math.pow(1 - progress, 3)
+          setCount(Math.floor(eased * value))
+          if (progress < 1) requestAnimationFrame(animate)
         }
-        requestAnimationFrame(step)
-        observer.unobserve(nodeRef.current)
+        animate()
+        observer.unobserve(ref.current)
       }
-    }, { threshold: 0.3 })
-
-    if (nodeRef.current) observer.observe(nodeRef.current)
+    }, { threshold: 0.5 })
+    if (ref.current) observer.observe(ref.current)
     return () => observer.disconnect()
-  }, [target])
+  }, [value])
 
-  return (
-    <span ref={nodeRef}>
-      {val}{suffix}
-    </span>
-  )
+  return <span ref={ref}>{count}{suffix}</span>
 }
 
-function SkillMeter({ name, level }) {
+function SkillBar({ name, level }) {
+  const ref = useRef(null)
+  const [width, setWidth] = useState(0)
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(entries => {
+      if (entries[0].isIntersecting) {
+        setTimeout(() => setWidth(level), 200)
+        observer.unobserve(ref.current)
+      }
+    }, { threshold: 0.3 })
+    if (ref.current) observer.observe(ref.current)
+    return () => observer.disconnect()
+  }, [level])
+
   return (
-    <div className="skill-meter">
-      <div className="skill-meter__meta">
-        <span className="skill-meter__name">{name}</span>
-        <span className="mono skill-meter__level">{level}%</span>
+    <div className="skill-bar" ref={ref}>
+      <div className="skill-bar__header">
+        <span className="text-label-code">{name}</span>
+        <span className="text-label-code text-cyan">{level}%</span>
       </div>
-      <div className="skill-meter__track">
-        <div className="skill-meter__fill" style={{ width: `${level}%` }} />
+      <div className="skill-bar__track">
+        <div className="skill-bar__fill" style={{ width: `${width}%` }} />
       </div>
     </div>
   )
 }
 
 export default function Skills() {
+  const sectionRef = useScrollReveal()
+
   return (
     <PageTransition>
-      <div className="skills-page">
-        {/* Page Header */}
-        <header className="skills-header">
-          <div className="w">
-            <div className="meta mono" style={{ marginBottom: '24px' }}>
-              <span>(02) Capabilities & Stack</span>
-              <span>Full-Stack & Systems</span>
-              <span>Navi Mumbai, India</span>
-            </div>
-            <h1 className="skills-title">
-              Tools of the <span className="it">craft</span>.
-            </h1>
-            <p className="skills-subtitle">
-              A comprehensive breakdown of engineering disciplines, frameworks, protocols, and architectural paradigms I deploy to design, build, and scale digital products.
-            </p>
+      <div ref={sectionRef}>
+        <section className="section container" style={{ textAlign: 'center' }}>
+          <h1 className="text-display-lg scroll-reveal" style={{ marginBottom: '16px' }}>
+            Tech <span className="gradient-text">Arsenal</span>
+          </h1>
+          <p className="text-body-lg text-muted scroll-reveal" style={{ maxWidth: '600px', margin: '0 auto' }}>
+            Tools & technologies I wield to build the future of the web.
+          </p>
+        </section>
 
-            {/* Giant Stat Counters */}
-            <div className="skills-stats-grid">
-              {stats.map((s) => (
-                <div key={s.label} className="skills-stat-card">
-                  <div className="big">
-                    <AnimatedCounter target={s.value} suffix={s.suffix} />
-                  </div>
-                  <div className="mono" style={{ opacity: 0.75, marginTop: '8px' }}>
-                    {s.label}
-                  </div>
+        {/* Stats */}
+        <section className="container">
+          <div className="stats-grid scroll-reveal">
+            {stats.map(s => (
+              <div key={s.label} className="stat-card glass-panel hover-target">
+                <div className="stat-card__value text-display-lg text-cyan">
+                  <AnimatedNumber value={s.value} suffix={s.suffix} />
                 </div>
-              ))}
-            </div>
-          </div>
-        </header>
-
-        {/* Categorized Matrix Section */}
-        <section className="skills-matrix-section">
-          <div className="w">
-            <div className="section-hd">
-              <div>
-                <div className="mono" style={{ color: 'var(--o)', marginBottom: '8px' }}>(Disciplines)</div>
-                <h2 className="section-title">
-                  Core <span className="it">competencies</span>.
-                </h2>
+                <div className="stat-card__label text-label-code text-muted">{s.label}</div>
               </div>
-              <span className="mono" style={{ opacity: 0.65 }}>Hover tags for quick inspection</span>
-            </div>
-
-            <div className="skills-domains-grid">
-              {categories.map((cat) => (
-                <div key={cat.title} className="domain-card">
-                  <div className="domain-card__header">
-                    <span className="mono" style={{ color: 'var(--o)' }}>{cat.num}</span>
-                    <h3 className="domain-card__title">{cat.title}</h3>
-                  </div>
-                  <p className="domain-card__desc">{cat.desc}</p>
-                  
-                  {/* Skill Chips */}
-                  <div className="domain-card__chips">
-                    {cat.skills.map(s => (
-                      <span key={s.name} className="chip hover-target">
-                        {s.name}
-                      </span>
-                    ))}
-                  </div>
-
-                  {/* Meters */}
-                  <div className="domain-card__meters">
-                    {cat.skills.map(s => (
-                      <SkillMeter key={s.name} name={s.name} level={s.level} />
-                    ))}
-                  </div>
-                </div>
-              ))}
-            </div>
+            ))}
           </div>
         </section>
 
-        {/* Engineering Philosophy / Architecture Focus */}
-        <section className="dark-section" style={{ padding: '120px 0' }}>
-          <div className="w">
-            <div className="section-hd">
-              <div>
-                <div className="mono" style={{ color: 'var(--o)', marginBottom: '8px' }}>(03) Architectural Focus</div>
-                <h2 className="section-title" style={{ color: '#F0ECE2' }}>
-                  Engineering <span className="it">depth</span>.
-                </h2>
-              </div>
-              <span className="mono" style={{ color: '#F0ECE2', opacity: 0.7 }}>Beyond Frameworks</span>
-            </div>
-
-            <div className="trk" aria-hidden="true" />
-
-            <div className="cols" style={{ gridTemplateColumns: 'repeat(3, 1fr)' }}>
-              {focusAreas.map(f => (
-                <div key={f.step} className="sc">
-                  <div className="nu">{f.step}</div>
-                  <h3 style={{ color: '#F0ECE2' }}>{f.title}</h3>
-                  <p style={{ color: '#F0ECE2', opacity: 0.85 }}>{f.desc}</p>
+        {/* Skills Categories */}
+        <section className="section container">
+          <div className="skills-categories-grid">
+            {categories.map((cat, i) => (
+              <div key={cat.title} className="glass-panel skills-category scroll-reveal" style={{ transitionDelay: `${i * 100}ms` }}>
+                <div className="skills-category__header">
+                  <span className="material-symbols-outlined text-cyan" style={{ fontSize: '28px' }}>{cat.icon}</span>
+                  <h3 className="text-headline-md" style={{ fontSize: '20px' }}>{cat.title}</h3>
                 </div>
-              ))}
-            </div>
+                <div className="skills-category__bars">
+                  {cat.skills.map(s => (
+                    <SkillBar key={s.name} name={s.name} level={s.level} />
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        {/* Currently Learning */}
+        <section className="section container">
+          <h2 className="text-headline-lg text-cyan scroll-reveal" style={{ textAlign: 'center', marginBottom: '40px' }}>
+            Currently Learning
+          </h2>
+          <div className="learning-grid">
+            {learning.map((item, i) => (
+              <div key={item.title} className="glass-panel learning-card hover-target scroll-reveal" style={{ transitionDelay: `${i * 100}ms` }}>
+                <h4 className="text-headline-md" style={{ fontSize: '18px', marginBottom: '8px' }}>{item.title}</h4>
+                <p className="text-body-md text-muted">{item.desc}</p>
+              </div>
+            ))}
           </div>
         </section>
       </div>

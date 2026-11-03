@@ -1,170 +1,89 @@
-import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import PageTransition from '../components/PageTransition'
+import { useScrollReveal } from '../hooks/useAnimations'
 import './About.css'
 
+
+
+const philosophy = [
+  { icon: 'speed', title: 'Performance First', desc: 'Every millisecond matters. I optimize for Core Web Vitals and deliver sub-second load times across every project.' },
+  { icon: 'design_services', title: 'Design-Driven', desc: 'Beautiful interfaces aren\'t optional. I bridge design and engineering to create experiences that feel alive.' },
+  { icon: 'code', title: 'Open Source', desc: 'I believe in giving back. Active contributor to the React ecosystem and maintainer of several open-source tools.' },
+]
+
 export default function About() {
-  const [isDark, setIsDark] = useState(
-    document.documentElement.classList.contains('dark') ||
-    document.documentElement.getAttribute('data-theme') === 'dark'
-  )
-
-  useEffect(() => {
-    const checkDark = () => {
-      setIsDark(
-        document.documentElement.classList.contains('dark') ||
-        document.documentElement.getAttribute('data-theme') === 'dark'
-      )
-    }
-    window.addEventListener('storage', checkDark)
-    return () => window.removeEventListener('storage', checkDark)
-  }, [])
-
-  const handleToggleFlip = (e) => {
-    const checked = e.target.checked
-    setIsDark(checked)
-    if (checked) {
-      document.documentElement.classList.add('dark')
-      document.documentElement.setAttribute('data-theme', 'dark')
-      localStorage.setItem('portfolio-theme', 'dark')
-    } else {
-      document.documentElement.classList.remove('dark')
-      document.documentElement.setAttribute('data-theme', 'light')
-      localStorage.setItem('portfolio-theme', 'light')
-    }
-  }
+  const sectionRef = useScrollReveal()
 
   return (
     <PageTransition>
-      <div className="about-page">
-        {/* Header */}
-        <header className="about-header">
-          <div className="w">
-            <div className="meta mono" style={{ marginBottom: '24px' }}>
-              <span>(03) About Aryan</span>
-              <span>Software Engineer & UI Architect</span>
-              <span>Navi Mumbai, India</span>
+      <div ref={sectionRef}>
+        {/* Hero */}
+        <section className="section container">
+          <div className="about-hero">
+            <div className="about-hero__avatar scroll-reveal">
+              <div className="about-hero__avatar-frame glass-panel">
+                <div className="about-hero__avatar-inner">
+                  <span className="material-symbols-outlined" style={{ fontSize: '80px', color: 'var(--color-cyan)' }}>
+                    person
+                  </span>
+                </div>
+              </div>
             </div>
-            
-            {/* Editorial Split Grid */}
-            <div className="ab">
-              {/* Left Column: Story & Philosophy */}
-              <div>
-                <h1 className="about-title">
-                  Hi, I’m <span className="it">Aryan</span>.
-                </h1>
-
-                <div className="about-narrative">
-                  <p className="lead-text">
-                    I am a Computer Science Engineering student specializing in <span className="hl">IoT, Cyber Security, and Blockchain Technology</span> at Lokmanya Tilak College of Engineering, graduating in 2027.
-                  </p>
-                  
-                  <p>
-                    I build high-performance web systems, autonomous security scanners, and practical digital experiences. From architecting <span className="hl">Scale Orbit’s config-driven business tools</span> at Purplotus to maintaining corporate web infrastructure at Phasecor Healthcare with 99.99% uptime, I focus on building software that feels alive and solves real problems.
-                  </p>
-
-                  <p>
-                    I believe great software is <span className="hl">fast, intentional, and cut of corporate BS</span>. Interfaces should be responsive to human touch, codebases should be maintainable, and every byte delivered across the wire should earn its place.
-                  </p>
-                </div>
-
-                {/* Do Not Press Interactive Switch */}
-                <div style={{ marginTop: '36px', marginBottom: '40px' }}>
-                  <label className="tg hover-target">
-                    <input 
-                      id="flip" 
-                      type="checkbox" 
-                      checked={isDark}
-                      onChange={handleToggleFlip}
-                      aria-label="Do not press: swaps the colour theme" 
-                    />
-                    <i aria-hidden="true" />
-                    <span className="mono">Do not press (Theme Flip)</span>
-                  </label>
-                </div>
-
-                {/* Actions */}
-                <div className="about-actions">
-                  <a 
-                    href="/Aryan_Singh_Resume.pdf" 
-                    target="_blank" 
-                    rel="noopener noreferrer" 
-                    className="btn hover-target"
-                  >
-                    Download Resume ↗
-                  </a>
-                  <Link to="/contact" className="ghost hover-target">
-                    Let’s talk →
-                  </Link>
-                </div>
-              </div>
-
-              {/* Right Column: Credentials, Focus & Toolbox */}
-              <div className="about-sidebar">
-                {/* Education Card */}
-                <div className="creds-card">
-                  <div className="mono" style={{ color: 'var(--o)', marginBottom: '8px' }}>
-                    Education
-                  </div>
-                  <h2 className="creds-title">Lokmanya Tilak College of Engineering</h2>
-                  <p className="creds-degree">
-                    Bachelor of Engineering — Computer Science & Engineering (IoT, Cyber Security with Blockchain)
-                  </p>
-                  <div className="creds-meta mono">
-                    <span>Navi Mumbai, India</span>
-                    <span>2023 — 2027</span>
-                  </div>
-                </div>
-
-                {/* Engineering Pillars */}
-                <div className="creds-card" style={{ marginTop: '24px' }}>
-                  <div className="mono" style={{ color: 'var(--o)', marginBottom: '14px' }}>
-                    Engineering Principles
-                  </div>
-                  <ul className="principles-list">
-                    <li>
-                      <strong>Zero Fluff:</strong> Direct, clear communication and code that doesn’t hide behind abstractions.
-                    </li>
-                    <li>
-                      <strong>Performance First:</strong> Sub-second load times, sub-frame animation pacing, and zero unnecessary bloat.
-                    </li>
-                    <li>
-                      <strong>Robust Systems:</strong> Defensive state machines, deterministic error boundaries, and high test reliability.
-                    </li>
-                  </ul>
-                </div>
-
-                {/* Toolbox */}
-                <div style={{ marginTop: '32px' }}>
-                  <div className="mono" style={{ marginBottom: '16px' }}>Toolbox</div>
-                  <div className="toolbox-chips">
-                    <span className="chip hover-target">React</span>
-                    <span className="chip hover-target">Next.js</span>
-                    <span className="chip hover-target">TypeScript</span>
-                    <span className="chip hover-target">Solid.js</span>
-                    <span className="chip hover-target">WebRTC</span>
-                    <span className="chip hover-target">Tailwind CSS</span>
-                    <span className="chip hover-target">Supabase</span>
-                    <span className="chip hover-target">PostgreSQL</span>
-                    <span className="chip hover-target">Groq API</span>
-                    <span className="chip hover-target">Solidity</span>
-                    <span className="chip hover-target">Docker</span>
-                    <span className="chip hover-target">Git</span>
-                    <span className="chip hover-target">Figma</span>
-                  </div>
-                </div>
-              </div>
+            <div className="about-hero__info scroll-reveal">
+              <p className="text-label-code text-cyan" style={{ marginBottom: '8px' }}>// ABOUT ME</p>
+              <h1 className="text-display-lg" style={{ marginBottom: '8px' }}>Aryan</h1>
+              <p className="text-headline-md text-muted" style={{ fontSize: '20px', marginBottom: '24px' }}>
+                Full Stack Developer & UI Architect
+              </p>
+              <p className="text-body-lg text-muted" style={{ marginBottom: '16px' }}>
+                I am a Computer Science Engineering student specializing in IoT, Cyber Security, and Blockchain Technology. 
+                I enjoy building practical solutions that combine clean user experiences with solid engineering.
+              </p>
+              <p className="text-body-md text-muted" style={{ marginBottom: '16px' }}>
+                My recent work includes AI-powered applications, full-stack web platforms, and blockchain-based projects. 
+                I am particularly interested in AI, modern web technologies, scalable applications, and building products that solve real-world problems.
+              </p>
+              <blockquote style={{ borderLeft: '3px solid var(--color-cyan)', paddingLeft: '16px', fontStyle: 'italic', color: 'var(--color-outline)' }}>
+                "The best way to learn is to build."
+              </blockquote>
             </div>
           </div>
-        </header>
+        </section>
 
-        {/* Philosophy Highlight Banner */}
-        <section className="dark-section" style={{ padding: '100px 0' }}>
-          <div className="w">
-            <div className="mono" style={{ color: 'var(--o)', marginBottom: '16px' }}>(Statement)</div>
-            <p className="fill-quote" style={{ color: '#F0ECE2' }}>
-              The best interfaces don't demand attention — they <span className="it" style={{ color: 'var(--o)' }}>reward</span> it with speed, clarity, and thoughtful motion.
-            </p>
+
+
+        {/* Philosophy */}
+        <section className="section container">
+          <h2 className="text-headline-lg text-cyan scroll-reveal" style={{ textAlign: 'center', marginBottom: '48px' }}>
+            My Philosophy
+          </h2>
+          <div className="philosophy-grid">
+            {philosophy.map((item, i) => (
+              <div key={item.title} className="glass-panel philosophy-card hover-target scroll-reveal" style={{ transitionDelay: `${i * 100}ms` }}>
+                <span className="material-symbols-outlined philosophy-card__icon">{item.icon}</span>
+                <h3 className="text-headline-md" style={{ fontSize: '20px', margin: '16px 0 12px' }}>{item.title}</h3>
+                <p className="text-body-md text-muted">{item.desc}</p>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        {/* CTA */}
+        <section className="section container scroll-reveal" style={{ textAlign: 'center', paddingBottom: '80px' }}>
+          <h2 className="text-headline-lg" style={{ marginBottom: '16px' }}>
+            Want to <span className="gradient-text">work together</span>?
+          </h2>
+          <p className="text-body-lg text-muted" style={{ marginBottom: '32px', maxWidth: '500px', margin: '0 auto 32px' }}>
+            I'm always open to new opportunities and exciting projects.
+          </p>
+          <div style={{ display: 'flex', gap: '16px', justifyContent: 'center', flexWrap: 'wrap' }}>
+            <Link to="/contact" className="btn-primary hover-target" style={{ padding: '16px 48px', fontSize: '16px' }}>
+              Get in Touch
+            </Link>
+            <a href="/Aryan_Singh_Resume.pdf" target="_blank" rel="noopener noreferrer" className="btn-secondary hover-target" style={{ padding: '16px 48px', fontSize: '16px', display: 'inline-flex', alignItems: 'center', gap: '8px' }}>
+              <span className="material-symbols-outlined" style={{ fontSize: '20px' }}>description</span>
+              Resume
+            </a>
           </div>
         </section>
       </div>

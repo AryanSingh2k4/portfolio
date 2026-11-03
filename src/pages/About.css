@@ -1,121 +1,63 @@
-/* ============================================
-   ARYAN.DEV — About Page Styles
-   Editorial Design System
-   ============================================ */
-
-.about-page {
-  position: relative;
-  overflow-x: clip;
+.about-hero {
+  display: grid;
+  grid-template-columns: 300px 1fr;
+  gap: 48px;
+  align-items: start;
 }
 
-/* Header */
-.about-header {
-  padding-top: 24px;
-  padding-bottom: 60px;
+.about-hero__avatar-frame {
+  width: 280px;
+  height: 280px;
+  border-radius: 12px;
+  padding: 4px;
+  border: 2px solid rgba(0, 244, 254, 0.3);
+  box-shadow: 0 0 30px rgba(0, 244, 254, 0.1);
 }
 
-.about-title {
-  font-size: clamp(48px, 9vw, 120px);
-  line-height: 0.94;
-  letter-spacing: -0.05em;
-  font-weight: 800;
-  margin: 16px 0 32px;
-}
-
-.about-narrative {
-  margin-bottom: 32px;
-}
-
-.lead-text {
-  font-size: clamp(20px, 2.2vw, 26px);
-  font-weight: 500;
-  line-height: 1.5;
-  margin-bottom: 24px;
-}
-
-.about-narrative p {
-  font-size: 17px;
-  line-height: 1.7;
-  opacity: 0.88;
-  margin-bottom: 22px;
-}
-
-.about-actions {
+.about-hero__avatar-inner {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, var(--color-primary-container), var(--color-surface-container));
+  border-radius: 10px;
   display: flex;
-  gap: 24px;
   align-items: center;
-  flex-wrap: wrap;
+  justify-content: center;
 }
 
-/* Sidebar & Cards */
-.about-sidebar {
-  display: flex;
-  flex-direction: column;
+
+
+/* Philosophy */
+.philosophy-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-gutter);
 }
 
-.creds-card {
-  background: color-mix(in srgb, var(--b) 3.5%, var(--t));
-  border: 1px solid var(--h);
-  border-radius: 24px;
+.philosophy-card {
   padding: 32px;
-  transition: transform 0.6s var(--e), border-color 0.6s var(--e);
+  border-radius: 8px;
+  text-align: center;
 }
 
-.creds-card:hover {
-  transform: translateY(-3px);
-  border-color: var(--o);
+.philosophy-card__icon {
+  font-size: 40px;
+  color: var(--color-cyan);
 }
 
-.creds-title {
-  font-size: clamp(20px, 2vw, 24px);
-  font-weight: 800;
-  letter-spacing: -0.02em;
-  margin: 0 0 8px;
-  line-height: 1.25;
+@media (max-width: 1024px) {
+  .about-hero {
+    grid-template-columns: 1fr;
+    justify-items: center;
+    text-align: center;
+  }
+  .philosophy-grid {
+    grid-template-columns: 1fr;
+  }
 }
 
-.creds-degree {
-  font-size: 15px;
-  line-height: 1.5;
-  opacity: 0.85;
-  margin: 0 0 18px;
-}
-
-.creds-meta {
-  display: flex;
-  justify-content: space-between;
-  gap: 12px;
-  font-size: 12px;
-  opacity: 0.7;
-  padding-top: 14px;
-  border-top: 1px solid var(--h);
-}
-
-.principles-list {
-  padding-left: 18px;
-  margin: 0;
-  font-size: 14px;
-  line-height: 1.6;
-  opacity: 0.9;
-}
-
-.principles-list li {
-  margin-bottom: 12px;
-}
-
-.principles-list strong {
-  color: var(--b);
-}
-
-.toolbox-chips {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-}
-
-/* Responsive */
-@media (max-width: 860px) {
-  .about-actions {
-    margin-bottom: 48px;
+@media (max-width: 768px) {
+  .about-hero__avatar-frame {
+    width: 200px;
+    height: 200px;
   }
 }

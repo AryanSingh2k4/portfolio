@@ -1,292 +1,272 @@
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import PageTransition from '../components/PageTransition'
-import { SayHelloBadge, GithubIcon, LinkedInIcon, DiscordIcon } from '../components/Icons'
+import { useScrollReveal } from '../hooks/useAnimations'
+import { GithubIcon, LinkedInIcon, DiscordIcon } from '../components/Icons'
 import './Contact.css'
 
 const faqs = [
   {
     q: 'What is your typical project timeline?',
-    a: 'Most projects take 2-4 weeks from architecture to production delivery, depending on complexity. I provide clear milestone deliverables and communicate directly without intermediaries.'
+    a: 'Most projects take 2-4 weeks from kickoff to delivery, depending on scope. I provide detailed timelines during the initial consultation and keep you updated with weekly progress reports.'
   },
   {
-    q: 'What technologies do you work with?',
-    a: 'I specialize in React, Next.js, TypeScript, Solid.js, WebRTC, Tailwind CSS, Node.js, and Supabase. I also build AI-driven applications using Groq/LLMs and smart contract architectures on EVM chains.'
+    q: 'What technologies do you specialize in?',
+    a: 'I specialize in React, Next.js, TypeScript, Node.js, and modern CSS. I also have experience with Python, GraphQL, PostgreSQL, and various cloud platforms like AWS and Vercel.'
   },
   {
-    q: 'Are you available for contract or full-time roles?',
-    a: 'Yes! I am open to technical internships, freelance projects, and full-time opportunities. I can assist with greenfield web architectures, performance overhauls, or full-stack engineering.'
+    q: 'Do you take on freelance projects?',
+    a: 'Yes! I\'m currently open to freelance work. Whether it\'s a full website build, a complex web application, or consulting on architecture and performance, I\'d love to hear about your project.'
   },
   {
-    q: 'How do you structure client communication?',
-    a: 'Asynchronous updates via Slack/Discord, transparent GitHub repositories, and regular live milestone reviews. No corporate fluff, just working software.'
+    q: 'How do you handle project communication?',
+    a: 'I use a combination of Slack/Discord for daily communication, Notion for project documentation, and weekly video calls for progress reviews. You\'ll always know exactly where your project stands.'
   },
 ]
 
-const contactDetails = [
-  { label: 'Direct Email', value: 'aryanvsingh641@gmail.com', href: 'mailto:aryanvsingh641@gmail.com' },
-  { label: 'Location & Base', value: 'Navi Mumbai, India (IST UTC+5:30)', href: null },
-  { label: 'Current Availability', value: 'Open for Opportunities & Contracts', isAvailable: true },
+const contactInfo = [
+  { icon: 'mail', label: 'Email', value: 'aryanvsingh641@gmail.com', copyable: false },
+  { icon: 'location_on', label: 'Location', value: 'Remote / India', copyable: false },
+  { icon: 'circle', label: 'Availability', value: 'Open to freelance', status: true },
 ]
+
+const socials = [
+  { icon: <GithubIcon />, label: 'GitHub', url: 'https://github.com/AryanSingh2k4' },
+  { icon: <LinkedInIcon />, label: 'LinkedIn', url: 'https://linkedin.com/in/aryansingh2k4' },
+  { icon: <DiscordIcon />, label: 'Discord (carnage__2k4)', url: 'https://discordapp.com/users/carnage__2k4' },
+]
+
+const CustomSelect = ({ id, name, value, onChange, options, placeholder }) => {
+  const [isOpen, setIsOpen] = useState(false)
+
+  const handleSelect = (optionValue) => {
+    onChange({ target: { name, value: optionValue } })
+    setIsOpen(false)
+  }
+
+  return (
+    <div className="custom-select-wrapper" style={{ position: 'relative' }}>
+      <div 
+        className="input-field hover-target" 
+        style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}
+        onClick={() => setIsOpen(!isOpen)}
+      >
+        <span style={{ color: value ? 'var(--color-on-surface)' : 'var(--color-outline)' }}>
+          {options.find(o => o.value === value)?.label || placeholder}
+        </span>
+        <span className="material-symbols-outlined" style={{ transform: isOpen ? 'rotate(180deg)' : 'none', transition: 'transform 0.3s', fontSize: '18px', color: 'var(--color-cyan)' }}>
+          expand_more
+        </span>
+      </div>
+      
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div 
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -10 }}
+            transition={{ duration: 0.2 }}
+            className="custom-select-dropdown glass-panel"
+          >
+            {options.map(opt => (
+              <div 
+                key={opt.value} 
+                className="custom-select-option hover-target"
+                onClick={() => handleSelect(opt.value)}
+              >
+                {opt.label}
+              </div>
+            ))}
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </div>
+  )
+}
 
 export default function Contact() {
+  const sectionRef = useScrollReveal()
   const [openFaq, setOpenFaq] = useState(null)
-  const [currentTime, setCurrentTime] = useState('')
-  const [formData, setFormData] = useState({ name: '', email: '', subject: 'New Project', message: '', budget: '' })
+  const [copied, setCopied] = useState(false)
+  const [formData, setFormData] = useState({ name: '', email: '', subject: '', message: '', budget: '' })
   const [submitted, setSubmitted] = useState(false)
 
-  useEffect(() => {
-    const updateTime = () => {
-      const now = new Date()
-      setCurrentTime(
-        now.toLocaleTimeString('en-IN', {
-          timeZone: 'Asia/Kolkata',
-          hour: '2-digit',
-          minute: '2-digit',
-          second: '2-digit',
-          hour12: true
-        }) + ' IST'
-      )
-    }
-    updateTime()
-    const timer = setInterval(updateTime, 1000)
-    return () => clearInterval(timer)
-  }, [])
+  const handleCopy = (text) => {
+    navigator.clipboard.writeText(text)
+    setCopied(true)
+    setTimeout(() => setCopied(false), 2000)
+  }
+
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    
+    // Construct mailto link
+    const subject = encodeURIComponent(`Portfolio Inquiry: ${formData.subject}`)
+    const body = encodeURIComponent(`Name: ${formData.name}\nEmail: ${formData.email}\nBudget: ${formData.budget || 'N/A'}\n\nMessage:\n${formData.message}`)
+    window.location.href = `mailto:aryanvsingh641@gmail.com?subject=${subject}&body=${body}`
+
+    setSubmitted(true)
+    setTimeout(() => setSubmitted(false), 3000)
+    setFormData({ name: '', email: '', subject: '', message: '', budget: '' })
+  }
 
   const handleChange = (e) => {
     setFormData(prev => ({ ...prev, [e.target.name]: e.target.value }))
   }
 
-  const handleSubmit = (e) => {
-    e.preventDefault()
-    const subject = encodeURIComponent(`Portfolio Inquiry: ${formData.subject} — from ${formData.name}`)
-    const body = encodeURIComponent(
-      `Name: ${formData.name}\n` +
-      `Email: ${formData.email}\n` +
-      `Topic: ${formData.subject}\n` +
-      `Budget: ${formData.budget || 'Not specified'}\n\n` +
-      `Message:\n${formData.message}`
-    )
-    window.location.href = `mailto:aryanvsingh641@gmail.com?subject=${subject}&body=${body}`
-    setSubmitted(true)
-    setTimeout(() => setSubmitted(false), 4000)
-    setFormData({ name: '', email: '', subject: 'New Project', message: '', budget: '' })
-  }
-
   return (
     <PageTransition>
-      <div className="contact-page">
-        {/* Electric Orange Hero Banner */}
-        <section className="ct" id="contact-banner">
-          <a 
-            className="say hover-target" 
-            href="mailto:aryanvsingh641@gmail.com" 
-            aria-label="Say hello via email"
-          >
-            <SayHelloBadge />
-          </a>
+      <div ref={sectionRef}>
+        <section className="section container">
+          <div className="contact-grid">
+            {/* Left Side */}
+            <div className="contact-info scroll-reveal">
+              <p className="text-label-code text-cyan" style={{ marginBottom: '8px' }}>// CONTACT</p>
+              <h1 className="text-display-lg" style={{ marginBottom: '16px', lineHeight: 1.15 }}>
+                Let's Build Something <span className="gradient-text">Extraordinary</span>
+              </h1>
+              <p className="text-body-lg text-muted" style={{ marginBottom: '40px' }}>
+                Ready for your next project? Drop me a line and let's create something amazing together.
+              </p>
 
-          <div className="w">
-            <div className="mono" style={{ color: '#191812', opacity: 0.85 }}>(04) Contact</div>
-            <h2>
-              Let’s create something <span className="it">memorable.</span>
-            </h2>
-            <div>
-              <a className="mail hover-target" href="mailto:aryanvsingh641@gmail.com">
-                aryanvsingh641@gmail.com
-              </a>
+              <div className="contact-cards">
+                {contactInfo.map(info => (
+                  <div key={info.label} className="contact-card glass-panel hover-target" onClick={() => info.copyable && handleCopy(info.value)}>
+                    <span className="material-symbols-outlined text-cyan" style={{ fontSize: '24px' }}>
+                      {info.icon}
+                    </span>
+                    <div>
+                      <p className="text-label-code text-muted" style={{ fontSize: '12px' }}>{info.label}</p>
+                      <p className="text-body-md" style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                        {info.status && <span className="status-dot" />}
+                        {info.label === 'Email' ? (
+                          <a href={`mailto:${info.value}`} className="hover-target" style={{ color: 'inherit', display: 'flex', alignItems: 'center', gap: '6px' }}>
+                            {info.value}
+                            <span className="material-symbols-outlined" style={{ fontSize: '14px', color: 'var(--color-cyan)' }}>open_in_new</span>
+                          </a>
+                        ) : (
+                          info.value
+                        )}
+                      </p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+
+              <div className="social-links">
+                {socials.map(s => (
+                  <a key={s.label} href={s.url} target="_blank" rel="noopener noreferrer"
+                     className="social-link glass-panel hover-target" title={s.label} aria-label={s.label}>
+                    {s.icon}
+                  </a>
+                ))}
+              </div>
             </div>
 
-            <div className="soc mono" style={{ marginTop: '54px' }}>
-              <a 
-                href="https://github.com/AryanSingh2k4" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="hover-target"
-              >
-                GitHub ↗
-              </a>
-              <a 
-                href="https://linkedin.com/in/aryansingh2k4" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="hover-target"
-              >
-                LinkedIn ↗
-              </a>
-              <a 
-                href="https://discordapp.com/users/carnage__2k4" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="hover-target"
-              >
-                Discord ↗
-              </a>
+            {/* Right Side - Form */}
+            <div className="contact-form-wrapper glass-panel scroll-reveal">
+              <h3 className="text-headline-md" style={{ fontSize: '20px', marginBottom: '24px' }}>
+                <span className="text-cyan">{'>'}</span> Send a Message
+              </h3>
+              <form onSubmit={handleSubmit} className="contact-form">
+                <div className="form-group">
+                  <label className="text-label-code text-muted" htmlFor="contact-name">Name</label>
+                  <input
+                    id="contact-name"
+                    name="name"
+                    type="text"
+                    className="input-field"
+                    placeholder="Your name"
+                    value={formData.name}
+                    onChange={handleChange}
+                    required
+                  />
+                </div>
+                <div className="form-group">
+                  <label className="text-label-code text-muted" htmlFor="contact-email">Email</label>
+                  <input
+                    id="contact-email"
+                    name="email"
+                    type="email"
+                    className="input-field"
+                    placeholder="your@email.com"
+                    value={formData.email}
+                    onChange={handleChange}
+                    required
+                  />
+                </div>
+                <div className="form-group">
+                  <label className="text-label-code text-muted" htmlFor="contact-subject">Subject</label>
+                  <CustomSelect
+                    id="contact-subject"
+                    name="subject"
+                    value={formData.subject}
+                    onChange={handleChange}
+                    placeholder="Select a topic"
+                    options={[
+                      { value: 'project', label: 'New Project' },
+                      { value: 'freelance', label: 'Freelance Inquiry' },
+                      { value: 'collaboration', label: 'Collaboration' },
+                      { value: 'other', label: 'Other' },
+                    ]}
+                  />
+                </div>
+                <div className="form-group">
+                  <label className="text-label-code text-muted" htmlFor="contact-budget">Budget Range</label>
+                  <input
+                    id="contact-budget"
+                    name="budget"
+                    type="text"
+                    className="input-field"
+                    placeholder="e.g., ₹10,000 - ₹15,000"
+                    value={formData.budget}
+                    onChange={handleChange}
+                  />
+                </div>
+                <div className="form-group">
+                  <label className="text-label-code text-muted" htmlFor="contact-message">Message</label>
+                  <textarea
+                    id="contact-message"
+                    name="message"
+                    className="input-field"
+                    placeholder="Tell me about your project..."
+                    rows="5"
+                    value={formData.message}
+                    onChange={handleChange}
+                    required
+                  />
+                </div>
+                <button type="submit" className="btn-primary hover-target" style={{ width: '100%', padding: '14px', fontSize: '15px' }}>
+                  {submitted ? '✓ Message Sent!' : 'Get In Touch'}
+                </button>
+              </form>
             </div>
           </div>
         </section>
 
-        {/* Detailed Inquiry & FAQ Section */}
-        <section className="contact-details-section">
-          <div className="w">
-            <div className="contact-editorial-grid">
-              {/* Left Column: Direct Info & FAQs */}
-              <div className="contact-left-col">
-                <div className="mono" style={{ color: 'var(--o)', marginBottom: '12px' }}>(Direct Channels)</div>
-                <h3 className="contact-section-heading">Get in touch directly.</h3>
-                <p className="contact-lead-desc">
-                  Have an ambitious project, an engineering role, or a technical question? I reply promptly to genuine inquiries.
-                </p>
-
-                {/* Info Cards */}
-                <div className="contact-info-cards">
-                  {contactDetails.map((item) => (
-                    <div key={item.label} className="contact-info-card">
-                      <span className="mono contact-info-label">{item.label}</span>
-                      {item.href ? (
-                        <a href={item.href} className="contact-info-value hover-target" style={{ textDecoration: 'none', color: 'inherit' }}>
-                          {item.value} ↗
-                        </a>
-                      ) : (
-                        <span className="contact-info-value">
-                          {item.isAvailable && <i className="pd" aria-hidden="true" />}
-                          {item.value}
-                        </span>
-                      )}
-                    </div>
-                  ))}
-
-                  {/* Live Clock Card */}
-                  <div className="contact-info-card">
-                    <span className="mono contact-info-label">Current Local Time</span>
-                    <span className="contact-info-value mono" style={{ color: 'var(--o)', fontSize: '15px' }}>
-                      {currentTime || 'Loading IST...'}
-                    </span>
-                  </div>
-                </div>
-
-                {/* FAQ Accordion */}
-                <div style={{ marginTop: '54px' }}>
-                  <div className="mono" style={{ color: 'var(--o)', marginBottom: '16px' }}>(Frequently Asked)</div>
-                  <div className="faq-accordion">
-                    {faqs.map((faq, i) => (
-                      <div key={i} className="faq-node">
-                        <button 
-                          className="faq-trigger hover-target"
-                          onClick={() => setOpenFaq(openFaq === i ? null : i)}
-                          aria-expanded={openFaq === i}
-                        >
-                          <span className="faq-q">{faq.q}</span>
-                          <span className="faq-icon" style={{ transform: openFaq === i ? 'rotate(45deg)' : 'none' }}>
-                            +
-                          </span>
-                        </button>
-                        <AnimatePresence>
-                          {openFaq === i && (
-                            <motion.div
-                              initial={{ height: 0, opacity: 0 }}
-                              animate={{ height: 'auto', opacity: 1 }}
-                              exit={{ height: 0, opacity: 0 }}
-                              transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
-                              style={{ overflow: 'hidden' }}
-                            >
-                              <p className="faq-a">{faq.a}</p>
-                            </motion.div>
-                          )}
-                        </AnimatePresence>
-                      </div>
-                    ))}
-                  </div>
+        {/* FAQ */}
+        <section className="section container">
+          <h2 className="text-headline-lg text-cyan scroll-reveal" style={{ textAlign: 'center', marginBottom: '40px' }}>
+            FAQ
+          </h2>
+          <div className="faq-list" style={{ maxWidth: '750px', margin: '0 auto' }}>
+            {faqs.map((faq, i) => (
+              <div key={i} className="faq-item glass-panel scroll-reveal" style={{ transitionDelay: `${i * 80}ms` }}>
+                <button
+                  className="faq-item__header hover-target"
+                  onClick={() => setOpenFaq(openFaq === i ? null : i)}
+                  aria-expanded={openFaq === i}
+                >
+                  <span className="text-body-lg">{faq.q}</span>
+                  <span className="material-symbols-outlined faq-item__chevron" style={{ transform: openFaq === i ? 'rotate(180deg)' : 'none' }}>
+                    expand_more
+                  </span>
+                </button>
+                <div className={`faq-item__body ${openFaq === i ? 'open' : ''}`}>
+                  <p className="text-body-md text-muted">{faq.a}</p>
                 </div>
               </div>
-
-              {/* Right Column: Inquiry Form */}
-              <div className="contact-right-col">
-                <div className="contact-form-card">
-                  <div className="mono" style={{ color: 'var(--o)', marginBottom: '8px' }}>Project Inquiry</div>
-                  <h3 className="form-card-title">Send a message</h3>
-                  <p className="form-card-desc">Fill out the form below to launch your email client with a pre-formatted message.</p>
-
-                  <form onSubmit={handleSubmit} className="editorial-form">
-                    <div className="form-field">
-                      <label htmlFor="name" className="mono">Your Name</label>
-                      <input 
-                        type="text" 
-                        id="name" 
-                        name="name" 
-                        value={formData.name}
-                        onChange={handleChange}
-                        placeholder="e.g. Jane Doe"
-                        required 
-                      />
-                    </div>
-
-                    <div className="form-field">
-                      <label htmlFor="email" className="mono">Your Email</label>
-                      <input 
-                        type="email" 
-                        id="email" 
-                        name="email" 
-                        value={formData.email}
-                        onChange={handleChange}
-                        placeholder="e.g. jane@company.com"
-                        required 
-                      />
-                    </div>
-
-                    <div className="form-field">
-                      <label htmlFor="subject" className="mono">Project Scope / Topic</label>
-                      <select 
-                        id="subject" 
-                        name="subject" 
-                        value={formData.subject}
-                        onChange={handleChange}
-                      >
-                        <option value="New Web Application">New Web Application</option>
-                        <option value="Full-Stack Engineering">Full-Stack Engineering</option>
-                        <option value="AI Integration & Workflows">AI Integration & Workflows</option>
-                        <option value="Freelance / Consultation">Freelance / Consultation</option>
-                        <option value="Technical Opportunity">Technical Opportunity</option>
-                        <option value="Other">Other</option>
-                      </select>
-                    </div>
-
-                    <div className="form-field">
-                      <label htmlFor="budget" className="mono">Budget or Scope (Optional)</label>
-                      <input 
-                        type="text" 
-                        id="budget" 
-                        name="budget" 
-                        value={formData.budget}
-                        onChange={handleChange}
-                        placeholder="e.g. ₹20,000 - ₹50,000 or Fixed Scope"
-                      />
-                    </div>
-
-                    <div className="form-field">
-                      <label htmlFor="message" className="mono">Message & Details</label>
-                      <textarea 
-                        id="message" 
-                        name="message" 
-                        rows="5"
-                        value={formData.message}
-                        onChange={handleChange}
-                        placeholder="Tell me about your project, goals, and timeline..."
-                        required 
-                      />
-                    </div>
-
-                    <button 
-                      type="submit" 
-                      className="btn hover-target" 
-                      style={{ width: '100%', justifyContent: 'center', marginTop: '12px' }}
-                    >
-                      {submitted ? 'Opening Email Client...' : 'Dispatch Message ↗'}
-                    </button>
-                  </form>
-                </div>
-              </div>
-            </div>
+            ))}
           </div>
         </section>
       </div>
