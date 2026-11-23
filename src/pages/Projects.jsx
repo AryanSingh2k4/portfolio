@@ -5,27 +5,25 @@ import { useScrollReveal } from '../hooks/useAnimations'
 import './Projects.css'
 
 const allProjects = [
-  { title: 'Sentinel', desc: 'Autonomous security scanner that maps attack surfaces, discovers vulnerabilities, and simulates exploits.', tech: ['Next.js', 'Nuclei', 'Katana', 'Supabase'], icon: 'security', category: 'AI & Web3', link: 'https://sentinel-pentesting.vercel.app/?v=1', source: 'https://github.com/AryanSingh2k4/sentinel' },
-  { title: 'Dropline', desc: 'Peer-to-peer file sharing app for sending files directly between browsers with no size limits or cloud storage.', tech: ['Next.js', 'WebRTC', 'TypeScript', 'Supabase'], icon: 'folder_shared', category: 'Web Apps', link: 'https://droplinegg.vercel.app/', source: 'https://github.com/AryanSingh2k4/drop-line' },
-  { title: 'CareFlow', desc: 'AI receptionist that handles patient intake, automated appointment scheduling, and front-desk workflows.', tech: ['Next.js', 'Groq API', 'Supabase', 'Tailwind CSS'], icon: 'smart_toy', category: 'Web Apps', link: 'https://med-careflow.vercel.app/', source: 'https://github.com/aryansingh81167/careflow' },
+  { title: 'Sentinel', desc: 'Autonomous security scanner with 5-stage agent state machine, 800+ TruffleHog rules, and AST-based self-healing auto-patcher.', tech: ['Next.js', 'Nuclei', 'Katana', 'Supabase'], icon: 'security', category: 'AI & Web3', link: 'https://sentinel-pentesting.vercel.app/?v=1', source: 'https://github.com/AryanSingh2k4/sentinel' },
+  { title: 'ScrutiniX', desc: 'Regulatory document verification and forensic fraud detection engine with Error Level Analysis and SHA-256 sealing for AICTE.', tech: ['Next.js', 'TypeScript', 'OpenCV', 'Gemini API'], icon: 'verified_user', category: 'AI & Web3', link: 'https://scrutinix.vercel.app', source: 'https://github.com/AryanSingh2k4/AICTE-Scrutiny-Dashboard' },
+  { title: 'JobSeeker', desc: 'Local-first, privacy-respecting job application desktop app built with Rust, Python FastAPI sidecar, and Typst.', tech: ['Rust', 'Tauri 2', 'Python', 'FastAPI', 'Typst'], icon: 'terminal', category: 'Web Apps', link: 'https://job-seeker-three-flax.vercel.app', source: 'https://github.com/AryanSingh2k4/Job-Seeker' },
+  { title: 'Dropline', desc: 'Serverless P2P file sharing platform using WebRTC DataChannels with 64KB chunked binary streaming and zero cloud storage.', tech: ['Next.js', 'WebRTC', 'TypeScript', 'Supabase'], icon: 'folder_shared', category: 'Web Apps', link: 'https://droplinegg.vercel.app/', source: 'https://github.com/AryanSingh2k4/drop-line' },
+  { title: 'NexusSecure', desc: 'Collaborative attack-defense threat intelligence mesh for independent websites broadcasting real-time blocklists via SSE.', tech: ['TypeScript', 'Node.js', 'Supabase', 'SSE'], icon: 'hub', category: 'AI & Web3', link: 'https://nexus-secure-admin-dashboard.vercel.app', source: 'https://github.com/AryanSingh2k4/NexusSecure' },
+  { title: 'CareFlow', desc: 'AI medical receptionist that handles conversational patient intake, automated appointment booking, and clinic triage.', tech: ['Next.js', 'Groq API', 'Supabase', 'Tailwind CSS'], icon: 'smart_toy', category: 'Web Apps', link: 'https://med-careflow.vercel.app/', source: 'https://github.com/aryansingh81167/careflow' },
+  { title: 'Sahayata', desc: 'National Disaster Victim Tracing & Rescue Intelligence System with ticket OCR auto-intake and biometric face recognition.', tech: ['Next.js', 'TypeScript', 'Face Recognition', 'OCR'], icon: 'emergency', category: 'AI & Web3', link: 'https://sahayata-eight.vercel.app', source: 'https://github.com/AryanSingh2k4/sahayata' },
+  { title: 'CodeMorph', desc: 'Autonomous code migration and refactoring platform parsing ASTs, previewing diffs, and dispatching GitHub PRs.', tech: ['Next.js', 'TypeScript', 'Babel AST', 'Octokit'], icon: 'transform', category: 'Web Apps', link: 'https://code-morph-snowy.vercel.app', source: 'https://github.com/AryanSingh2k4/CodeMorph' },
   { title: 'CodeBot', desc: 'Open-source AI coding assistant with real-time streaming responses, persistent chats, and Markdown support.', tech: ['React', 'TypeScript', 'Vite', 'Groq API'], icon: 'chat', category: 'AI & Web3', link: 'https://the-code-bot.vercel.app/', source: 'https://github.com/AryanSingh2k4/CodeBot' },
+  { title: 'LUMIÈRE', desc: 'Luxury fine-dining reservation and VIP membership platform featuring an AI Virtual Maître d\' for curated dining.', tech: ['Next.js', 'TypeScript', 'Tailwind CSS', 'AI Concierge'], icon: 'restaurant', category: 'Web Apps', link: 'https://ai-restaurant-reservation.vercel.app', source: 'https://github.com/AryanSingh2k4/restaurant-reservation-ai' },
+  { title: 'Drift', desc: 'Ultra-lightweight rootless Android autoscroll utility in Kotlin with floating overlay, spring physics, and keyboard auto-pause.', tech: ['Kotlin', 'Android SDK', 'AccessibilityService'], icon: 'android', category: 'Web Apps', link: null, source: 'https://github.com/AryanSingh2k4/drift' },
+  { title: 'StudyQuest', desc: 'Local-first Windows desktop study tracker and gamified productivity suite with XP leveling, subject streaks, and timer overlay.', tech: ['Electron', 'JavaScript', 'Node.js', 'Local Storage'], icon: 'timer', category: 'Web Apps', link: null, source: 'https://github.com/AryanSingh2k4/Study-Quest' },
   { title: 'NFTicketing', desc: 'Decentralized ticketing app that mints tickets as NFTs to prevent scalping and verify event access.', tech: ['Solidity', 'React', 'Ethers.js', 'MetaMask'], icon: 'confirmation_number', category: 'AI & Web3', link: 'https://nftticketing.vercel.app/', source: 'https://github.com/AryanSingh2k4/NFTicketing' },
+  { title: 'PixelFinds', desc: 'Editorial tech gadget discovery and recommendation hub with static site generation for sub-second page loads.', tech: ['Next.js', 'TypeScript', 'Markdown', 'Tailwind CSS'], icon: 'devices', category: 'Web Apps', link: 'https://pixelfinds.vercel.app', source: 'https://github.com/AryanSingh2k4/PixelFinds' },
   { title: 'Eynexa Pharma Corporate Website', desc: 'Corporate platform and brand identity built for a pharmaceutical company to showcase products and drive leads.', tech: ['Web Development', 'SEO', 'Brand Design'], icon: 'medical_services', category: 'Web Apps', link: 'https://eynexapharma.com/', source: null },
-  { title: 'Phasecor Healthcare Corporate Website', desc: 'Corporate healthcare portal and product catalog built for browsing medicines and submitting direct inquiries.', tech: ['Next.js', 'React', 'Tailwind CSS', 'TypeScript'], icon: 'medical_services', category: 'Web Apps', link: 'https://healthcare.phasecor.com', source: 'https://github.com/aryansingh2k04/Phasecor_Healthcare' },
+  { title: 'Phasecor Healthcare Corporate Website', desc: 'Corporate pharmaceutical platform and therapeutic formulation catalog engineered with Next.js and Tailwind CSS, featuring automated product enquiry pipelines, sub-1.5s load times, and 99.99% uptime.', tech: ['Next.js', 'React', 'Tailwind CSS', 'TypeScript'], icon: 'medical_services', category: 'Web Apps', link: 'https://healthcare.phasecor.com', source: 'https://github.com/aryansingh2k04/Phasecor_Healthcare' },
 ]
+
 const timeline = [
-  { 
-    year: 'Aug. 2026 — Present', 
-    role: 'Technical and Digital Operations Intern', 
-    company: 'Purplotus Consultancy', 
-    desc: 'Working on Scale Orbit, an AI-assisted People Systems platform automating organizational workflows.',
-    details: [
-      'Engineered frontend modules for Scale Orbit, an AI-assisted People Systems platform that automates organizational workflows and HR diagnostic toolkits.',
-      'Built a config-driven schema engine to dynamically generate 18+ business tools without hardcoded templates.',
-      'Implemented modular configuration packages across diagnostic, psychometric, and HR tools within a pnpm monorepo.'
-    ],
-    tech: ['Solid.js', 'TypeScript', 'Tailwind CSS', 'pnpm']
-  },
   { 
     year: 'Nov. 2025 — Present', 
     role: 'Technical Operations Lead (Part-Time)', 
@@ -38,6 +36,18 @@ const timeline = [
       'Manage daily technical operations, domain DNS, corporate email infrastructure, and e-commerce operations.'
     ],
     tech: ['Next.js', 'Vercel', 'E-commerce', 'Automation', 'DNS']
+  },
+  { 
+    year: 'Aug. 2026 — Oct. 2026', 
+    role: 'Technical and Digital Operations Intern', 
+    company: 'Purplotus Consultancy', 
+    desc: 'Working on Scale Orbit, an AI-assisted People Systems platform automating organizational workflows.',
+    details: [
+      'Engineered frontend modules for Scale Orbit, an AI-assisted People Systems platform that automates organizational workflows and HR diagnostic toolkits.',
+      'Built a config-driven schema engine to dynamically generate 18+ business tools without hardcoded templates.',
+      'Implemented modular configuration packages across diagnostic, psychometric, and HR tools within a pnpm monorepo.'
+    ],
+    tech: ['Solid.js', 'TypeScript', 'Tailwind CSS', 'pnpm']
   },
   { 
     year: 'Oct. 2025 — Present', 
@@ -68,8 +78,6 @@ export default function Projects() {
   const toggleExpand = (index) => {
     setExpandedIndex(expandedIndex === index ? null : index)
   }
-
-
 
   return (
     <PageTransition>
